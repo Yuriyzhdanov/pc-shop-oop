@@ -34,3 +34,4 @@ module.exports = Search
 
 // search.setQuery('qw')
 // console.log(search.getCurPlaceholders())
+console.log('hello');

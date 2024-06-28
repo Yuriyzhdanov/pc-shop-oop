@@ -39,5 +39,6 @@ class CheckedAttrs {
     // this.calcFromToPrice()
   }
 }
+console.log('hello');
 
 module.exports = CheckedAttrs

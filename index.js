@@ -36,6 +36,8 @@ catalog.initCheckedAttrs()
 // console.log(catalog.computedProducts())
 
 console.log('=======')
+console.log('hello');
+
 catalog.search.setQuery('')
 catalog.checkedAttrs.createCheckedAttrs(['ssd-kingston'])
 console.log(catalog.computedProducts())
