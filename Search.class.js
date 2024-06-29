@@ -1,8 +1,12 @@
 class Search {
-  constructor(placeholders) {
+  constructor(products) {
     this.query = ''
-    this.allPlaceholders = placeholders
     this.curPlaceholders = []
+    this.parsePlaceholders(products)
+  }
+
+  parsePlaceholders(products) {
+    this.allPlaceholders = this.products.map(product => product.caption)
   }
 
   setQuery(query) {
@@ -34,4 +38,3 @@ module.exports = Search
 
 // search.setQuery('qw')
 // console.log(search.getCurPlaceholders())
-

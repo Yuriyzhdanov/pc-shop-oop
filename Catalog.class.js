@@ -15,8 +15,7 @@ class Catalog {
   }
 
   initSearch() {
-    const placeholders = this.products.map(product => product.caption)
-    this.search = new Search(placeholders, this.products)
+    this.search = new Search(this.products)
   }
 
   initCheckedAttrs() {
