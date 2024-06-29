@@ -1,4 +1,4 @@
-const CheckedAttrs = require('./CheckedAttrs.class')
+const CheckedAttrs = require('./AttributesSelector.class')
 const Product = require('./Product.class')
 const Search = require('./Search.class')
 
@@ -9,19 +9,18 @@ class Catalog {
 
   computedProducts() {
     const searched = this.search.run(this.products)
-    console.log(searched)
     const attributed = this.checkedAttrs.run(searched)
 
     return attributed
   }
 
-  initCheckedAttrs() {
-    this.checkedAttrs = new CheckedAttrs()
-  }
-
   initSearch() {
     const placeholders = this.products.map(product => product.caption)
     this.search = new Search(placeholders, this.products)
+  }
+
+  initCheckedAttrs() {
+    this.checkedAttrs = new CheckedAttrs()
   }
 
   addProducts(products) {
