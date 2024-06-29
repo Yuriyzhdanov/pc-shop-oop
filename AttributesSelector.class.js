@@ -24,11 +24,9 @@ class CheckedAttrs {
 
   run(products) {
     return products.filter(product => {
-      console.log(product)
       let matchedCount = 0
       this.checkedAttrs.forEach(filter => {
         const { key, values } = filter
-        console.log('>>', product.attributes)
         if (values.includes(product.attributes[key])) {
           matchedCount++
         }
@@ -39,6 +37,5 @@ class CheckedAttrs {
     // this.calcFromToPrice()
   }
 }
-
 
 module.exports = CheckedAttrs

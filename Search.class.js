@@ -6,7 +6,7 @@ class Search {
   }
 
   parsePlaceholders(products) {
-    this.allPlaceholders = this.products.map(product => product.caption)
+    this.allPlaceholders = products.map(product => product.caption)
   }
 
   setQuery(query) {
