@@ -8,4 +8,4 @@ class Product {
 }
 
 module.exports = Product
-console.log('hello');
+

@@ -41,6 +41,5 @@ class Catalog {
     this.products = []
   }
 }
-console.log('hello');
 
 module.exports = Catalog
