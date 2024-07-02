@@ -1,7 +1,8 @@
-const CheckedAttrs = require('./AttributesSelector.class')
-const PriceRanger = require('./PriceRanger.class')
 const Product = require('./Product.class')
+const AttrSelector = require('./AttrSelector.class')
+const PriceRanger = require('./PriceRanger.class')
 const Search = require('./Search.class')
+const Sorter = require('./Sorter.class')
 
 class Catalog {
   constructor() {
@@ -10,10 +11,10 @@ class Catalog {
 
   computedProducts() {
     const searched = this.search.run(this.products)
-    // const attributed = this.checkedAttrs.run(searched)
-    // const priced = this.priceRanger.run(attributed)
-
-    return searched
+    const attributed = this.attrSelector.run(searched)
+    const priced = this.priceRanger.run(attributed)
+    const sorted = this.sorter.run(priced)
+    return sorted
   }
 
   initSearch() {
@@ -21,11 +22,15 @@ class Catalog {
   }
 
   initCheckedAttrs() {
-    this.checkedAttrs = new CheckedAttrs()
+    this.attrSelector = new AttrSelector()
   }
 
   initPriceRanger() {
     this.priceRanger = new PriceRanger()
+  }
+
+  initSorter() {
+    this.sorter = new Sorter()
   }
 
   addProducts(products) {

@@ -1,20 +1,17 @@
 const Catalog = require('./Catalog.class')
-const Product = require('./Product.class')
-const Search = require('./Search.class')
-const Sorter = require('./Sorter.class')
 
 const products = [
   {
     id: 42,
     caption: 'Apple Mac Book Pro',
-    price: 100,
+    price: 200,
     convertedPrice: 1000,
     attributes: { ssd: 'amd' },
   },
   {
     id: 101,
     caption: 'Intel Pentium',
-    price: 200,
+    price: 100,
     convertedPrice: 2000,
     attributes: { ssd: 'apple' },
   },
@@ -24,27 +21,35 @@ const products = [
     price: 300,
     convertedPrice: 3000,
     attributes: { ssd: 'kingston' },
-  }
+  },
+  {
+    id: 103,
+    caption: 'Intel Core',
+    price: 400,
+    convertedPrice: 4000,
+    attributes: { ssd: 'kingston' },
+  },
 ]
 
 const catalog = new Catalog()
 catalog.addProducts(products)
 catalog.initSearch()
-// catalog.search.setQuery('')
+catalog.initCheckedAttrs()
+catalog.initPriceRanger()
+catalog.initSorter()
+
+catalog.search.setQuery('Intel')
+catalog.sorter.setSortingType('byPriceDESC')
+catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
+catalog.priceRanger.setFrom(3001)
+catalog.priceRanger.setTo(4001)
+
 console.log(catalog.computedProducts())
 
-// catalog.initCheckedAttrs()
-// catalog.initPriceRanger()
+catalog.search.setQuery('')
+catalog.attrSelector.createCheckedAttrs([])
+catalog.priceRanger.resetFromTo()
+catalog.sorter.setSortingType('')
 
-// console.log(catalog.computedProducts())
-
-// catalog.search.setQuery('Apple')
-// console.log(catalog.computedProducts())
-
-// catalog.checkedAttrs.createCheckedAttrs(['ssd-kingston'])
-// catalog.priceRanger.setFrom(1001)
-// catalog.priceRanger.setTo(2001)
-
-const sorter = new Sorter()
-sorter.sortProducts(products);
-console.log('Sorted by price ASC:', sorter.sortedProducts);
+console.log('==============')
+console.log(catalog.computedProducts())
