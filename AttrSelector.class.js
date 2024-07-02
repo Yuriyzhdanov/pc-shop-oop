@@ -1,4 +1,4 @@
-class AttrSelector {
+git class AttrSelector {
   constructor() {
     this.checkedAttrs = []
   }

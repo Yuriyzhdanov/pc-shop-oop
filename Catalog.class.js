@@ -3,18 +3,20 @@ const AttrSelector = require('./AttrSelector.class')
 const PriceRanger = require('./PriceRanger.class')
 const Search = require('./Search.class')
 const Sorter = require('./Sorter.class')
+const Paginator = require('./Paginator.class')
 
 class Catalog {
   constructor() {
     this.products = []
   }
 
-  computedProducts() {
+  computedProducts(currentPage) {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
-    return sorted
+    const paginated = this.paginator.run(currentPage, sorted)
+    return paginated
   }
 
   initSearch() {
@@ -31,6 +33,10 @@ class Catalog {
 
   initSorter() {
     this.sorter = new Sorter()
+  }
+
+  initPaginator(perCountPages) {
+    this.paginator = new Paginator(perCountPages)
   }
 
   addProducts(products) {
