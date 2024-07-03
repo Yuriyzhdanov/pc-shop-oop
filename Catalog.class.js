@@ -2,6 +2,7 @@ const Product = require('./Product.class')
 const AttrSelector = require('./AttrSelector.class')
 const PriceRanger = require('./PriceRanger.class')
 const Search = require('./Search.class')
+const Filter = require('./Filter.class')
 const Sorter = require('./Sorter.class')
 const Paginator = require('./Paginator.class')
 
@@ -14,7 +15,8 @@ class Catalog {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
-    const sorted = this.sorter.run(priced)
+    const filtered = this.filter.run(priced)
+    const sorted = this.sorter.run(filtered)
     const paginated = this.paginator.run(currentPage, sorted)
     return paginated
   }
@@ -29,6 +31,10 @@ class Catalog {
 
   initPriceRanger() {
     this.priceRanger = new PriceRanger()
+  }
+
+  initFilter() {
+    this.filter = new Filter()
   }
 
   initSorter() {

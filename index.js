@@ -50,6 +50,7 @@ catalog.addProducts(products)
 catalog.initSearch()
 catalog.initCheckedAttrs()
 catalog.initPriceRanger()
+catalog.initFilter()
 catalog.initSorter()
 catalog.initPaginator(2)
 
@@ -58,6 +59,7 @@ catalog.sorter.setSortingType('byPriceDESC')
 catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
 catalog.priceRanger.setFrom(3001)
 catalog.priceRanger.setTo(4001)
+catalog.filter.addFilter('ssd', ['kingston'])
 
 console.log(catalog.computedProducts())
 
@@ -71,3 +73,4 @@ console.log('==============')
 console.log('Page 1:', catalog.computedProducts(0))
 console.log('Page 2:', catalog.computedProducts(1))
 console.log('Page 3:', catalog.computedProducts(2))
+// console.log(catalog.filter);
