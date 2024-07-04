@@ -1,12 +1,8 @@
 class Search {
-  constructor(products) {
+  constructor(allPlaceholders) {
     this.query = ''
     this.curPlaceholders = []
-    this.parsePlaceholders(products)
-  }
-
-  parsePlaceholders(products) {
-    this.allPlaceholders = products.map(product => product.caption)
+    this.allPlaceholders = allPlaceholders
   }
 
   setQuery(query) {

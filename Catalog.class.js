@@ -11,18 +11,17 @@ class Catalog {
     this.products = []
   }
 
-  computedProducts(currentPage) {
+  computedProducts() {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
-    const filtered = this.filter.run(priced)
-    const sorted = this.sorter.run(filtered)
-    const paginated = this.paginator.run(currentPage, sorted)
-    return paginated
+    const sorted = this.sorter.run(priced)
+    return this.paginator.run(sorted)
   }
 
   initSearch() {
-    this.search = new Search(this.products)
+    const captions = this.products.map(product => product.caption)
+    this.search = new Search(captions)
   }
 
   initCheckedAttrs() {
@@ -33,20 +32,20 @@ class Catalog {
     this.priceRanger = new PriceRanger()
   }
 
-  initFilter() {
-    this.filter = new Filter()
-  }
-
   initSorter() {
     this.sorter = new Sorter()
   }
 
-  initPaginator(perCountPages) {
-    this.paginator = new Paginator(perCountPages)
+  initPaginator() {
+    this.paginator = new Paginator()
   }
 
   addProducts(products) {
     products.forEach(this.addProduct.bind(this))
+  }
+
+  initFilter() {
+    this.filter = new Filter()
   }
 
   addProduct(product) {

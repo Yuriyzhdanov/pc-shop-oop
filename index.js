@@ -43,6 +43,13 @@ const products = [
     convertedPrice: 6000,
     attributes: { ssd: 'adata' },
   },
+  {
+    id: 106,
+    caption: 'Intel Duo ',
+    price: 600,
+    convertedPrice: 6000,
+    attributes: { ssd: 'adata' },
+  },
 ]
 
 const catalog = new Catalog()
@@ -54,23 +61,28 @@ catalog.initFilter()
 catalog.initSorter()
 catalog.initPaginator(2)
 
-catalog.search.setQuery('Intel')
-catalog.sorter.setSortingType('byPriceDESC')
-catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
-catalog.priceRanger.setFrom(3001)
-catalog.priceRanger.setTo(4001)
-catalog.filter.addFilter('ssd', ['kingston'])
+// catalog.search.setQuery('Intel')
+// catalog.sorter.setSortingType('byPriceDESC')
+// catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
+// catalog.priceRanger.setFrom(3001)
+// catalog.priceRanger.setTo(4001)
+// catalog.filter.addFilter('ssd', ['kingston'])
 
-console.log(catalog.computedProducts())
+// console.log(catalog.computedProducts())
 
-catalog.search.setQuery('')
-catalog.attrSelector.createCheckedAttrs([])
-catalog.priceRanger.resetFromTo()
-catalog.sorter.setSortingType('')
+// catalog.search.setQuery('')
+// catalog.attrSelector.createCheckedAttrs([])
+// catalog.priceRanger.resetFromTo()
+// catalog.sorter.setSortingType('')
 
 console.log('==============')
 // console.log(catalog.computedProducts())
-console.log('Page 1:', catalog.computedProducts(0))
-console.log('Page 2:', catalog.computedProducts(1))
-console.log('Page 3:', catalog.computedProducts(2))
+catalog.paginator.setCurrentPage(0)
+console.log('Page 0:', catalog.computedProducts())
+catalog.paginator.setCurrentPage(1)
+console.log('Page 1:', catalog.computedProducts())
+catalog.paginator.setCurrentPage(2)
+console.log('Page 2:', catalog.computedProducts())
+catalog.paginator.setCurrentPage(3)
+console.log('Page 3:', catalog.computedProducts())
 // console.log(catalog.filter);
