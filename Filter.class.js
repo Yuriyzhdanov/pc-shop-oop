@@ -4,8 +4,7 @@ class Filter {
   }
 
   createFilter(products) {
-    console.log('products', products)
-
+    // console.log('createFilter/products', products) 
     const specs = products.map(product => product.attributes)
     for (const spec of specs) {
       for (const key in spec) {
@@ -27,7 +26,6 @@ class Filter {
           return false
         }
       }
-      return true
     })
   }
 

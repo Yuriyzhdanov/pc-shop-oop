@@ -6,21 +6,24 @@ const products = [
     caption: 'Apple Mac Book Pro',
     price: 200,
     convertedPrice: 1000,
-    attributes: { ssd: 'amd' },
+    attributes: {
+      ssd: 'San Disk' ,
+      ram: 'DDR4'
+    },
   },
   {
     id: 101,
     caption: 'Intel Pentium',
     price: 100,
     convertedPrice: 2000,
-    attributes: { ssd: 'apple' },
+    attributes: { ssd: 'apple', ram: 'DDR3',  },
   },
   {
     id: 102,
     caption: 'Intel Core',
     price: 300,
     convertedPrice: 3000,
-    attributes: { ssd: 'kingston' },
+    attributes: { ssd: 'PNY' },
   },
   {
     id: 103,
@@ -41,15 +44,26 @@ const products = [
     caption: 'Intel Duo ',
     price: 600,
     convertedPrice: 6000,
-    attributes: { ssd: 'adata' },
+    attributes: { ssd: 'GOODRAM' },
   },
   {
     id: 106,
     caption: 'Intel Duo ',
     price: 600,
     convertedPrice: 6000,
-    attributes: { ssd: 'adata' },
+    attributes: { ssd: 'WD' },
   },
+  {
+    id: 107,
+    caption: 'Intel Core i5 ',
+    price: 800,
+    convertedPrice: 8000,
+    attributes: {
+      'Блок питания': "500W",
+      'Материнская платa': "Asus",
+      ссд:'2000PRO'
+    },
+  }
 ]
 
 const catalog = new Catalog()
