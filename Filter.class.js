@@ -3,27 +3,36 @@ class Filter {
     this.filter = {}
   }
 
+  createFilter(products) {
+    console.log('products', products)
+
+    const specs = products.map(product => product.attributes)
+    for (const spec of specs) {
+      for (const key in spec) {
+        const value = spec[key]
+        if (!this.filter[key]) {
+          this.filter[key] = []
+        }
+        if (!this.filter[key].includes(value)) {
+          this.filter[key].push(value)
+        }
+      }
+    }
+  }
+
   run(products) {
-    const filteredProducts = products.filter(product => {
+    return products.filter(product => {
       for (const key in this.filter) {
-        if (
-          this.filter[key].length > 0 &&
-          !this.filter[key].includes(product.attributes[key])
-        ) {
+        if (!this.filter[key].includes(product.attributes[key])) {
           return false
         }
       }
       return true
     })
-    return filteredProducts
   }
 
   clearFilter() {
     this.filter = {}
-  }
-
-  addFilter(key, values) {
-    this.filter[key] = values
   }
 }
 module.exports = Filter

@@ -5,6 +5,7 @@ const Search = require('./Search.class')
 const Filter = require('./Filter.class')
 const Sorter = require('./Sorter.class')
 const Paginator = require('./Paginator.class')
+const Cart = require('./Cart.class')
 
 class Catalog {
   constructor() {
@@ -15,7 +16,8 @@ class Catalog {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
-    const sorted = this.sorter.run(priced)
+    const filtered = this.filter.run(priced)
+    const sorted = this.sorter.run(filtered)
     return this.paginator.run(sorted)
   }
 
@@ -38,6 +40,10 @@ class Catalog {
 
   initPaginator() {
     this.paginator = new Paginator()
+  }
+
+  initCart() {
+    this.cart = new Cart()
   }
 
   addProducts(products) {
