@@ -1,36 +1,21 @@
 class Filter {
-  constructor() {
-    this.filter = {}
-  }
-
-  createFilter(products) {
-    // console.log('createFilter/products', products) 
+  updateFilter(products) {
     const specs = products.map(product => product.attributes)
     for (const spec of specs) {
       for (const key in spec) {
         const value = spec[key]
-        if (!this.filter[key]) {
-          this.filter[key] = []
+        if (!this[key]) {
+          this[key] = []
         }
-        if (!this.filter[key].includes(value)) {
-          this.filter[key].push(value)
+        if (!this[key].includes(value)) {
+          this[key].push(value)
         }
       }
     }
   }
 
-  run(products) {
-    return products.filter(product => {
-      for (const key in this.filter) {
-        if (!this.filter[key].includes(product.attributes[key])) {
-          return false
-        }
-      }
-    })
-  }
-
   clearFilter() {
-    this.filter = {}
+    // this = {}
   }
 }
 module.exports = Filter

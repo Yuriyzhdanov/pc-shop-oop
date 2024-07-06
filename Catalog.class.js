@@ -16,9 +16,9 @@ class Catalog {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
-    const filtered = this.filter.run(priced)
-    const sorted = this.sorter.run(filtered)
+    const sorted = this.sorter.run(priced)
     return this.paginator.run(sorted)
+    // const filtered = this.filter.run(priced)
   }
 
   initSearch() {
@@ -46,12 +46,12 @@ class Catalog {
     this.cart = new Cart()
   }
 
-  addProducts(products) {
-    products.forEach(this.addProduct.bind(this))
-  }
-
   initFilter() {
     this.filter = new Filter()
+  }
+
+  addProducts(products) {
+    products.forEach(this.addProduct.bind(this))
   }
 
   addProduct(product) {

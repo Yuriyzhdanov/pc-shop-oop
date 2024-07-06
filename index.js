@@ -7,8 +7,8 @@ const products = [
     price: 200,
     convertedPrice: 1000,
     attributes: {
-      ssd: 'San Disk' ,
-      ram: 'DDR4'
+      ssd: 'San Disk',
+      ram: 'DDR4',
     },
   },
   {
@@ -16,7 +16,7 @@ const products = [
     caption: 'Intel Pentium',
     price: 100,
     convertedPrice: 2000,
-    attributes: { ssd: 'apple', ram: 'DDR3',  },
+    attributes: { ssd: 'apple', ram: 'DDR3' },
   },
   {
     id: 102,
@@ -59,11 +59,11 @@ const products = [
     price: 800,
     convertedPrice: 8000,
     attributes: {
-      'Блок питания': "500W",
-      'Материнская платa': "Asus",
-      ссд:'2000PRO'
+      'Блок питания': '500W',
+      'Материнская платa': 'Asus',
+      ссд: '2000PRO',
     },
-  }
+  },
 ]
 
 const catalog = new Catalog()
@@ -71,19 +71,20 @@ catalog.addProducts(products)
 catalog.initSearch()
 catalog.initCheckedAttrs()
 catalog.initPriceRanger()
-catalog.initFilter()
 catalog.initSorter()
 catalog.initPaginator(2)
+catalog.initFilter()
 
-catalog.filter.createFilter(products)
-console.log('Created filter:', catalog.filter.filter)
+catalog.filter.updateFilter(catalog.products)
+console.log('Created filter:', catalog.filter)
+
 // catalog.search.setQuery('Intel')
 // catalog.sorter.setSortingType('byPriceDESC')
 // catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
 // catalog.priceRanger.setFrom(3001)
 // catalog.priceRanger.setTo(4001)
 
-console.log('Computed Products:', catalog.computedProducts())
+// console.log('Computed Products:', catalog.computedProducts())
 // console.log(catalog.filter)
 
 // catalog.search.setQuery('')
@@ -91,7 +92,6 @@ console.log('Computed Products:', catalog.computedProducts())
 // catalog.priceRanger.resetFromTo()
 // catalog.sorter.setSortingType('')
 
-console.log('==============')
 // console.log(catalog.computedProducts())
 // catalog.paginator.setCurrentPage(0)
 // console.log('Page 0:', catalog.computedProducts())
