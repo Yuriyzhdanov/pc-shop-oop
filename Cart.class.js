@@ -1,18 +1,24 @@
 class Cart {
   constructor() {
     this.products = []
+    this.counter = 0
   }
 
   addProduct(product) {
     this.products.push(product)
+    calcCounter()
   }
 
-  removeProduct(productId) {
-    this.products = this.products.filter(prod => prod.id !== productId)
+  removeProduct(id) {
+    this.products = this.products.filter(product => product.id !== id)
   }
 
   clearCart() {
     this.products = []
+  }
+
+  calcCounter() {
+    this.counter = this.products.length
   }
 }
 
