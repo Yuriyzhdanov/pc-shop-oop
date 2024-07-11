@@ -1,22 +1,26 @@
 class Favorite {
   constructor() {
-    this.favorites = []
+    this.products = []
     this.counter = 0
   }
   calcCounter() {
     this.counter = this.products.length
   }
 
-  addProductById(id) {
-    const productToAdd = products.find(product => product.id === id)
-    if (productToAdd) {
-      this.favorites.push(productToAdd)
-      this.calcCounter()
-    }
+  addProduct(product) {
+    this.products.push(product)
+    this.calcCounter()
   }
+  // addProductById(id) {
+  //   const productToAdd = products.find(product => product.id === id)
+  //   if (productToAdd) {
+  //     this.products.push(productToAdd)
+  //     this.calcCounter()
+  //   }
+  // }
 
   updateProduct() {
-    
+    //api
   }
 
   removeProductById(id) {
@@ -24,3 +28,5 @@ class Favorite {
     this.calcCounter()
   }
 }
+
+module.exports = Favorite

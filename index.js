@@ -1,5 +1,7 @@
 const Catalog = require('./Catalog.class')
 const Cart = require('./Cart.class')
+const Favorite = require('./Favorite.class')
+
 
 const products = [
   {
@@ -110,8 +112,12 @@ catalog.attrSelector.createCheckedAttrs(['ssd-4000PRO'])
 
 const cart = new Cart()
 cart.addProduct(products[0])
-console.log(cart)
-cart.removeProduct(100)
-console.log(cart.products)
+cart.addProduct(products[1])
+// console.log(cart)
+// cart.removeProduct(100)
+// console.log(cart.products)
 console.log('ww',cart.products)
 
+const favorite = new Favorite
+favorite.addProduct(products[0])
+console.log('favorite',favorite.products);

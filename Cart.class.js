@@ -6,7 +6,7 @@ class Cart {
 
   addProduct(product) {
     this.products.push(product)
-    calcCounter()
+    this.calcCounter()
   }
 
   removeProduct(id) {
