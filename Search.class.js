@@ -29,7 +29,7 @@ module.exports = Search
 
 // const search = new Search(['qwe', 'qaz', 'asd', 'zxc'])
 
-// search.setQuery('q')
+// search.setQuery('z')
 // console.log(search.getCurPlaceholders())
 
 // search.setQuery('qw')

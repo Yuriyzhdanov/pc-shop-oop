@@ -1,4 +1,5 @@
 const Catalog = require('./Catalog.class')
+const Cart = require('./Cart.class')
 
 const products = [
   {
@@ -75,12 +76,16 @@ catalog.initSorter()
 catalog.initPaginator(2)
 catalog.initFilter()
 
-catalog.filter.updateFilter(catalog.products)
-console.log('Created filter:', catalog.filter)
+// catalog.filter.updateFilter(catalog.products)
+// console.log('Created filter:', catalog.filter)
 
 // catalog.search.setQuery('Intel')
 // catalog.sorter.setSortingType('byPriceDESC')
-// catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
+catalog.attrSelector.createCheckedAttrs(['ssd-kingston'])
+catalog.attrSelector.createCheckedAttrs(['ssd-2000PRO'])
+catalog.attrSelector.createCheckedAttrs(['ssd-3000PRO'])
+catalog.attrSelector.createCheckedAttrs(['ssd-4000PRO'])
+
 // catalog.priceRanger.setFrom(3001)
 // catalog.priceRanger.setTo(4001)
 
@@ -102,3 +107,11 @@ console.log('Created filter:', catalog.filter)
 // catalog.paginator.setCurrentPage(3)
 // console.log('Page 3:', catalog.computedProducts())
 // console.log(catalog.filter);
+
+const cart = new Cart()
+cart.addProduct(products[0])
+console.log(cart)
+cart.removeProduct(100)
+console.log(cart.products)
+console.log('ww',cart.products)
+

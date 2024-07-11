@@ -5,7 +5,7 @@ const Search = require('./Search.class')
 const Filter = require('./Filter.class')
 const Sorter = require('./Sorter.class')
 const Paginator = require('./Paginator.class')
-const Cart = require('./Cart.class')
+
 
 class Catalog {
   constructor() {
