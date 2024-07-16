@@ -1,5 +1,5 @@
 class Filter {
-  updateFilter(products) {
+  update(products) {
     const specs = products.map(product => product.attributes)
     for (const spec of specs) {
       for (const key in spec) {
@@ -14,8 +14,8 @@ class Filter {
     }
   }
 
-  clearFilter() {
-    // this = {}
+  clear() {
+    Object.keys(this).forEach(prop => delete this[prop])
   }
 }
 module.exports = Filter

@@ -6,19 +6,17 @@ const Filter = require('./Filter.class')
 const Sorter = require('./Sorter.class')
 const Paginator = require('./Paginator.class')
 
-
 class Catalog {
   constructor() {
     this.products = []
   }
 
-  computedProducts() {
+  computeProducts() {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
     return this.paginator.run(sorted)
-    // const filtered = this.filter.run(priced)
   }
 
   initSearch() {
