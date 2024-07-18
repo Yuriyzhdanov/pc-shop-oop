@@ -11,7 +11,3 @@ const obj = {
 // obj[prop] = undefined
 
 let x = delete obj['a']
-
-x
-
-obj
