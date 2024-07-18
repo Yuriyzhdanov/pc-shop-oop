@@ -5,6 +5,10 @@ class Search {
     this.allPlaceholders = allPlaceholders
   }
 
+  setPlaceholders(placeholders) {
+    this.allPlaceholders = placeholders
+  }
+
   setQuery(query) {
     this.query = query
     this.computeCurPlaceholders()

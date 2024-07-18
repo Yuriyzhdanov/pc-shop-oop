@@ -5,16 +5,16 @@ const Favorite = require('./Favorite.class')
 const products = require('./products.json')
 const Filter = require('./Filter.class')
 
-const filter = new Filter(products);
-filter.clear();
-filter.update(products);
-console.log(filter);
+const filter = new Filter(products)
+filter.clear()
+filter.update(products)
+console.log(filter)
 
 const catalog = new Catalog()
 catalog.addProducts(products)
 
 const shop = new Shop()
-shop.initSearch()
+shop.updateSearch()
 shop.initCheckedAttrs()
 shop.initPriceRanger()
 shop.initSorter()
@@ -51,7 +51,7 @@ catalog.paginator.setCurrentPage(2)
 console.log('Page 2:', catalog.computedProducts())
 catalog.paginator.setCurrentPage(3)
 console.log('Page 3:', catalog.computedProducts())
-console.log(catalog.filter);
+console.log(catalog.filter)
 
 const cart = new Cart()
 cart.addProduct(products[0])
