@@ -36,5 +36,3 @@ module.exports = Search
 // search.setQuery('z')
 // console.log(search.getCurPlaceholders())
 
-// search.setQuery('qw')
-// console.log(search.getCurPlaceholders())

@@ -1,8 +1,13 @@
 const Product = require('./Product.class')
 
 class Catalog {
-  constructor() {
+  constructor(search, attrSelector, priceRanger, sorter, paginator) {
     this.products = []
+    this.search = search
+    this.attrSelector = attrSelector
+    this.priceRanger = priceRanger
+    this.sorter = sorter
+    this.paginator = paginator
   }
 
   computeProducts() {

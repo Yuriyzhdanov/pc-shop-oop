@@ -10,7 +10,13 @@ const Catalog = require('./Catalog.class')
 class Shop {
   constructor(api) {
     this.api = api
-    this.catalog = new Catalog()
+    this.catalog = new Catalog(
+      this.search,
+      this.attrSelector,
+      this.priceRanger,
+      this.sorter,
+      this.paginator
+    )
     this.search = new Search()
     this.attrSelector = new AttrSelector()
     this.priceRanger = new PriceRanger()
