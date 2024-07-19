@@ -1,6 +1,6 @@
 class Paginator {
   constructor() {
-    this.perPageCount = 2
+    this.productsOnPage = 3
     this.currentPage = 0
     this.pagesCount = 0
     this.productsCount = 0
@@ -10,28 +10,28 @@ class Paginator {
     return this.pagesCount
   }
 
-  setProductCount(productsCount) {
+  setProductsCount(productsCount) {
     this.productsCount = productsCount
-    this.calcCountPages()
+    this.calcPagesCount()
   }
 
-  setPerPageCount(perPageCount) {
-    this.perPageCount = perPageCount
-    this.calcCountPages()
+  setProductsOnPage(productsOnPage) {
+    this.productsOnPage = productsOnPage
+    this.calcPagesCount()
   }
 
   setCurrentPage(page) {
     this.currentPage = page
   }
 
-  calcCountPages() {
-    this.pagesCount = Math.trunc(this.productsCount / this.perPageCount)
+  calcPagesCount() {
+    this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage)
   }
 
   run(products) {
-    this.setProductCount(products.length)
-    const startFrom = this.currentPage * this.perPageCount
-    const endTo = startFrom + this.perPageCount
+    this.setProductsCount(products.length)
+    const startFrom = this.currentPage * this.productsOnPage
+    const endTo = startFrom + this.productsOnPage
     return products.slice(startFrom, endTo)
   }
 }

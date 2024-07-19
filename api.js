@@ -1,6 +1,8 @@
+const products = require('./products.json')
+
 const api = {
   async loadProducts() {
-    return []
+    return products
   },
 }
 
