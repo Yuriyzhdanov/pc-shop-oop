@@ -26,6 +26,7 @@ class PriceRanger {
   }
 
   run(products) {
+    this.calcMinMax(products)
     return products.filter(
       product =>
         this.from <= product.convertedPrice && product.convertedPrice <= this.to

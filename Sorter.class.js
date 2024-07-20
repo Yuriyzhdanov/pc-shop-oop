@@ -9,8 +9,8 @@ class Sorter {
 
   run(products) {
     const sortFunctions = {
-      byPriceASC: (a, b) => a.price - b.price,
-      byPriceDESC: (a, b) => b.price - a.price,
+      byPriceASC: (a, b) => a.convertedPrice - b.convertedPrice,
+      byPriceDESC: (a, b) => b.convertedPrice - a.convertedPrice,
       byCaptionASC: (a, b) =>
         a.caption.localeCompare(b.caption, undefined, {
           sensitivity: 'accent',

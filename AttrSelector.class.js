@@ -7,6 +7,11 @@ class AttrSelector {
     this.checkedAttrs = []
   }
 
+  /**
+   * attrIds array like ['ssd-kingston', 'ssd-samsung']
+   * @param {array<string>} attrIds
+   *
+   */
   createCheckedAttrs(attrIds) {
     this.clearCheckedAttrs()
     attrIds.forEach(filterDataId => {
@@ -33,8 +38,6 @@ class AttrSelector {
       })
       return matchedCount === this.checkedAttrs.length
     })
-    // this.calcMinMaxPrice()
-    // this.calcFromToPrice()
   }
 }
 
