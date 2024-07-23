@@ -29,5 +29,3 @@ async function afn() {
 }
 
 afn()
-
-// shop.catalog.computeProducts()
