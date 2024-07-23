@@ -1,5 +1,5 @@
-const api = require('./api')
-const Shop = require('./Shop.class')
+const api = require('./api/api')
+const Shop = require('./model/Shop.class')
 
 const shop = new Shop(api)
 
