@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrap-filter"></div>
+  </body>
+</html>
+
+<script src="./api/products.js"></script>
+<script src="./utils.js"></script>
+<script src="./model/Filter.class.js"></script>
+<script src="./view/filter.js"></script>
+<script>
+  const modelFilter = new Filter()
+  modelFilter.update(products)
+  filter.renderFilter(modelFilter)
+  console.log(modelFilter)
+</script>

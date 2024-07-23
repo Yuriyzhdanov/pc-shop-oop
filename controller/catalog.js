@@ -7,8 +7,3 @@ function handleUpdateCatalog() {
     shop.priceRanger.to
   )
 }
-
-function handleChangePage(pageNum) {
-  shop.paginator.setCurrentPage(pageNum)
-  handleUpdateCatalog()
-}
