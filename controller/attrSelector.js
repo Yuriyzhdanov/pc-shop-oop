@@ -1,1 +1,0 @@
-shop.attrSelector.createCheckedAttrs(['ssd-kingston', 'ssd-samsung'])
