@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Computers shop</title>
+  <link rel="stylesheet" href="../css/card_style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header row">
+      <div class="left">
+        <div class="wrap-img">
+          <img src="../img/bg/logo.png" alt="logo">
+        </div>
+      </div>
+      <div class="center">
+        <div class="wrap-search">
+          <input type="hidden" name="page" value="search" />
+          <div class="row">
+            <div class="left" id="searchContainer">
+              <datalist id="productCaptions"> </datalist>
+              <input
+                type="search"
+                name="query"
+                id="query"
+                placeholder=" Что ищем ?"
+                list="productCaptions"
+              />
+            </div>
+            <div class="right">
+              <input type="submit" value="" class="search-btn" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="wrap-account">
+          <div class="top">
+            <span>Нажмите кнопку</span>
+          </div>
+          <div class="middle">
+              <button class="btn">Войти</button>
+          </div>
+          <div class="bottom">
+            <span>Либо</span>
+            <a href="#">зарегистрируйтесь</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="top">
+        <div class="wrap-navigation">
+          <a href="">Каталог</a>
+          <a href="">Электроника</a>
+          <a href="">Компьютерная техника</a>
+          <a href="">Собранные компьютеры</a>
+        </div>
+      </div>
+      <div class="bottom row" >
+        <div class="left" id="left">
+        </div>
+        <div class="right">
+          <div class="product-info pave">
+            <div class="wrap-rating">
+
+            </div>
+          </div>
+          <div class="payment-options">
+            <p>
+              Оплата. Оплата під час отримання товару, Оплата карткою у відділенні, Google Pay, Картою онлайн,
+              Безготівковими для юридичних осіб
+            </p>
+          </div>
+          <div class="guarantee">
+            <p>
+              Гарантія. Законом про захист прав споживачів не передбачено повернення цього товару належної якості.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="recomended-title">
+        <h4>С этим товаром часто рекомендуют:</h4>
+      </div>
+      <div class="container-pave recomend">
+      </div>
+      <div class="similar-title">
+        <h4>С этим товаром часто покупают:</h4>
+      </div>
+      <div class="container-pave similar">
+      </div>
+      <div class="container-comments">
+        <div class="top">
+          <div class="wrap-h">
+            <h4>Отзыв покупателей</h4>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="comments-list row">
+            <div class="wrap-card-comment">
+              <div class="card-comment row">
+                <div class="left">
+                  <div class="top">
+                    <span>Ирина</span>
+                  </div>
+                  <div class="bottom">
+                    <div class="wrap-img-userphoto"><img class="userphoto" src="../img/product_card/1.jpg"
+                        alt="userphoto" /></div>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="wrap-p">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores repellat repellendus voluptas
+                      tenetur
+                      placeat, vero totam sed dolore ut architecto tempore consequatur sit sunt, ipsam id veniam laborum
+                      blanditiis excepturi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wrap-card-comment">
+              <div class="card-comment row">
+                <div class="left">
+                  <div class="top">
+                    <span>Ирина</span>
+                  </div>
+                  <div class="bottom">
+                    <div class="wrap-img-userphoto"><img class="userphoto" src="../img/product_card/1.jpg"
+                        alt="userphoto" /></div>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="wrap-p">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores repellat repellendus voluptas
+                      tenetur
+                      placeat, vero totam sed dolore ut architecto tempore consequatur sit sunt, ipsam id veniam laborum
+                      blanditiis excepturi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="top row">
+      <div class="wrap-menu">
+        <div><a href="">О нас</a></div>
+        <div><a href="">Контакты</a></div>
+        <div><a href="">Новости</a></div>
+        <div><a href="">Отзывы</a></div>
+        <div><a href="">Акции</a></div>
+      </div>
+      <div class="wrap-links">
+        <div><a href="">Гарантия</a></div>
+        <div><a href="">Возврат товара</a></div>
+        <div><a href="">Кредит</a></div>
+        <div><a href="">Подарочные сертификаты</a></div>
+        <div><a href="">Стать партнером</a></div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="wrap-copyrights">
+        <span>Lorem Ipsum &#0169; 2024 Все права защищены</span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="../js/api.js"></script>
+  <script src="../js/shop.js"></script>
+  <script src="../js/model.js"></script>
+  <script src="../js/generators.js"></script>
+  <script src="../js/view.js"></script>
+  <script src="../js/controller.js"></script>
+  <script src="../js/utils.js"></script>
+
+</body>
+
+</html>
