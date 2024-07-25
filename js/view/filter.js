@@ -1,4 +1,4 @@
-// const h = require('../utils')
+// const h = require('./utils')
 
 const filter = {
   selector: '.wrap-filter',

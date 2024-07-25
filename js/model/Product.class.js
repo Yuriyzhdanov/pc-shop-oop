@@ -6,6 +6,10 @@ class Product {
     this.convertedPrice = options.convertedPrice
     this.attributes = options.attributes
   }
+
+  convertPrice() {
+    //
+  }
 }
 
 module.exports = Product

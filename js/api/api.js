@@ -1,4 +1,4 @@
-// const products = require('./products.json')
+const products = require('./products.json')
 
 // const api = {
 //   async loadProducts() {
@@ -7,7 +7,6 @@
 // }
 
 // module.exports = api
-
 
 const api = {
   COMPUTERS: 'http://35.225.111.193:8181/api/v3/products/computers/',
@@ -53,7 +52,8 @@ const api = {
   },
 
   async loadProducts() {
-    return await this.sendRequest(this.PRODUCTS)
+    return products
+    // return await this.sendRequest(this.PRODUCTS)
   },
 
   async loadProductById(id) {
@@ -110,3 +110,5 @@ const api = {
   //   return await this.sendRequest(this.FAVORITES + id, options)
   // },
 }
+
+module.exports = api
