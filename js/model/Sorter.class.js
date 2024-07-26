@@ -1,4 +1,4 @@
-class Sorter {
+export default class Sorter {
   constructor() {
     this.sortingType = ''
   }
@@ -28,4 +28,3 @@ class Sorter {
   }
 }
 
-module.exports = Sorter

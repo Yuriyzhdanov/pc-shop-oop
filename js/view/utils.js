@@ -1,4 +1,4 @@
-function h(tagName, attrs, text, children, listener) {
+export function h(tagName, attrs, text, children, listener) {
   const el = document.createElement(tagName)
   for (const key in attrs) {
     el.setAttribute(key, attrs[key])
@@ -10,5 +10,3 @@ function h(tagName, attrs, text, children, listener) {
   el.onclick = listener
   return el
 }
-
-// module.exports = h

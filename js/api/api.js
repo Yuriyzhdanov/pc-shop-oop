@@ -1,4 +1,4 @@
-const products = require('./products.json')
+import products from './products.json'
 
 // const api = {
 //   async loadProducts() {
@@ -111,4 +111,4 @@ const api = {
   // },
 }
 
-module.exports = api
+export default api

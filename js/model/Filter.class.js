@@ -19,7 +19,7 @@ class Filter {
   }
 }
 
-module.exports = Filter
+export default filter
 
 // modelFilter[key] = normalizeStorageCapacity(modelFilter[key])
 // modelFilter[key] = sortAttrs(modelFilter[key], key)

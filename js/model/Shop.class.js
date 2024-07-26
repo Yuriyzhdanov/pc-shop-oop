@@ -1,13 +1,13 @@
-const AttrSelector = require('./AttrSelector.class')
-const PriceRanger = require('./PriceRanger.class')
-const Search = require('./Search.class')
-const Filter = require('./Filter.class')
-const Sorter = require('./Sorter.class')
-const Paginator = require('./Paginator.class')
-const Cart = require('./Cart.class')
-const Catalog = require('./Catalog.class')
+import Search from './Search.class.js'
+import AttrSelector from './AttrSelector.class.js'
+import PriceRanger from './PriceRanger.class.js'
+import Filter from './Filter.class.js'
+import Sorter from './Sorter.class.js'
+import Paginator from './Paginator.class.js'
+import Cart from './Cart.class.js'
+import Catalog from './Catalog.class.js'
 
-class Shop {
+export default class Shop {
   constructor(api) {
     this.api = api
     this.search = new Search()
@@ -43,5 +43,3 @@ class Shop {
     this.paginator.setProductsCount(productsCount)
   }
 }
-
-module.exports = Shop

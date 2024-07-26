@@ -1,4 +1,4 @@
-class Paginator {
+export default class Paginator {
   constructor() {
     this.productsOnPage = 100
     this.currentPage = 0
@@ -36,4 +36,3 @@ class Paginator {
   }
 }
 
-module.exports = Paginator

@@ -1,4 +1,4 @@
-class Product {
+export default class Product {
   constructor(options) {
     this.id = options.id
     this.caption = options.caption
@@ -12,4 +12,3 @@ class Product {
   }
 }
 
-module.exports = Product

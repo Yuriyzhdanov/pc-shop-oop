@@ -1,4 +1,4 @@
-class AttrSelector {
+export default class AttrSelector {
   constructor() {
     this.checkedAttrs = []
   }
@@ -40,5 +40,3 @@ class AttrSelector {
     })
   }
 }
-
-module.exports = AttrSelector

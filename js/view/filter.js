@@ -1,4 +1,5 @@
-// const h = require('./utils')
+import { h } from './utils.js'
+import Filter from './Filter.class.js'
 
 const filter = {
   selector: '.wrap-filter',
@@ -36,3 +37,5 @@ const filter = {
     ])
   },
 }
+
+export default filter

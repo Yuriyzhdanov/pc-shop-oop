@@ -1,4 +1,4 @@
-class Cart {
+export default class Cart {
   constructor() {
     this.products = []
     this.counter = 0
@@ -22,4 +22,4 @@ class Cart {
   }
 }
 
-module.exports = Cart
+

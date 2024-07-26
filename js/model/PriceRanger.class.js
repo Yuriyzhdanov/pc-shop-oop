@@ -1,4 +1,4 @@
-class PriceRanger {
+export default class PriceRanger {
   constructor() {
     this.min = 0
     this.max = Infinity
@@ -34,4 +34,3 @@ class PriceRanger {
   }
 }
 
-module.exports = PriceRanger

@@ -1,6 +1,6 @@
-const Product = require('./Product.class')
+import Product from './Product.class'
 
-class Catalog {
+export default class Catalog {
   constructor(search, attrSelector, priceRanger, sorter, paginator) {
     this.products = []
     this.search = search
@@ -40,4 +40,3 @@ class Catalog {
   }
 }
 
-module.exports = Catalog
