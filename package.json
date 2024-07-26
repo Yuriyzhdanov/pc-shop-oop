@@ -1,6 +1,6 @@
 {
   "name": "shop",
-  "type": "commonjs",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",

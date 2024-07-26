@@ -1,4 +1,4 @@
-import Product from './Product.class'
+import Product from './Product.class.js'
 
 export default class Catalog {
   constructor(search, attrSelector, priceRanger, sorter, paginator) {
@@ -39,4 +39,3 @@ export default class Catalog {
     this.products = []
   }
 }
-

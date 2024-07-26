@@ -1,11 +1,11 @@
-import Search from './Search.class.js'
 import AttrSelector from './AttrSelector.class.js'
-import PriceRanger from './PriceRanger.class.js'
-import Filter from './Filter.class.js'
-import Sorter from './Sorter.class.js'
-import Paginator from './Paginator.class.js'
 import Cart from './Cart.class.js'
 import Catalog from './Catalog.class.js'
+import Filter from './Filter.class.js'
+import Paginator from './Paginator.class.js'
+import PriceRanger from './PriceRanger.class.js'
+import Search from './Search.class.js'
+import Sorter from './Sorter.class.js'
 
 export default class Shop {
   constructor(api) {
@@ -29,6 +29,7 @@ export default class Shop {
   async updateCatalog() {
     const products = await this.api.loadProducts()
     this.catalog.addProducts(products)
+    this.filter.update(products)
     this.updateSearch()
     this.updatePaginator()
   }

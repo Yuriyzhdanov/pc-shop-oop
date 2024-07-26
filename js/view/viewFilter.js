@@ -1,7 +1,6 @@
-import { h } from './utils.js'
-import Filter from './Filter.class.js'
+import h from './utils.js'
 
-const filter = {
+const viewFilter = {
   selector: '.wrap-filter',
 
   renderFilter(modelFilter) {
@@ -38,4 +37,4 @@ const filter = {
   },
 }
 
-export default filter
+export default viewFilter
