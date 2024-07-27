@@ -1,9 +1,30 @@
-function handleChangePage(pageNum) {
-  shop.paginator.setCurrentPage(pageNum)
-  handleUpdateCatalog()
+import shop from '../model/model.js'
+import viewPaginator from '../view/viewPaginator.js'
+
+const controllerPaginator = {
+  async handleDOMContentLoaded() {
+    await shop.updateCatalog()
+    this.updatePagination()
+    this.updateCatalog()
+  },
+
+  updatePagination() {
+    const pagesCount = shop.paginator.getPagesCount()
+    const currentPage = shop.paginator.currentPage
+    viewPaginator.renderContainerPagination(pagesCount, currentPage)
+  },
+
+  handlePageClick(pageNum) {
+    shop.paginator.setCurrentPage(pageNum)
+    this.updatePagination()
+    this.updateCatalog()
+  },
+
+  async updateCatalog() {
+    const products = shop.catalog.getCurrentPageProducts()
+
+    console.log(products)
+  },
 }
 
-function onClickPaginationPage(e) {
-  const pageNum = e.target.textContent
-  handlePageClick(pageNum)
-}
+export default controllerPaginator
