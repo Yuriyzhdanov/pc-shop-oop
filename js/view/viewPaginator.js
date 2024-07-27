@@ -1,15 +1,28 @@
 const viewPaginator = {
-  generatePagination(pagesCount, curPage) {
+  selector: '.container-pagination',
+
+  render(pagesCount, currentPage = 0) {
+    const elPaginationContainer = document.querySelector(this.selector)
+    const elPagination = this.generate(pagesCount, currentPage)
+    console.log(elPaginationContainer)
+    elPaginationContainer.innerHTML = ''
+    elPaginationContainer.appendChild(elPagination)
+  },
+
+  generate(pagesCount, currentPage) {
+    console.log('pagesCount :>> ', pagesCount)
+    console.log('curPage :>> ', currentPage)
     const elPagination = document.createElement('div')
     elPagination.classList.add('pagination')
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 0; i < pagesCount; i++) {
       const pageLink = document.createElement('a')
       pageLink.href = '#header'
+
       pageLink.textContent = i
 
       pageLink.addEventListener('click', e => handlePageClick(i))
       pageLink.classList.add('page')
-      if (i === curPage) {
+      if (i === currentPage) {
         pageLink.classList.add('active')
       }
       elPagination.appendChild(pageLink)
@@ -17,14 +30,14 @@ const viewPaginator = {
     return elPagination
   },
 
-  renderContainerPagination(pagesCount, curPage = 0) {
-    const elPaginationContainer = document.querySelector(
-      '.container-pagination'
-    )
-    const elPagination = generatePagination(pagesCount, curPage)
-    elPaginationContainer.innerHTML = ''
-    elPaginationContainer.appendChild(elPagination)
-  },
+  // onClickButtonPage(e) {
+  //   const currentPage = +e.target.textContent
+  // },
+
+  // init() {
+  //   const elPaginationContainer = document.querySelector(this.selector)
+  //   elPaginationContainer.addEventListener('click', this.onClickButtonPage)
+  // },
 }
 
 export default viewPaginator

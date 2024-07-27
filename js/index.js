@@ -1,7 +1,7 @@
-import controllerFilter from './controller/controllerFilter.js'
-import controllerPaginator from './controller/controllerPaginator.js'
+import controller from './controller/controller.js'
 
-document.addEventListener('DOMContentLoaded', async () => {
-  await controllerFilter.handleDOMContentLoaded()
-  await controllerPaginator.handleDOMContentLoaded()
-})
+document.addEventListener('DOMContentLoaded', onDOMContentLoadedDocument)
+
+async function onDOMContentLoadedDocument() {
+  await controller.handleDOMContentLoaded()
+}

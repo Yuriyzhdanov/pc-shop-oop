@@ -20,11 +20,11 @@ const controllerPaginator = {
     this.updateCatalog()
   },
 
-  async updateCatalog() {
-    const products = shop.catalog.getCurrentPageProducts()
+  // async updateCatalog() {
+  //   const products = shop.catalog.getCurrentPageProducts()
 
-    console.log(products)
-  },
+  //   console.log(products)
+  // },
 }
 
 export default controllerPaginator

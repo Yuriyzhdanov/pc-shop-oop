@@ -1,26 +1,26 @@
-import h from './utils.js'
+import h from './h.js'
 
 const viewFilter = {
   selector: '.wrap-filter',
 
-  renderFilter(modelFilter) {
+  render(modelFilter) {
     const elWrapFilter = document.querySelector(this.selector)
     elWrapFilter.innerHTML = ''
     for (const key in modelFilter) {
-      const elProp = this.generateFilterProp(key)
+      const elProp = this.generateProp(key)
       elWrapFilter.appendChild(elProp)
       for (const item of modelFilter[key]) {
-        const elCheckbox = this.generateFilterCheckbox(key, item)
+        const elCheckbox = this.generateCheckbox(key, item)
         elProp.appendChild(elCheckbox)
       }
     }
   },
 
-  generateFilterProp(caption) {
+  generateProp(caption) {
     return h('div', { class: 'wrap-props' }, '', [h('h3', '', caption)])
   },
 
-  generateFilterCheckbox(key, value) {
+  generateCheckbox(key, value) {
     return h('div', { class: 'wrap-checkbox' }, '', [
       h(
         'input',

@@ -26,7 +26,7 @@ class Shop {
     )
   }
 
-  async updateCatalog() {
+  async init() {
     const products = await this.api.loadProducts()
     this.catalog.addProducts(products)
     this.filter.update(products)

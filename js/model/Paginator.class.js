@@ -1,4 +1,4 @@
- class Paginator {
+class Paginator {
   constructor() {
     this.productsOnPage = 100
     this.currentPage = 0
@@ -8,6 +8,10 @@
 
   getPagesCount() {
     return this.pagesCount
+  }
+
+  getCurrentPage() {
+    return this.currentPage
   }
 
   setProductsCount(productsCount) {
@@ -25,7 +29,7 @@
   }
 
   calcPagesCount() {
-    this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage)
+    this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage) + 1
   }
 
   run(products) {
