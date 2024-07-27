@@ -19,8 +19,6 @@ class Filter {
   }
 }
 
-export default Filter
-
 // modelFilter[key] = normalizeStorageCapacity(modelFilter[key])
 // modelFilter[key] = sortAttrs(modelFilter[key], key)
 
@@ -56,3 +54,4 @@ export default Filter
 // function normalizeStorageCapacity(storageCapacity) {
 //   return storageCapacity.map(capacity => capacity.replace(/,$/, ''))
 // }
+export default Filter
