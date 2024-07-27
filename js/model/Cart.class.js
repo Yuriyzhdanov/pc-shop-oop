@@ -1,4 +1,4 @@
-export default class Cart {
+class Cart {
   constructor() {
     this.products = []
     this.counter = 0
@@ -22,4 +22,4 @@ export default class Cart {
   }
 }
 
-
+export default Cart

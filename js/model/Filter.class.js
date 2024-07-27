@@ -1,4 +1,4 @@
-export default class Filter {
+class Filter {
   update(products) {
     const specs = products.map(product => product.attributes)
     for (const spec of specs) {
@@ -19,6 +19,7 @@ export default class Filter {
   }
 }
 
+export default Filter
 
 // modelFilter[key] = normalizeStorageCapacity(modelFilter[key])
 // modelFilter[key] = sortAttrs(modelFilter[key], key)

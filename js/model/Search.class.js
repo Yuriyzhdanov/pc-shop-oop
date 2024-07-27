@@ -1,4 +1,4 @@
-export default class Search {
+class Search {
   constructor(allPlaceholders) {
     this.query = ''
     this.curPlaceholders = []
@@ -29,3 +29,4 @@ export default class Search {
   }
 }
 
+export default Search

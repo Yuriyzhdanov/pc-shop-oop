@@ -1,4 +1,4 @@
-export default class Favorite {
+class Favorite {
   constructor() {
     this.products = []
     this.counter = 0
@@ -29,3 +29,4 @@ export default class Favorite {
   }
 }
 
+export default Favorite

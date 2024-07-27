@@ -1,6 +1,6 @@
 import Product from './Product.class.js'
 
-export default class Catalog {
+class Catalog {
   constructor(search, attrSelector, priceRanger, sorter, paginator) {
     this.products = []
     this.search = search
@@ -39,3 +39,4 @@ export default class Catalog {
     this.products = []
   }
 }
+export default Catalog

@@ -7,7 +7,7 @@ import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
 
-export default class Shop {
+class Shop {
   constructor(api) {
     this.api = api
     this.search = new Search()
@@ -44,3 +44,4 @@ export default class Shop {
     this.paginator.setProductsCount(productsCount)
   }
 }
+export default Shop
