@@ -17,6 +17,10 @@ const controller = {
   updateCatalog() {
     const products = modelShop.catalog.computeProducts()
     viewProduct.render(products)
+    viewPaginator.render(
+      modelShop.paginator.getPagesCount(),
+      modelShop.paginator.getCurrentPage()
+    )
   },
   setupEventListeners() {
     const productsOnDisplaySelect = document.querySelector(
@@ -36,7 +40,7 @@ const controller = {
   handlePageClick(pageNumber) {
     modelShop.paginator.setCurrentPage(pageNumber)
     this.updateCatalog()
-  }
+  },
 }
 
 export default controller
