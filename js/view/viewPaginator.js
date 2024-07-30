@@ -1,8 +1,11 @@
 import controller from '../controller/controller.js'
+
 const viewPaginator = {
   selector: '.container-pagination',
 
   render(pagesCount, currentPage = 0) {
+    console.log('currentPage :>> ', currentPage)
+    console.log('qwe')
     const elPaginationContainer = document.querySelector(this.selector)
     const elPagination = this.generate(pagesCount, currentPage)
     elPaginationContainer.innerHTML = ''
@@ -18,7 +21,7 @@ const viewPaginator = {
 
       pageLink.textContent = i
 
-      pageLink.addEventListener('click', () => controller.handlePageClick(i))
+      pageLink.addEventListener('click', this.onClickAPage)
       pageLink.classList.add('page')
       if (i === currentPage) {
         pageLink.classList.add('active')
@@ -28,14 +31,21 @@ const viewPaginator = {
     return elPagination
   },
 
-  // onClickButtonPage(e) {
-  //   const currentPage = +e.target.textContent
-  // },
+  onClickAPage(e) {
+    const page = +e.target.textContent
+    console.log('onClickAPage', page)
+    controller.handleClickPage(page)
+  },
 
-  // init() {
-  //   const elPaginationContainer = document.querySelector(this.selector)
-  //   elPaginationContainer.addEventListener('click', this.onClickButtonPage)
-  // },
+  onChangeProductsOnPage(e) {
+    const productsOnPage = +e.target.value
+    controller.handleChangeProductsOnPage(productsOnPage)
+  },
+
+  init() {
+    const elProductsOnPage = document.querySelector('.products-on-page')
+    elProductsOnPage.addEventListener('change', this.onChangeProductsOnPage)
+  },
 }
 
 export default viewPaginator

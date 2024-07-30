@@ -1,45 +1,36 @@
 import modelShop from '../model/model.js'
+import viewCatalog from '../view/viewCatalog.js'
 import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
-import viewProduct from '../view/viewProduct.js'
+
+viewPaginator.init()
 
 const controller = {
   async handleDOMContentLoaded() {
     await modelShop.init()
-    this.updateCatalog()
+    this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
-    viewPaginator.render(
-      modelShop.paginator.getPagesCount(),
-      modelShop.paginator.getCurrentPage()
-    )
-    this.setupEventListeners()
   },
-  updateCatalog() {
+
+  handleShowCatalog() {
+    console.log(modelShop.paginator.getCurrentPage())
     const products = modelShop.catalog.computeProducts()
-    viewProduct.render(products)
+    viewCatalog.render(products)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
       modelShop.paginator.getCurrentPage()
     )
   },
-  setupEventListeners() {
-    const productsOnDisplaySelect = document.querySelector(
-      '.products-on-display'
-    )
-    productsOnDisplaySelect.addEventListener(
-      'change',
-      this.handleProductsOnDisplayChange.bind(this)
-    )
-  },
-  handleProductsOnDisplayChange(e) {
-    const productsOnPage = parseInt(e.target.value, 10)
+
+  handleChangeProductsOnPage(productsOnPage) {
     modelShop.paginator.setProductsOnPage(productsOnPage)
-    modelShop.paginator.setCurrentPage(0)
-    this.updateCatalog()
+    this.handleShowCatalog()
   },
-  handlePageClick(pageNumber) {
+
+  handleClickPage(pageNumber) {
     modelShop.paginator.setCurrentPage(pageNumber)
-    this.updateCatalog()
+    console.log('pageNumber', pageNumber)
+    this.handleShowCatalog()
   },
 }
 

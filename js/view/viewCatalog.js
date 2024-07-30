@@ -1,6 +1,6 @@
 import h from './h.js'
 
-const viewProduct = {
+const viewCatalog = {
   selector: '.container-products',
 
   render(products) {
@@ -84,4 +84,4 @@ const viewProduct = {
   },
 }
 
-export default viewProduct
+export default viewCatalog
