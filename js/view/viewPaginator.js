@@ -1,3 +1,4 @@
+import controller from '../controller/controller.js'
 const viewPaginator = {
   selector: '.container-pagination',
 
@@ -20,7 +21,7 @@ const viewPaginator = {
 
       pageLink.textContent = i
 
-      pageLink.addEventListener('click', e => handlePageClick(i))
+      pageLink.addEventListener('click', () => controller.handlePageClick(i))
       pageLink.classList.add('page')
       if (i === currentPage) {
         pageLink.classList.add('active')

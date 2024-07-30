@@ -33,6 +33,10 @@ const controller = {
     modelShop.paginator.setCurrentPage(0)
     this.updateCatalog()
   },
+  handlePageClick(pageNumber) {
+    modelShop.paginator.setCurrentPage(pageNumber)
+    this.updateCatalog()
+  }
 }
 
 export default controller
