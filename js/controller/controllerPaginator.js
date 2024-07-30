@@ -19,12 +19,6 @@ const controllerPaginator = {
     this.updatePagination()
     this.updateCatalog()
   },
-
-  // async updateCatalog() {
-  //   const products = shop.catalog.getCurrentPageProducts()
-
-  //   console.log(products)
-  // },
 }
 
 export default controllerPaginator

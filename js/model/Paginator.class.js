@@ -1,6 +1,6 @@
 class Paginator {
   constructor() {
-    this.productsOnPage = 100
+    this.productsOnPage = 10
     this.currentPage = 0
     this.pagesCount = 0
     this.productsCount = 0
