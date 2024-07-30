@@ -5,14 +5,11 @@ const viewPaginator = {
   render(pagesCount, currentPage = 0) {
     const elPaginationContainer = document.querySelector(this.selector)
     const elPagination = this.generate(pagesCount, currentPage)
-    console.log(elPaginationContainer)
     elPaginationContainer.innerHTML = ''
     elPaginationContainer.appendChild(elPagination)
   },
 
   generate(pagesCount, currentPage) {
-    console.log('pagesCount :>> ', pagesCount)
-    console.log('curPage :>> ', currentPage)
     const elPagination = document.createElement('div')
     elPagination.classList.add('pagination')
     for (let i = 0; i < pagesCount; i++) {
