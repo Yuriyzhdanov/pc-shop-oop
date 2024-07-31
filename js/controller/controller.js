@@ -13,7 +13,6 @@ const controller = {
   },
 
   handleShowCatalog() {
-    console.log(modelShop.paginator.getCurrentPage())
     const products = modelShop.catalog.computeProducts()
     viewCatalog.render(products)
     viewPaginator.render(

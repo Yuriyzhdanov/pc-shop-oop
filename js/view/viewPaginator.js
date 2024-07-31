@@ -4,8 +4,6 @@ const viewPaginator = {
   selector: '.container-pagination',
 
   render(pagesCount, currentPage = 0) {
-    console.log('currentPage :>> ', currentPage)
-    console.log('qwe')
     const elPaginationContainer = document.querySelector(this.selector)
     const elPagination = this.generate(pagesCount, currentPage)
     elPaginationContainer.innerHTML = ''

@@ -29,8 +29,6 @@ class Paginator {
   }
 
   calcPagesCount() {
-    console.log('>>>', arguments.callee)
-    console.log('calcPagesCount()')
     this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage) + 1
     this.setCurrentPage(0)
   }
