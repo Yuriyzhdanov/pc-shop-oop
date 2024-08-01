@@ -7,6 +7,7 @@ class Search {
 
   setPlaceholders(placeholders) {
     this.allPlaceholders = placeholders
+    this.computeCurPlaceholders()
   }
 
   setQuery(query) {
@@ -18,6 +19,10 @@ class Search {
     return this.curPlaceholders
   }
 
+  getAllPlaceholders() {
+    return this.allPlaceholders
+  }
+  
   computeCurPlaceholders() {
     this.curPlaceholders = this.allPlaceholders.filter(aph =>
       aph.includes(this.query)
