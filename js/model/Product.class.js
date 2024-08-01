@@ -7,8 +7,10 @@ class Product {
     this.attributes = options.attributes
   }
 
-  convertPrice() {
-    //
+
+
+  convertPrice(???) {
+    this.convertedPrice = product.price * this.currencyUSD
   }
 }
 

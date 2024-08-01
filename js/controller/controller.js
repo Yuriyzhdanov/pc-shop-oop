@@ -4,7 +4,6 @@ import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
 import viewSearch from '../view/viewSearch.js'
 
-
 viewPaginator.init()
 viewSearch.init()
 
@@ -13,11 +12,12 @@ const controller = {
     await modelShop.init()
     this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
-    viewSearch.renderDataList(modelShop.search.getAllPlaceholders()) 
+    viewSearch.renderDataList(modelShop.search.getAllPlaceholders())
   },
 
   handleShowCatalog() {
     const products = modelShop.catalog.computeProducts()
+    console.log(products)
     viewCatalog.render(products)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
@@ -38,7 +38,6 @@ const controller = {
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
     this.handleShowCatalog()
-    viewSearch.renderDataList(modelShop.search.getCurPlaceholders()) 
   },
 }
 

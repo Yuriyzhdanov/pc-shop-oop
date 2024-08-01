@@ -22,7 +22,7 @@ class Search {
   getAllPlaceholders() {
     return this.allPlaceholders
   }
-  
+
   computeCurPlaceholders() {
     this.curPlaceholders = this.allPlaceholders.filter(aph =>
       aph.includes(this.query)
@@ -30,7 +30,9 @@ class Search {
   }
 
   run(products) {
-    return products.filter(product => product.caption.includes(this.query))
+    return products.filter(product =>
+      product.caption.toLowerCase().includes(this.query.toLowerCase())
+    )
   }
 }
 

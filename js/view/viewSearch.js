@@ -1,12 +1,12 @@
 import controller from '../controller/controller.js'
 
 const viewSearch = {
-  selector: '#searchContainer', 
+  selector: '#searchContainer',
   inputSelector: '#query',
-  
+
   renderDataList(captions) {
     const elDataList = document.querySelector('#productCaptions')
-
+    elDataList.innerHTML = ''
     captions.forEach(caption => {
       const option = document.createElement('option')
       option.value = caption

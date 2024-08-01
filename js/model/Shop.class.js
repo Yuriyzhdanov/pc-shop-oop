@@ -10,6 +10,7 @@ import Sorter from './Sorter.class.js'
 class Shop {
   constructor(api) {
     this.api = api
+    this.ccy = undefined
     this.search = new Search()
     this.attrSelector = new AttrSelector()
     this.priceRanger = new PriceRanger()
@@ -28,7 +29,9 @@ class Shop {
 
   async init() {
     const products = await this.api.loadProducts()
-    this.catalog.addProducts(products)
+    const ccy = await this.api.loadCurrency()
+
+    this.catalog.addProducts(products, this)
     this.filter.update(products)
     this.updateSearch()
     this.updatePaginator()
@@ -43,5 +46,7 @@ class Shop {
     const productsCount = this.catalog.products.length
     this.paginator.setProductsCount(productsCount)
   }
+
+  async updateCcy() {}
 }
 export default Shop

@@ -1,5 +1,3 @@
-import products from './products.js'
-
 // const api = {
 //   async loadProducts() {
 //     return products
@@ -21,6 +19,7 @@ const api = {
   },
 
   async sendRequest(url, options = {}) {
+    console.log(url)
     const resp = await fetch(url, options)
     if (resp.status === 204) {
       return
@@ -52,8 +51,8 @@ const api = {
   },
 
   async loadProducts() {
-    return products
-    // return await this.sendRequest(this.PRODUCTS)
+    // return products
+    return await this.sendRequest(this.PRODUCTS)
   },
 
   async loadProductById(id) {
