@@ -3,9 +3,11 @@ import viewCatalog from '../view/viewCatalog.js'
 import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
 import viewSearch from '../view/viewSearch.js'
+import viewSort from '../view/viewSorter.js'
 
 viewPaginator.init()
 viewSearch.init()
+viewSort.init()
 
 const controller = {
   async handleDOMContentLoaded() {
@@ -36,6 +38,11 @@ const controller = {
 
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
+    this.handleShowCatalog()
+  },
+
+  handleSortChange(sortType) {
+    modelShop.sorter.setSortingType(sortType)
     this.handleShowCatalog()
   },
 }
