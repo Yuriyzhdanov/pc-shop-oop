@@ -2,41 +2,27 @@ class Paginator {
   constructor() {
     this.productsOnPage = 10
     this.currentPage = 0
-    this.pagesCount = 0
     this.productsCount = 0
   }
 
-  getPagesCount() {
-    return Math.max(this.pagesCount, 1)
+  setProductsOnPage(productsOnPage) {
+    this.productsOnPage = productsOnPage
+  }
+
+  setCurrentPage(page) {
+    this.currentPage = page
   }
 
   getCurrentPage() {
     return this.currentPage
   }
 
-  setProductsCount(productsCount) {
-    this.productsCount = productsCount
-    this.calcPagesCount()
-  }
-
-  setProductsOnPage(productsOnPage) {
-    this.productsOnPage = productsOnPage
-    this.calcPagesCount()
-  }
-
-  setCurrentPage(page) {
-    if (page >= 0 && page < this.pagesCount) {
-      this.currentPage = page
-    }
-  }
-
-  calcPagesCount() {
-    this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage) + 1
-    // this.setCurrentPage(0)
+  getPagesCount() {
+    return Math.ceil(this.productsCount / this.productsOnPage)
   }
 
   run(products) {
-    this.setProductsCount(products.length)
+    this.productsCount = products.length
     const startFrom = this.currentPage * this.productsOnPage
     const endTo = startFrom + this.productsOnPage
     return products.slice(startFrom, endTo)

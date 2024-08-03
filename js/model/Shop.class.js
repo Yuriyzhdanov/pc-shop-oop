@@ -35,17 +35,11 @@ class Shop {
     this.catalog.addProducts(products, currencyRate)
     this.filter.update(products)
     this.updateSearch()
-    this.updatePaginator()
   }
 
   updateSearch() {
     const captions = this.catalog.getCaptions()
     this.search.setPlaceholders(captions)
-  }
-
-  updatePaginator() {
-    const productsCount = this.catalog.products.length
-    this.paginator.setProductsCount(productsCount)
   }
 
   async updateCcy() {}

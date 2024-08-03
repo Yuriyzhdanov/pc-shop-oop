@@ -43,6 +43,7 @@ const controller = {
 
   handleSortChange(sortType) {
     modelShop.sorter.setSortingType(sortType)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 }
