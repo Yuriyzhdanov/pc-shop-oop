@@ -17,7 +17,6 @@ const controller = {
 
   handleShowCatalog() {
     const products = modelShop.catalog.computeProducts()
-    console.log(products)
     viewCatalog.render(products)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),

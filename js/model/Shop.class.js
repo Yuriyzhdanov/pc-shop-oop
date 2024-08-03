@@ -7,6 +7,8 @@ import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
 
+
+
 class Shop {
   constructor(api) {
     this.api = api
@@ -29,9 +31,8 @@ class Shop {
 
   async init() {
     const products = await this.api.loadProducts()
-    const ccy = await this.api.loadCurrency()
-
-    this.catalog.addProducts(products, this)
+    const currencyRate = await this.api.loadCurrency()
+    this.catalog.addProducts(products, currencyRate)
     this.filter.update(products)
     this.updateSearch()
     this.updatePaginator()

@@ -12,10 +12,8 @@ class Catalog {
 
   computeProducts() {
     const searched = this.search.run(this.products)
-    console.log(searched)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
-    console.log(attributed)
     const sorted = this.sorter.run(priced)
     return this.paginator.run(sorted)
   }
@@ -24,13 +22,13 @@ class Catalog {
     return this.products.map(product => product.caption)
   }
 
-  addProducts(products, ???) {
-    products.forEach(this.addProduct.bind(this))
+  addProducts(products, currencyRate) {
+    products.forEach(product => this.addProduct(product, currencyRate))
   }
 
-  addProduct(product) {
+  addProduct(product, currencyRate) {
     const createdProduct = new Product(product)
-    createdProduct.convertPrice(???)
+    createdProduct.convertPrice(currencyRate)
     this.products.push(createdProduct)
   }
 

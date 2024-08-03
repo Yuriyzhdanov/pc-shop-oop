@@ -3,14 +3,14 @@ class Product {
     this.id = options.id
     this.caption = options.caption
     this.price = options.price
-    this.convertedPrice = options.convertedPrice
+    this.convertedPrice = undefined
     this.attributes = options.attributes
+    this.photos = options.photos
+    
   }
 
-
-
-  convertPrice(???) {
-    this.convertedPrice = product.price * this.currencyUSD
+  convertPrice(currencyRate) {
+    this.convertedPrice = this.price * currencyRate
   }
 }
 

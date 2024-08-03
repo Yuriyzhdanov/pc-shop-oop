@@ -19,7 +19,6 @@ const api = {
   },
 
   async sendRequest(url, options = {}) {
-    console.log(url)
     const resp = await fetch(url, options)
     if (resp.status === 204) {
       return

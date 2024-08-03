@@ -30,10 +30,10 @@ const viewCatalog = {
             '',
             [
               h('div', { class: 'wrap-img' }, '', [
-                // h('img', {
-                //   src: `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`,
-                //   alt: product.caption,
-                // }),
+                h('img', {
+                  src: `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`,
+                  alt: product.caption,
+                }),
               ]),
               h('div', { class: 'wrap-h3' }, '', [
                 h('h3', '', product.caption),
