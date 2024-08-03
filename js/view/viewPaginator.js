@@ -31,7 +31,6 @@ const viewPaginator = {
 
   onClickAPage(e) {
     const page = +e.target.textContent
-    console.log('onClickAPage', page)
     controller.handleClickPage(page)
   },
 

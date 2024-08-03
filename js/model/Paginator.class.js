@@ -7,7 +7,7 @@ class Paginator {
   }
 
   getPagesCount() {
-    return this.pagesCount
+    return Math.max(this.pagesCount, 1)
   }
 
   getCurrentPage() {
@@ -25,12 +25,14 @@ class Paginator {
   }
 
   setCurrentPage(page) {
-    this.currentPage = page
+    if (page >= 0 && page < this.pagesCount) {
+      this.currentPage = page
+    }
   }
 
   calcPagesCount() {
     this.pagesCount = Math.trunc(this.productsCount / this.productsOnPage) + 1
-    this.setCurrentPage(0)
+    // this.setCurrentPage(0)
   }
 
   run(products) {

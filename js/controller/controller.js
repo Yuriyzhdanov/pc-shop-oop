@@ -3,7 +3,7 @@ import viewCatalog from '../view/viewCatalog.js'
 import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
 import viewSearch from '../view/viewSearch.js'
-import viewSort from '../view/viewSorter.js'
+import viewSort from '../view/viewSort.js'
 
 viewPaginator.init()
 viewSearch.init()
