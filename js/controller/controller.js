@@ -4,10 +4,12 @@ import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
 import viewSearch from '../view/viewSearch.js'
 import viewSort from '../view/viewSort.js'
+import viewPriceRanger from '../view/viewPriceRanger.js'
 
 viewPaginator.init()
 viewSearch.init()
 viewSort.init()
+viewPriceRanger.init()
 
 const controller = {
   async handleDOMContentLoaded() {
@@ -44,6 +46,17 @@ const controller = {
   handleSortChange(sortType) {
     modelShop.sorter.setSortingType(sortType)
     modelShop.paginator.setCurrentPage(0)
+    this.handleShowCatalog()
+  },
+
+  handleUpdatePriceFrom(rangeFrom) {
+    console.log(rangeFrom)
+    modelShop.priceRanger.setFrom(rangeFrom)
+    this.handleShowCatalog()
+  },
+
+  handleUpdatePriceTo(rangeTo) {
+    modelShop.priceRanger.setTo(rangeTo)
     this.handleShowCatalog()
   },
 }

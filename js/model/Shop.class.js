@@ -6,8 +6,7 @@ import Paginator from './Paginator.class.js'
 import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
-
-
+import viewPriceRanger from '../view/viewPriceRanger.js'
 
 class Shop {
   constructor(api) {
@@ -35,6 +34,14 @@ class Shop {
     this.catalog.addProducts(products, currencyRate)
     this.filter.update(products)
     this.updateSearch()
+    this.priceRanger.run(products)
+
+    viewPriceRanger.render(
+      this.priceRanger.min,
+      this.priceRanger.max,
+      this.priceRanger.from,
+      this.priceRanger.to
+    )
   }
 
   updateSearch() {
