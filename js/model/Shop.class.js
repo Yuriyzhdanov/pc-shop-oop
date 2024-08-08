@@ -6,6 +6,7 @@ import Paginator from './Paginator.class.js'
 import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
+
 import viewPriceRanger from '../view/viewPriceRanger.js'
 
 class Shop {
