@@ -2,9 +2,9 @@ import modelShop from '../model/model.js'
 import viewCatalog from '../view/viewCatalog.js'
 import viewFilter from '../view/viewFilter.js'
 import viewPaginator from '../view/viewPaginator.js'
+import viewPriceRanger from '../view/viewPriceRanger.js'
 import viewSearch from '../view/viewSearch.js'
 import viewSort from '../view/viewSort.js'
-import viewPriceRanger from '../view/viewPriceRanger.js'
 
 viewPaginator.init()
 viewSearch.init()
@@ -25,6 +25,12 @@ const controller = {
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
       modelShop.paginator.getCurrentPage()
+    )
+    viewPriceRanger.render(
+      modelShop.priceRanger.min,
+      modelShop.priceRanger.max,
+      modelShop.priceRanger.from,
+      modelShop.priceRanger.to
     )
   },
 
@@ -50,7 +56,6 @@ const controller = {
   },
 
   handleUpdatePriceFrom(rangeFrom) {
-    console.log(rangeFrom)
     modelShop.priceRanger.setFrom(rangeFrom)
     this.handleShowCatalog()
   },

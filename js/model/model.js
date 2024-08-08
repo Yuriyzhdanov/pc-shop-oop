@@ -3,6 +3,8 @@ import Shop from './Shop.class.js'
 
 const modelShop = new Shop(api)
 
+window.modelShop = modelShop
+
 // async function afn() {
 //   await modelShop.updateCatalog()
 //   // shop.priceRanger.setFrom(2000)

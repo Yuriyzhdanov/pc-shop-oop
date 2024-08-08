@@ -45,4 +45,6 @@ const viewPaginator = {
   },
 }
 
+window.viewPaginator = viewPaginator
+
 export default viewPaginator

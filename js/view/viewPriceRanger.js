@@ -54,4 +54,6 @@ const viewPriceRanger = {
   },
 }
 
+window.viewPriceRanger = viewPriceRanger
+
 export default viewPriceRanger

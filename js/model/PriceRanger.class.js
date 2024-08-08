@@ -1,4 +1,4 @@
- class PriceRanger {
+class PriceRanger {
   constructor() {
     this.min = 0
     this.max = Infinity
@@ -10,6 +10,9 @@
     const prices = products.map(product => product.convertedPrice)
     this.min = Math.floor(prices.length ? Math.min(...prices) : 2)
     this.max = Math.ceil(prices.length ? Math.max(...prices) : 3)
+    if (this.from === 0 && this.to === Infinity) {
+      this.resetFromTo()
+    }
   }
 
   resetFromTo() {
