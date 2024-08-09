@@ -36,6 +36,7 @@ const controller = {
 
   handleChangeProductsOnPage(productsOnPage) {
     modelShop.paginator.setProductsOnPage(productsOnPage)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
@@ -45,23 +46,26 @@ const controller = {
   },
 
   handleSearchQuery(query) {
+    console.log(query)
     modelShop.search.setQuery(query)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
   handleSortChange(sortType) {
     modelShop.sorter.setSortingType(sortType)
-    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
   handleUpdatePriceFrom(rangeFrom) {
     modelShop.priceRanger.setFrom(rangeFrom)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
   handleUpdatePriceTo(rangeTo) {
     modelShop.priceRanger.setTo(rangeTo)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 }

@@ -30,6 +30,7 @@ class Search {
   }
 
   run(products) {
+    console.log(products)
     return products.filter(product =>
       product.caption.toLowerCase().includes(this.query.toLowerCase())
     )

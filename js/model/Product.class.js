@@ -10,6 +10,7 @@ class Product {
 
   convertPrice(currencyRate) {
     this.convertedPrice = this.price * currencyRate
+    this.convertedPrice = +this.convertedPrice.toFixed(0)
   }
 }
 

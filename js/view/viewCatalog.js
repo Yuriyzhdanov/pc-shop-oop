@@ -43,9 +43,7 @@ const viewCatalog = {
         ]),
         divLabels,
         h('div', { class: 'wrap-p' }, '', [
-          h('p', {}, '', [
-            h('b', {}, product.convertedPrice.toFixed(0) + ' грн'),
-          ]),
+          h('p', {}, '', [h('b', {}, product.convertedPrice + ' грн')]),
         ]),
         h('div', { class: 'row' }, '', [
           h('div', { class: 'cart' }, '', [h('button', {})]),
@@ -59,7 +57,7 @@ const viewCatalog = {
           ]),
           h('div', { class: 'compare' }, '', [h('button', {})]),
         ]),
-        h('div', { class: Math.random() < 0.5 ? 'new' : '' }),
+        h('div', { class: Math.random() < 0.5 ? 'new_' : '' }),
       ]
     )
     return divContainterProduct
