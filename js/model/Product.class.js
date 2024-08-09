@@ -6,7 +6,6 @@ class Product {
     this.convertedPrice = undefined
     this.attributes = options.attributes
     this.photos = options.photos
-    
   }
 
   convertPrice(currencyRate) {
