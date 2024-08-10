@@ -29,26 +29,24 @@ const viewPaginator = {
     return elPagination
   },
 
-  onClickAPage(e) {
-    const page = +e.target.textContent
+  onClickAPage(eveny) {
+    const page = +eveny.target.textContent
     controller.handleClickPage(page)
   },
 
-  onChangeProductsOnPage(e) {
-    const productsOnPage = +e.target.value
+  onChangeProductsOnPage(event) {
+    const productsOnPage = +event.target.value
     console.log(productsOnPage)
     controller.handleChangeProductsOnPage(productsOnPage)
   },
 
-  updateProductsOnPageSelect(productsOnPage) {
+  renderProductsOnPage(productsOnPage) {
     const elProductsOnPage = document.querySelector('.products-on-page')
     elProductsOnPage.value = productsOnPage
-    console.log('elProductsOnPage.value', elProductsOnPage.value)
   },
 
   init() {
     const elProductsOnPage = document.querySelector('.products-on-page')
-    elProductsOnPage.value = this.productsOnPage
     elProductsOnPage.addEventListener('change', this.onChangeProductsOnPage)
   },
 }

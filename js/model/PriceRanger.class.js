@@ -1,4 +1,7 @@
-// import utils from '../utils.js
+import { setWithLimits } from './utils.js'
+
+// const setWithLimits = utils.setWithLimits
+
 class PriceRanger {
   constructor() {
     this.min = 0
@@ -22,13 +25,11 @@ class PriceRanger {
   }
 
   setFrom(from) {
-    this.from = from
-    // this.from = utils.setWithLimits(from, this.max, this.min)
+    this.from = setWithLimits(from, this.max, this.min)
   }
 
   setTo(to) {
-    // this.to = utils.setWithLimits(to, this.max, this.min)
-    this.to = to
+    this.to = setWithLimits(to, this.max, this.min)
   }
 
   run(products) {

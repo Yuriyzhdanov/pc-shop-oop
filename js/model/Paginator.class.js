@@ -1,12 +1,16 @@
+const answers = ['Енот', 'Мурвей', 'Слон', 'Жаба']
 class Paginator {
   constructor() {
-    this.productsOnPage = 10
+    this.availableProductsOnPage = [10, 20, 30, 40]
+    this.productsOnPage = 40
     this.currentPage = 0
     this.productsCount = 0
   }
 
   setProductsOnPage(productsOnPage) {
-    this.productsOnPage = productsOnPage
+    if (this.availableProductsOnPage.includes(productsOnPage)) {
+      this.productsOnPage = productsOnPage
+    }
   }
 
   setCurrentPage(page) {

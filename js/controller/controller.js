@@ -17,6 +17,7 @@ const controller = {
     this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
     viewSearch.renderDataList(modelShop.search.getAllPlaceholders())
+    viewPaginator.renderProductsOnPage(modelShop.paginator.productsOnPage)
   },
 
   handleShowCatalog() {
