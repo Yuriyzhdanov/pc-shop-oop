@@ -36,11 +36,19 @@ const viewPaginator = {
 
   onChangeProductsOnPage(e) {
     const productsOnPage = +e.target.value
+    console.log(productsOnPage)
     controller.handleChangeProductsOnPage(productsOnPage)
+  },
+
+  updateProductsOnPageSelect(productsOnPage) {
+    const elProductsOnPage = document.querySelector('.products-on-page')
+    elProductsOnPage.value = productsOnPage
+    console.log('elProductsOnPage.value', elProductsOnPage.value)
   },
 
   init() {
     const elProductsOnPage = document.querySelector('.products-on-page')
+    elProductsOnPage.value = this.productsOnPage
     elProductsOnPage.addEventListener('change', this.onChangeProductsOnPage)
   },
 }
