@@ -18,7 +18,8 @@ const controller = {
     viewFilter.render(modelShop.filter)
     viewSearch.renderDataList(modelShop.search.getAllPlaceholders())
     viewPaginator.renderOptionsSelected(
-      modelShop.paginator.availableProductsOnPage
+      modelShop.paginator.availableProductsOnPage,
+      modelShop.paginator.productsOnPage
     )
   },
 
@@ -52,7 +53,15 @@ const controller = {
     console.log(query)
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
+    // modelShop.priceRanger.calcMinMax(attributed) // ?? ??
     this.handleShowCatalog()
+    modelShop.priceRanger.resetFromTo()
+    viewPriceRanger.render(
+      modelShop.priceRanger.min,
+      modelShop.priceRanger.max,
+      modelShop.priceRanger.from,
+      modelShop.priceRanger.to
+    )
   },
 
   handleSortChange(sortType) {
