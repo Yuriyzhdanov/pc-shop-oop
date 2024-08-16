@@ -29,20 +29,40 @@ const viewPaginator = {
     return elPagination
   },
 
-  onClickAPage(eveny) {
-    const page = +eveny.target.textContent
+  onClickAPage(event) {
+    const page = +event.target.textContent
     controller.handleClickPage(page)
   },
 
   onChangeProductsOnPage(event) {
     const productsOnPage = +event.target.value
-    console.log(productsOnPage)
     controller.handleChangeProductsOnPage(productsOnPage)
   },
 
   renderProductsOnPage(productsOnPage) {
     const elProductsOnPage = document.querySelector('.products-on-page')
     elProductsOnPage.value = productsOnPage
+  },
+
+  generateSelectOptions(value, isSelected = false) {
+    const elOption = document.createElement('option')
+    elOption.value = value
+    elOption.textContent = value
+    if (isSelected) {
+      elOption.setAttribute('selected', '')
+    }
+    return elOption
+  },
+
+  renderOptionsSelected(options, selectedOption = 10) {
+    const elSelect = document.querySelector('.products-on-page')
+    elSelect.innerHTML = ''
+
+    options.forEach(optionValue => {
+      const isSelected = optionValue === selectedOption
+      const elOption = this.generateSelectOptions(optionValue, isSelected)
+      elSelect.appendChild(elOption)
+    })
   },
 
   init() {

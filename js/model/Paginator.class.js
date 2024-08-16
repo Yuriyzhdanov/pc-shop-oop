@@ -1,10 +1,10 @@
-const answers = ['Енот', 'Мурвей', 'Слон', 'Жаба']
 class Paginator {
   constructor() {
     this.availableProductsOnPage = [10, 20, 30, 40]
-    this.productsOnPage = 40
+    this.productsOnPage = 10
     this.currentPage = 0
     this.productsCount = 0
+    console.log(this.availableProductsOnPage)
   }
 
   setProductsOnPage(productsOnPage) {

@@ -42,4 +42,5 @@ class Shop {
 
   async updateCcy() {}
 }
+
 export default Shop
