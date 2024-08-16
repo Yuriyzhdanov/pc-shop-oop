@@ -4,7 +4,6 @@ class Paginator {
     this.productsOnPage = 10
     this.currentPage = 0
     this.productsCount = 0
-    console.log(this.availableProductsOnPage)
   }
 
   setProductsOnPage(productsOnPage) {

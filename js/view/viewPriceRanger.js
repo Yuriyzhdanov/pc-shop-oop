@@ -3,6 +3,8 @@ import controller from '../controller/controller.js'
 const viewPriceRanger = {
   selectorFrom: '#price_from',
   selectorTo: '#price_to',
+  labelFrom: 'label[for="price_from"] span',
+  labelTo: 'label[for="price_to"] span',
 
   render(min, max, from, to) {
     this.renderFilterRangeFrom(from, min, max)
@@ -12,12 +14,12 @@ const viewPriceRanger = {
   },
 
   renderLabelFrom(val) {
-    const labelFrom = document.querySelector('label[for="price_from"] span')
+    const labelFrom = document.querySelector(this.labelFrom)
     labelFrom.textContent = +val
   },
 
   renderLabelTo(val) {
-    const labelTo = document.querySelector('label[for="price_to"] span')
+    const labelTo = document.querySelector(this.labelTo)
     labelTo.textContent = +val
   },
 
@@ -35,13 +37,43 @@ const viewPriceRanger = {
     elPriceTo.value = +val
   },
 
+  checkingRangeTo(rangeFrom) {
+    const elInputTo = document.querySelector(this.selectorTo)
+    if (elInputTo && +elInputTo.value <= +rangeFrom) {
+      elInputTo.value = +rangeFrom
+      this.renderFilterRangeTo(rangeFrom, elInputTo.min, elInputTo.max)
+      this.renderLabelTo(rangeFrom)
+    }
+  },
+
+  checkingRangeFrom(rangeTo) {
+    const elInputFrom = document.querySelector(this.selectorFrom)
+    if (elInputFrom && +elInputFrom.value >= +rangeTo) {
+      elInputFrom.value = +rangeTo
+      console.log()
+
+      this.renderFilterRangeFrom(rangeTo, elInputFrom.min, elInputFrom.max)
+      this.renderLabelFrom(rangeTo)
+    }
+  },
+
   onInputRangeFrom(e) {
     const rangeFrom = e.target.value
+    const elInputTo = document.querySelector(this.selectorTo)
+    const rangeTo = elInputTo.value
+    this.checkingRangeFrom(rangeTo)
+
+    this.renderLabelFrom(rangeFrom)
     controller.handleUpdatePriceFrom(rangeFrom)
   },
 
   onInputRangeTo(e) {
     const rangeTo = e.target.value
+    const elInputFrom = document.querySelector(this.selectorFrom)
+    const rangeFrom = elInputFrom.value
+    this.checkingRangeFrom(rangeFrom)
+
+    this.renderLabelTo(rangeTo)
     controller.handleUpdatePriceTo(rangeTo)
   },
 
@@ -49,8 +81,8 @@ const viewPriceRanger = {
     const elPriceFrom = document.querySelector(this.selectorFrom)
     const elPriceTo = document.querySelector(this.selectorTo)
 
-    elPriceFrom.addEventListener('input', this.onInputRangeFrom)
-    elPriceTo.addEventListener('input', this.onInputRangeTo)
+    elPriceFrom.addEventListener('input', this.onInputRangeFrom.bind(this))
+    elPriceTo.addEventListener('input', this.onInputRangeTo.bind(this))
   },
 }
 
