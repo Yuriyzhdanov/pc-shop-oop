@@ -1,6 +1,6 @@
 class Sorter {
   constructor() {
-    this.sortingType = ''
+    this.sortingType = ['byPriceASC', 'byPriceDESC', 'byCaptionASC']
   }
 
   setSortingType(sortingType) {
