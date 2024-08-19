@@ -13,6 +13,10 @@ class Paginator {
   }
 
   setCurrentPage(page) {
+    const totalPages = this.getPagesCount()
+    if (totalPages <= 1) {
+      return
+    }
     this.currentPage = page
   }
 

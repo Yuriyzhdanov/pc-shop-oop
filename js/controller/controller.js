@@ -14,8 +14,7 @@ viewPriceRanger.init()
 const controller = {
   async handleDOMContentLoaded() {
     await modelShop.init()
-    modelShop.sorter.setSortingType('byPriceASC') // Устанавливаем тип сортировки
-    this.handleShowCatalog()
+    modelShop.sorter.setSortingType('byPriceASC')
     this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
     viewSearch.renderDataList(modelShop.search.getAllPlaceholders())
@@ -23,7 +22,6 @@ const controller = {
       modelShop.paginator.availableProductsOnPage,
       modelShop.paginator.productsOnPage
     )
-    modelShop.sorter.setSortingType('byPriceASC')
   },
 
   handleShowCatalog() {
