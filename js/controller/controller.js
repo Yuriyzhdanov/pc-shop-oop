@@ -10,6 +10,7 @@ viewPaginator.init()
 viewSearch.init()
 viewSort.init()
 viewPriceRanger.init()
+viewFilter.init()
 
 const controller = {
   async handleDOMContentLoaded() {
@@ -52,6 +53,7 @@ const controller = {
 
   handleClearSearch() {
     modelShop.search.setQuery('')
+    console.log('handleClearSearch')
     this.handleShowCatalog()
   },
 
@@ -85,6 +87,10 @@ const controller = {
     modelShop.priceRanger.setTo(rangeTo)
     modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
+  },
+
+  handelFiltrate() {
+    console.log('handelFiltrate')
   },
 }
 

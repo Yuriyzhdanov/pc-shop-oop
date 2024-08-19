@@ -1,4 +1,5 @@
 import h from './h.js'
+import controller from '../controller/controller.js'
 
 const viewFilter = {
   selector: '.wrap-filter',
@@ -34,6 +35,15 @@ const viewFilter = {
       ),
       h('label', { for: `${key}-${value}` }, value),
     ])
+  },
+
+  init() {
+    const elButton = document.querySelector('.btn.filter')
+    console.log(elButton)
+
+    elButton.addEventListener('click', () => {
+      controller.handleFiltrate()
+    })
   },
 }
 
