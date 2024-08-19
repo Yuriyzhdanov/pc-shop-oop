@@ -1,7 +1,5 @@
 import { setWithLimits } from './utils.js'
 
-// const setWithLimits = utils.setWithLimits
-
 class PriceRanger {
   constructor() {
     this.min = 0

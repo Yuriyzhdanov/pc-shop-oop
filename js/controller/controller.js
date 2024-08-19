@@ -50,6 +50,11 @@ const controller = {
     this.handleShowCatalog()
   },
 
+  handleClearSearch() {
+    modelShop.search.setQuery('')
+    this.handleShowCatalog()
+  },
+
   handleSearchQuery(query) {
     console.log(query)
     modelShop.search.setQuery(query)
