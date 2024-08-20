@@ -39,7 +39,6 @@ const viewFilter = {
 
   init() {
     const elButton = document.querySelector('.btn.filter')
-    console.log(elButton)
 
     elButton.addEventListener('click', () => {
       controller.handleFiltrate()

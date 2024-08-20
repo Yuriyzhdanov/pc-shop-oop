@@ -89,8 +89,23 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handelFiltrate() {
+  handleFiltrate() {
     console.log('handelFiltrate')
+    const checkedCheckboxes = document.querySelectorAll(
+      '.wrap-checkbox input:checked'
+    )
+    const checkedAttrs = Array.from(checkedCheckboxes).map(
+      checkbox => checkbox.id
+    )
+    modelShop.attrSelector.createCheckedAttrs(checkedAttrs)
+    const filteredProducts = modelShop.attrSelector.run(
+      modelShop.catalog.products
+    )
+    viewCatalog.render(filteredProducts)
+    viewPaginator.render(
+      modelShop.paginator.getPagesCount(),
+      modelShop.paginator.getCurrentPage()
+    )
   },
 }
 
