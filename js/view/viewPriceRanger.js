@@ -37,41 +37,30 @@ const viewPriceRanger = {
     elPriceTo.value = +val
   },
 
-  checkingRangeTo(rangeFrom) {
+  onInputRangeFrom(e) {
+    const rangeFrom = +e.target.value
     const elInputTo = document.querySelector(this.selectorTo)
-    if (elInputTo && +elInputTo.value <= +rangeFrom) {
-      elInputTo.value = +rangeFrom
+    const rangeTo = +elInputTo.value
+    if (rangeFrom >= rangeTo) {
+      elInputTo.value = rangeFrom
       this.renderFilterRangeTo(rangeFrom, elInputTo.min, elInputTo.max)
       this.renderLabelTo(rangeFrom)
+      controller.handleUpdatePriceTo(rangeFrom)
     }
-  },
-
-  checkingRangeFrom(rangeTo) {
-    const elInputFrom = document.querySelector(this.selectorFrom)
-    if (elInputFrom && +elInputFrom.value >= +rangeTo) {
-      elInputFrom.value = +rangeTo
-      console.log()
-
-      this.renderFilterRangeFrom(rangeTo, elInputFrom.min, elInputFrom.max)
-      this.renderLabelFrom(rangeTo)
-    }
-  },
-
-  onInputRangeFrom(e) {
-    const rangeFrom = e.target.value
-    const elInputTo = document.querySelector(this.selectorTo)
-    const rangeTo = elInputTo.value
-    this.checkingRangeFrom(rangeTo)
-
     this.renderLabelFrom(rangeFrom)
     controller.handleUpdatePriceFrom(rangeFrom)
   },
 
   onInputRangeTo(e) {
-    const rangeTo = e.target.value
+    const rangeTo = +e.target.value
     const elInputFrom = document.querySelector(this.selectorFrom)
-    const rangeFrom = elInputFrom.value
-    this.checkingRangeFrom(rangeFrom)
+    const rangeFrom = +elInputFrom.value
+    if (rangeTo <= rangeFrom) {
+      elInputFrom.value = rangeTo
+      this.renderFilterRangeFrom(rangeTo, elInputFrom.min, elInputFrom.max)
+      this.renderLabelFrom(rangeTo)
+      controller.handleUpdatePriceFrom(rangeTo)
+    }
 
     this.renderLabelTo(rangeTo)
     controller.handleUpdatePriceTo(rangeTo)
