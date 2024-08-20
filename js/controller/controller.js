@@ -23,6 +23,10 @@ const controller = {
       modelShop.paginator.availableProductsOnPage,
       modelShop.paginator.productsOnPage
     )
+    viewSort.renderSortingOptions(
+      modelShop.sorter.getAvailableSortingTypes(),
+      modelShop.sorter.getCurrentSortingType()
+    )
   },
 
   handleShowCatalog() {
@@ -46,8 +50,8 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handleClickPage(pageNumber) {
-    modelShop.paginator.setCurrentPage(pageNumber)
+  handleClickPage(page) {
+    modelShop.paginator.setCurrentPage(page)
     this.handleShowCatalog()
   },
 
@@ -72,8 +76,8 @@ const controller = {
     )
   },
 
-  handleSortChange(sortType) {
-    modelShop.sorter.setSortingType(sortType)
+  handleSortChange(sortingType) {
+    modelShop.sorter.setSortingType(sortingType)
     this.handleShowCatalog()
   },
 

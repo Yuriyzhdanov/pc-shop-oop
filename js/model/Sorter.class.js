@@ -1,10 +1,26 @@
 class Sorter {
   constructor() {
+    this.availableSortingTypes = [
+      'byPriceASC',
+      'byPriceDESC',
+      'byCaptionASC',
+      'byCaptionDESC',
+    ]
     this.sortingType = ''
   }
 
+  getCurrentSortingType() {
+    return this.sortingType
+  }
+
+  getAvailableSortingTypes() {
+    return this.availableSortingTypes
+  }
+
   setSortingType(sortingType) {
-    this.sortingType = sortingType
+    if (this.availableSortingTypes.includes(sortingType)) {
+      this.sortingType = sortingType
+    }
   }
 
   run(products) {
