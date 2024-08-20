@@ -94,10 +94,10 @@ const controller = {
     const checkedCheckboxes = document.querySelectorAll(
       '.wrap-checkbox input:checked'
     )
-    const checkedAttrs = Array.from(checkedCheckboxes).map(
-      checkbox => checkbox.id
-    )
-    modelShop.attrSelector.createCheckedAttrs(checkedAttrs)
+    const checkedAttrs = []
+    checkedCheckboxes.forEach(checkbox => {
+      checkedAttrs.push(checkbox.id)
+    })
     const filteredProducts = modelShop.attrSelector.run(
       modelShop.catalog.products
     )
