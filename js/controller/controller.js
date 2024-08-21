@@ -94,22 +94,18 @@ const controller = {
   },
 
   handleFiltrate() {
-    console.log('handelFiltrate')
     const checkedCheckboxes = document.querySelectorAll(
-      '.wrap-checkbox input:checked'
+      'input[type="checkbox"]:checked'
     )
-    const checkedAttrs = []
-    checkedCheckboxes.forEach(checkbox => {
-      checkedAttrs.push(checkbox.id)
+    const attrIds = Array.from(checkedCheckboxes).map(checkbox => {
+      const key = checkbox.name
+      const value = checkbox.value
+      return `${key}-${value}`
     })
-    const filteredProducts = modelShop.attrSelector.run(
-      modelShop.catalog.products
-    )
-    viewCatalog.render(filteredProducts)
-    viewPaginator.render(
-      modelShop.paginator.getPagesCount(),
-      modelShop.paginator.getCurrentPage()
-    )
+    console.log(attrIds)
+
+    modelShop.attrSelector.createCheckedAttrs(attrIds)
+    this.handleShowCatalog()
   },
 }
 

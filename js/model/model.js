@@ -29,13 +29,13 @@ window.modelShop = modelShop
 //     modelShop.paginator.pagesCount
 //   )
 
-//   // modelShop.search.setQuery('Duo')
-//   // console.log(modelShop.catalog.computeProducts().length)
+// modelShop.search.setQuery('Duo')
+// console.log(modelShop.catalog.computeProducts().length)
 
-//   // modelShop.attrSelector.createCheckedAttrs(['ssd-kingston', 'ssd-samsung'])
+// modelShop.attrSelector.createCheckedAttrs(['ssd-kingston', 'ssd-samsung'])
 
-//   //
-//   //
+//
+//
 //   modelShop.sorter.setSortingType('byPriceDESC')
 
 //   // modelShop.paginator.setCurrentPage(2)
