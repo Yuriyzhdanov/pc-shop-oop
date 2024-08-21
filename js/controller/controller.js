@@ -107,6 +107,12 @@ const controller = {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
     this.handleShowCatalog()
   },
+
+  handleClearFilter() {
+    modelShop.attrSelector.clearCheckedAttrs()
+    viewFilter.clearFilters()
+    this.handleShowCatalog()
+  },
 }
 
 export default controller

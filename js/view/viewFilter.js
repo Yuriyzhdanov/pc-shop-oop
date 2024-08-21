@@ -3,6 +3,8 @@ import controller from '../controller/controller.js'
 
 const viewFilter = {
   selector: '.wrap-filter',
+  buttonFilter: '.btn.filter',
+  buttonClearFilter: '.btn.clear-filter',
 
   render(modelFilter) {
     const elWrapFilter = document.querySelector(this.selector)
@@ -37,11 +39,20 @@ const viewFilter = {
     ])
   },
 
-  init() {
-    const elButton = document.querySelector('.btn.filter')
+  clearFilters() {
+    const elCheckboxes = document.querySelectorAll('input[type="checkbox"]')
+    elCheckboxes.forEach(checkbox => (checkbox.checked = false))
+  },
 
+  init() {
+    const elButton = document.querySelector(this.buttonFilter)
+    const elButtonClearFilter = document.querySelector(this.buttonClearFilter)
     elButton.addEventListener('click', () => {
       controller.handleFiltrate()
+    })
+
+    elButtonClearFilter.addEventListener('click', () => {
+      controller.handleClearFilter()
     })
   },
 }
