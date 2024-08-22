@@ -23,12 +23,12 @@ const viewSearch = {
     const elInput = document.querySelector(this.inputSelector)
     elInput.addEventListener('input', this.onSearchInput)
 
-    const searchInput = document.querySelector('#productCaptions')
-    searchInput.addEventListener('input', () => {
-      if (searchInput.value === '') {
-        controller.handleClearSearch()
-      }
-    })
+    // const searchInput = document.querySelector('#productCaptions')
+    // searchInput.addEventListener('input', () => {
+    //   if (searchInput.value === '') {
+    //     controller.handleClearSearch()
+    //   }
+    // })
   },
 }
 

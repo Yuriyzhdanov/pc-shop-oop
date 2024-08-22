@@ -55,11 +55,11 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handleClearSearch() {
-    modelShop.search.setQuery('')
-    console.log('handleClearSearch')
-    this.handleShowCatalog()
-  },
+  // handleClearSearch() {
+  //   modelShop.search.setQuery('')
+  //   console.log('>>> handleClearSearch')
+  //   this.handleShowCatalog()
+  // },
 
   handleSearchQuery(query) {
     console.log(query)
