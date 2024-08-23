@@ -15,7 +15,7 @@ viewFilter.init()
 const controller = {
   async handleDOMContentLoaded() {
     await modelShop.init()
-    modelShop.sorter.setSortingType('byPriceASC')
+    modelShop.sorter.setSortingType()
     this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
     viewSearch.renderDataList(modelShop.search.getAllPlaceholders())
@@ -54,12 +54,6 @@ const controller = {
     modelShop.paginator.setCurrentPage(page)
     this.handleShowCatalog()
   },
-
-  // handleClearSearch() {
-  //   modelShop.search.setQuery('')
-  //   console.log('>>> handleClearSearch')
-  //   this.handleShowCatalog()
-  // },
 
   handleSearchQuery(query) {
     console.log(query)

@@ -6,7 +6,7 @@ class Sorter {
       'byCaptionASC',
       'byCaptionDESC',
     ]
-    this.sortingType = ''
+    this.sortingType = 'byPriceASC'
   }
 
   getCurrentSortingType() {
