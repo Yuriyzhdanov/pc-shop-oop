@@ -25,16 +25,16 @@ const viewPriceRanger = {
 
   renderFilterRangeFrom(val, min, max) {
     const elPriceFrom = document.querySelector(this.selectorFrom)
-    elPriceFrom.value = +val
     elPriceFrom.min = min
     elPriceFrom.max = max
+    elPriceFrom.value = +val
   },
 
   renderFilterRangeTo(val, min, max) {
     const elPriceTo = document.querySelector(this.selectorTo)
-    elPriceTo.value = +val
     elPriceTo.min = min
     elPriceTo.max = max
+    elPriceTo.value = +val
   },
 
   onInputRangeFrom(e) {
