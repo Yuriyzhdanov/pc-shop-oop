@@ -56,8 +56,8 @@ const viewFilter = {
     const elButton = document.querySelector(this.buttonFilter)
     const elButtonClearFilter = document.querySelector(this.buttonClearFilter)
 
-    elButton.addEventListener('click', onFilterButtonClick)
-    elButtonClearFilter.addEventListener('click', onClearFilterButtonClick)
+    elButton.addEventListener('click', this.onFilterButtonClick)
+    elButtonClearFilter.addEventListener('click', this.onClearFilterButtonClick)
   },
 }
 
