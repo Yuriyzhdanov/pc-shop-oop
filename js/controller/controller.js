@@ -59,7 +59,6 @@ const controller = {
     console.log(query)
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
-    // modelShop.priceRanger.calcMinMax(attributed) // ?? ??
     this.handleShowCatalog()
     modelShop.priceRanger.resetFromTo()
     viewPriceRanger.render(
@@ -77,23 +76,11 @@ const controller = {
 
   handleUpdatePriceFrom(rangeFrom) {
     modelShop.priceRanger.setFrom(rangeFrom)
-    viewPriceRanger.renderLabelFrom(modelShop.priceRanger.from)
-    viewPriceRanger.renderFilterRangeFrom(
-      modelShop.priceRanger.from,
-      modelShop.priceRanger.min,
-      modelShop.priceRanger.max
-    )
     this.handleShowCatalog()
   },
 
   handleUpdatePriceTo(rangeTo) {
     modelShop.priceRanger.setTo(rangeTo)
-    viewPriceRanger.renderLabelTo(modelShop.priceRanger.to)
-    viewPriceRanger.renderFilterRangeTo(
-      modelShop.priceRanger.to,
-      modelShop.priceRanger.min,
-      modelShop.priceRanger.max
-    )
     this.handleShowCatalog()
   },
 
