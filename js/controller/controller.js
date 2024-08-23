@@ -106,7 +106,6 @@ const controller = {
       const value = checkbox.value
       return `${key}-${value}`
     })
-    console.log(attrIds)
 
     modelShop.attrSelector.createCheckedAttrs(attrIds)
     this.handleShowCatalog()
@@ -114,7 +113,7 @@ const controller = {
 
   handleClearFilter() {
     modelShop.attrSelector.clearCheckedAttrs()
-    viewFilter.clearFilters()
+    viewFilter.renderClearFilters()
     this.handleShowCatalog()
   },
 }

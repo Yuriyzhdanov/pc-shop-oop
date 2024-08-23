@@ -39,21 +39,25 @@ const viewFilter = {
     ])
   },
 
-  clearFilters() {
+  renderClearFilters() {
     const elCheckboxes = document.querySelectorAll('input[type="checkbox"]')
     elCheckboxes.forEach(checkbox => (checkbox.checked = false))
+  },
+
+  onFilterButtonClick() {
+    controller.handleFiltrate()
+  },
+
+  onClearFilterButtonClick() {
+    controller.handleClearFilter()
   },
 
   init() {
     const elButton = document.querySelector(this.buttonFilter)
     const elButtonClearFilter = document.querySelector(this.buttonClearFilter)
-    elButton.addEventListener('click', () => {
-      controller.handleFiltrate()
-    })
 
-    elButtonClearFilter.addEventListener('click', () => {
-      controller.handleClearFilter()
-    })
+    elButton.addEventListener('click', onFilterButtonClick)
+    elButtonClearFilter.addEventListener('click', onClearFilterButtonClick)
   },
 }
 
