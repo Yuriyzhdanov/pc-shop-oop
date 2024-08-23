@@ -56,7 +56,6 @@ const controller = {
   },
 
   handleSearchQuery(query) {
-    console.log(query)
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()

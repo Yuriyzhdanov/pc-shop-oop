@@ -39,15 +39,11 @@ const viewPriceRanger = {
 
   onInputRangeFrom(e) {
     const rangeFrom = +e.target.value
-    console.log('rangeFrom', rangeFrom)
-
     controller.handleUpdatePriceFrom(rangeFrom)
   },
 
   onInputRangeTo(e) {
     const rangeTo = +e.target.value
-    console.log('rangeTo', rangeTo)
-
     controller.handleUpdatePriceTo(rangeTo)
   },
 
