@@ -27,11 +27,13 @@ class PriceRanger {
   setFrom(from) {
     this.from = setWithLimits(from, this.max, this.min)
     console.log('this.from', this.from)
+    if (this.from > this.to) this.to = this.from
   }
 
   setTo(to) {
     this.to = setWithLimits(to, this.max, this.min)
     console.log('this.to', this.to)
+    if (this.to < this.from) this.from = this.to
   }
 
   run(products) {
