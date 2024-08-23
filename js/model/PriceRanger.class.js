@@ -38,4 +38,5 @@ class PriceRanger {
     )
   }
 }
+
 export default PriceRanger

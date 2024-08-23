@@ -83,13 +83,23 @@ const controller = {
 
   handleUpdatePriceFrom(rangeFrom) {
     modelShop.priceRanger.setFrom(rangeFrom)
-    modelShop.paginator.setCurrentPage(0)
+    viewPriceRanger.renderLabelFrom(modelShop.priceRanger.from)
+    viewPriceRanger.renderFilterRangeFrom(
+      modelShop.priceRanger.from,
+      modelShop.priceRanger.min,
+      modelShop.priceRanger.max
+    )
     this.handleShowCatalog()
   },
 
   handleUpdatePriceTo(rangeTo) {
     modelShop.priceRanger.setTo(rangeTo)
-    modelShop.paginator.setCurrentPage(0)
+    viewPriceRanger.renderLabelTo(modelShop.priceRanger.to)
+    viewPriceRanger.renderFilterRangeTo(
+      modelShop.priceRanger.to,
+      modelShop.priceRanger.min,
+      modelShop.priceRanger.max
+    )
     this.handleShowCatalog()
   },
 

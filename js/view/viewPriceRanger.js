@@ -25,53 +25,38 @@ const viewPriceRanger = {
 
   renderFilterRangeFrom(val, min, max) {
     const elPriceFrom = document.querySelector(this.selectorFrom)
+    elPriceFrom.value = +val
     elPriceFrom.min = min
     elPriceFrom.max = max
-    elPriceFrom.value = +val
   },
 
   renderFilterRangeTo(val, min, max) {
     const elPriceTo = document.querySelector(this.selectorTo)
+    elPriceTo.value = +val
     elPriceTo.min = min
     elPriceTo.max = max
-    elPriceTo.value = +val
   },
 
   onInputRangeFrom(e) {
     const rangeFrom = +e.target.value
-    const elInputTo = document.querySelector(this.selectorTo)
-    const rangeTo = +elInputTo.value
-    if (rangeFrom >= rangeTo) {
-      elInputTo.value = rangeFrom
-      this.renderFilterRangeTo(rangeFrom, elInputTo.min, elInputTo.max)
-      this.renderLabelTo(rangeFrom)
-      controller.handleUpdatePriceTo(rangeFrom)
-    }
-    this.renderLabelFrom(rangeFrom)
-    controller.handleUpdatePriceFrom(rangeFrom)
+    console.log(rangeFrom)
+
+    controller.handleUpdatePriceTo(rangeFrom)
   },
 
-  onInputRangeTo(e) {
-    const rangeTo = +e.target.value
-    const elInputFrom = document.querySelector(this.selectorFrom)
-    const rangeFrom = +elInputFrom.value
-    if (rangeTo <= rangeFrom) {
-      elInputFrom.value = rangeTo
-      this.renderFilterRangeFrom(rangeTo, elInputFrom.min, elInputFrom.max)
-      this.renderLabelFrom(rangeTo)
-      controller.handleUpdatePriceFrom(rangeTo)
-    }
+  // onInputRangeTo(e) {
+  //   const rangeTo = +e.target.value
+  //   console.log(rangeTo)
 
-    this.renderLabelTo(rangeTo)
-    controller.handleUpdatePriceTo(rangeTo)
-  },
+  //   controller.handleUpdatePriceTo(rangeTo)
+  // },
 
   init() {
     const elPriceFrom = document.querySelector(this.selectorFrom)
-    const elPriceTo = document.querySelector(this.selectorTo)
+    // const elPriceTo = document.querySelector(this.selectorTo)
 
     elPriceFrom.addEventListener('input', this.onInputRangeFrom.bind(this))
-    elPriceTo.addEventListener('input', this.onInputRangeTo.bind(this))
+    // elPriceTo.addEventListener('input', this.onInputRangeTo.bind(this))
   },
 }
 
