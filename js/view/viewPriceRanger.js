@@ -39,24 +39,24 @@ const viewPriceRanger = {
 
   onInputRangeFrom(e) {
     const rangeFrom = +e.target.value
-    console.log(rangeFrom)
+    console.log('rangeFrom', rangeFrom)
 
-    controller.handleUpdatePriceTo(rangeFrom)
+    controller.handleUpdatePriceFrom(rangeFrom)
   },
 
-  // onInputRangeTo(e) {
-  //   const rangeTo = +e.target.value
-  //   console.log(rangeTo)
+  onInputRangeTo(e) {
+    const rangeTo = +e.target.value
+    console.log('rangeTo', rangeTo)
 
-  //   controller.handleUpdatePriceTo(rangeTo)
-  // },
+    controller.handleUpdatePriceTo(rangeTo)
+  },
 
   init() {
     const elPriceFrom = document.querySelector(this.selectorFrom)
-    // const elPriceTo = document.querySelector(this.selectorTo)
+    const elPriceTo = document.querySelector(this.selectorTo)
 
-    elPriceFrom.addEventListener('input', this.onInputRangeFrom.bind(this))
-    // elPriceTo.addEventListener('input', this.onInputRangeTo.bind(this))
+    elPriceFrom.addEventListener('input', this.onInputRangeFrom)
+    elPriceTo.addEventListener('input', this.onInputRangeTo)
   },
 }
 

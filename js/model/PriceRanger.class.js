@@ -15,6 +15,7 @@ class PriceRanger {
     if (this.from === 0 && this.to === Infinity) {
       this.resetFromTo()
     }
+    console.log(this.min)
   }
 
   resetFromTo() {
@@ -24,10 +25,12 @@ class PriceRanger {
 
   setFrom(from) {
     this.from = setWithLimits(from, this.max, this.min)
+    console.log('this.from', this.from)
   }
 
   setTo(to) {
     this.to = setWithLimits(to, this.max, this.min)
+    console.log('this.to', this.to)
   }
 
   run(products) {
