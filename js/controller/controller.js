@@ -95,6 +95,13 @@ const controller = {
 
     modelShop.attrSelector.createCheckedAttrs(attrIds)
     this.handleShowCatalog()
+    modelShop.priceRanger.resetFromTo()
+    viewPriceRanger.render(
+      modelShop.priceRanger.min,
+      modelShop.priceRanger.max,
+      modelShop.priceRanger.from,
+      modelShop.priceRanger.to
+    )
   },
 
   handleClearFilter() {
