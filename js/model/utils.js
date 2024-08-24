@@ -1,5 +1,7 @@
 function checkNumber(number) {
-  // body
+  if (typeof number !== 'number' || isNaN(number)) {
+    alert('Provided value is not a valid number')
+  }
   return number
 }
 
