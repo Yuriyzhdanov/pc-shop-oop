@@ -58,14 +58,9 @@ const controller = {
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
-    this.handleShowCatalog()
+    modelShop.catalog.computeProducts()
     modelShop.priceRanger.resetFromTo()
-    viewPriceRanger.render(
-      modelShop.priceRanger.min,
-      modelShop.priceRanger.max,
-      modelShop.priceRanger.from,
-      modelShop.priceRanger.to
-    )
+    this.handleShowCatalog()
   },
 
   handleSortChange(sortingType) {
@@ -96,14 +91,9 @@ const controller = {
     })
 
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    this.handleShowCatalog()
+    modelShop.catalog.computeProducts()
     modelShop.priceRanger.resetFromTo()
-    viewPriceRanger.render(
-      modelShop.priceRanger.min,
-      modelShop.priceRanger.max,
-      modelShop.priceRanger.from,
-      modelShop.priceRanger.to
-    )
+    this.handleShowCatalog()
   },
 
   handleClearFilter() {
