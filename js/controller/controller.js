@@ -75,11 +75,13 @@ const controller = {
 
   handleUpdatePriceFrom(rangeFrom) {
     modelShop.priceRanger.setFrom(rangeFrom)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
   handleUpdatePriceTo(rangeTo) {
     modelShop.priceRanger.setTo(rangeTo)
+    modelShop.paginator.setCurrentPage(0)
     this.handleShowCatalog()
   },
 
