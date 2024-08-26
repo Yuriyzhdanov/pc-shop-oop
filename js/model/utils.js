@@ -1,6 +1,6 @@
 function checkNumber(number) {
-  if (typeof number !== 'number' || isNaN(number)) {
-    alert('Provided value is not a valid number')
+  if (!Number.isFinite(number)) {
+    console.log('Provided value is not a valid number')
   }
   return number
 }
