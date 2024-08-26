@@ -20,17 +20,9 @@ function sortAttrs(array, type) {
     case 'Объем накопителя':
     case 'Блок питания':
     case 'Частота ОЗУ':
-      return array.sort(
-        (a, b) =>
-          parseInt(a.replace(/[^0-9]/g, '')) -
-          parseInt(b.replace(/[^0-9]/g, ''))
-      )
+      return array.sort((a, b) => parseInt(a) - parseInt(b))
     case 'Частота процессора':
-      return array.sort(
-        (a, b) =>
-          parseFloat(a.replace(/[^\d.]/g, '')) -
-          parseFloat(b.replace(/[^\d.]/g, ''))
-      )
+      return array.sort()
     case 'Тип ОЗУ':
     case 'Тип накопителя':
     case 'Процессор':
@@ -45,4 +37,13 @@ function normalizeStorageCapacity(storageCapacity) {
   return storageCapacity.map(capacity => capacity.replace(/,$/, ''))
 }
 
-export { setWithLimits, sortAttrs, normalizeStorageCapacity }
+function normalizeSpaceAfterNum(str) {
+  return str.replace(/(\d+)\s*([a-zA-Z]+)/g, '$1 $2')
+}
+
+export {
+  setWithLimits,
+  sortAttrs,
+  normalizeStorageCapacity,
+  normalizeSpaceAfterNum,
+}
