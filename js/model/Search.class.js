@@ -1,3 +1,4 @@
+import viewSearch from '../view/viewSearch.js'
 class Search {
   constructor(allPlaceholders) {
     this.query = ''
@@ -34,6 +35,7 @@ class Search {
       product.caption.toLowerCase().includes(this.query.toLowerCase())
     )
     if (filteredProducts.length === 0) {
+      viewSearch.renderNotFoundMessage()
       console.log('Данный товар по запросу не найден')
     }
 

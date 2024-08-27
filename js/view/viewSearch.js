@@ -5,6 +5,21 @@ const viewSearch = {
   inputSelector: '#query',
   searchQuery: '',
 
+  generateNotFoundMessage() {
+    const elDiv = document.createElement('div')
+    const elSpan = document.createElement('span')
+    elSpan.textContent = 'Данный товар по запросу не найден'
+    elDiv.appendChild(elSpan)
+    elDiv.className = 'not-found-message'
+    return elDiv
+  },
+
+  renderNotFoundMessage() {
+    const elMessageNotFount = this.generateNotFoundMessage()
+    const elContainer = document.querySelector('#pageNumberContainer')
+    elContainer.appendChild(elMessageNotFount)
+  },
+
   renderDataList(captions) {
     const elDataList = document.querySelector('#productCaptions')
     elDataList.innerHTML = ''
