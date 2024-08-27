@@ -3,6 +3,7 @@ import controller from '../controller/controller.js'
 const viewSearch = {
   selector: '#searchContainer',
   inputSelector: '#query',
+  searchQuery: '',
 
   renderDataList(captions) {
     const elDataList = document.querySelector('#productCaptions')
@@ -15,20 +16,19 @@ const viewSearch = {
   },
 
   onSearchInput(e) {
-    const query = e.target.value
-    controller.handleSearchQuery(query)
+    this.searchQuery = e.target.value
+  },
+
+  onSearchClickBtn() {
+    controller.handleSearchQuery(this.searchQuery)
   },
 
   init() {
     const elInput = document.querySelector(this.inputSelector)
-    elInput.addEventListener('input', this.onSearchInput)
+    elInput.addEventListener('input', this.onSearchInput.bind(this))
 
-    // const searchInput = document.querySelector('#productCaptions')
-    // searchInput.addEventListener('input', () => {
-    //   if (searchInput.value === '') {
-    //     controller.handleClearSearch()
-    //   }
-    // })
+    const elSearchBtn = document.querySelector('.search-btn')
+    elSearchBtn.addEventListener('click', this.onSearchClickBtn.bind(this))
   },
 }
 
