@@ -30,9 +30,14 @@ class Search {
   }
 
   run(products) {
-    return products.filter(product =>
+    const filteredProducts = products.filter(product =>
       product.caption.toLowerCase().includes(this.query.toLowerCase())
     )
+    if (filteredProducts.length === 0) {
+      console.log('Данный товар по запросу не найден')
+    }
+
+    return filteredProducts
   }
 }
 
