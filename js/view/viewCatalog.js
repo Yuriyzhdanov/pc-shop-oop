@@ -3,9 +3,27 @@ import h from './h.js'
 const viewCatalog = {
   selector: '.container-products',
 
+  generateNotFoundMessage() {
+    const elDiv = document.createElement('div')
+    const elSpan = document.createElement('span')
+    elSpan.textContent = 'Данный товар по запросу не найден'
+    elDiv.appendChild(elSpan)
+    elDiv.className = 'not-found-message'
+    return elDiv
+  },
+
+  renderNotFoundMessage() {
+    const elMessageNotFount = this.generateNotFoundMessage()
+    const elContainer = document.querySelector(this.selector)
+    elContainer.appendChild(elMessageNotFount)
+  },
+
   render(products) {
     const elContainerProduct = document.querySelector(this.selector)
     elContainerProduct.innerHTML = ''
+    if (products.length === 0) {
+      this.renderNotFoundMessage()
+    }
     products.forEach(product => {
       const elTile = this.generate(product)
       elContainerProduct.appendChild(elTile)
