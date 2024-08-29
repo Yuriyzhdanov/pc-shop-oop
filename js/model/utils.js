@@ -13,23 +13,26 @@ function setWithLimits(newVal, max, min) {
 }
 
 function sortAttrs(array, type) {
-  switch (type) {
-    case 'Количество ядер':
-    case 'Объем ОЗУ':
-      return array.sort((a, b) => parseInt(a) - parseInt(b))
-    case 'Объем накопителя':
-    case 'Блок питания':
-    case 'Частота ОЗУ':
-      return array.sort((a, b) => parseInt(a) - parseInt(b))
-    case 'Частота процессора':
-      return array.sort()
-    case 'Тип ОЗУ':
-    case 'Тип накопителя':
-    case 'Процессор':
-    case 'Материнская плата':
-      return array.sort()
-    default:
-      return array.sort()
+  const numericTypes = [
+    'Количество ядер',
+    'Объем ОЗУ',
+    'Объем накопителя',
+    'Блок питания',
+    'Частота ОЗУ',
+    'Частота процессора',
+  ]
+
+  const stringTypes = [
+    'Тип ОЗУ',
+    'Тип накопителя',
+    'Процессор',
+    'Материнская плата',
+  ]
+
+  if (numericTypes.includes(type)) {
+    return array.sort((a, b) => parseFloat(a) - parseFloat(b))
+  } else {
+    return array.sort()
   }
 }
 
