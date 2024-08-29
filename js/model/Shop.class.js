@@ -6,6 +6,7 @@ import Paginator from './Paginator.class.js'
 import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
+import Favorite from './Favorite.class.js'
 
 class Shop {
   constructor(api) {
@@ -25,12 +26,19 @@ class Shop {
       this.sorter,
       this.paginator
     )
+    this.favorite = new Favorite()
   }
 
   async init() {
     const products = await this.api.loadProducts()
     const currencyRate = await this.api.loadCurrency()
+    const favoriteIds = await this.api.loadFavoriteProducts()
+
     this.catalog.addProducts(products, currencyRate)
+    this.favorite.setAllProducts(products)
+    favoriteIds.forEach(id => this.favorite.addProductById(id))
+    console.log(favoriteIds)
+
     this.filter.update(products)
     this.updateSearch()
   }

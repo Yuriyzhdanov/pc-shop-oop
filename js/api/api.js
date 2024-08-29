@@ -74,15 +74,15 @@ const api = {
   //   return resp.map(product => product.relatedProductId)
   // },
 
-  // async loadFavoriteProducts() {
-  //   const options = {
-  //     headers: {
-  //       Cookie: 'session=ff0099aa',
-  //     },
-  //     credentials: 'include',
-  //   }
-  //   return await this.sendRequest(this.FAVORITES, options)
-  // },
+  async loadFavoriteProducts() {
+    const options = {
+      headers: {
+        Cookie: 'session=ff0099aa',
+      },
+      credentials: 'include',
+    }
+    return await this.sendRequest(this.FAVORITES, options)
+  },
 
   // async postFavoriteProductId(productId) {
   //   const options = {
