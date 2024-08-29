@@ -32,6 +32,15 @@ class Catalog {
     this.products.push(createdProduct)
   }
 
+  checkFavorite(favoritesIds) {
+    this.products.forEach(product => {
+      if (favoritesIds.includes(product.id)) {
+        product.addToFavorites()
+        console.log(product)
+      }
+    })
+  }
+
   getProductById(id) {
     return this.products.find(product => product.id === id)
   }

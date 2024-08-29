@@ -58,12 +58,12 @@ const controller = {
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
-    modelShop.filter.clear()
+    // modelShop.filter.clear()
     const filteredProducts = modelShop.catalog.computeProducts()
-    modelShop.filter.update(filteredProducts)
+    // modelShop.filter.update(filteredProducts)
     modelShop.priceRanger.resetFromTo()
     this.handleShowCatalog()
-    viewFilter.render(modelShop.filter)
+    // viewFilter.render(modelShop.filter)
   },
 
   handleSortChange(sortingType) {

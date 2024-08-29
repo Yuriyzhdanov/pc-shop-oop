@@ -1,12 +1,12 @@
 import AttrSelector from './AttrSelector.class.js'
 import Cart from './Cart.class.js'
 import Catalog from './Catalog.class.js'
+// import Favorite from './Favorite.class.js'
 import Filter from './Filter.class.js'
 import Paginator from './Paginator.class.js'
 import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
-import Favorite from './Favorite.class.js'
 
 class Shop {
   constructor(api) {
@@ -26,7 +26,7 @@ class Shop {
       this.sorter,
       this.paginator
     )
-    this.favorite = new Favorite()
+    // this.favorite = new Favorite()
   }
 
   async init() {
@@ -34,10 +34,15 @@ class Shop {
     const currencyRate = await this.api.loadCurrency()
     const favoriteIds = await this.api.loadFavoriteProducts()
 
+    console.log(products)
     this.catalog.addProducts(products, currencyRate)
-    this.favorite.setAllProducts(products)
-    favoriteIds.forEach(id => this.favorite.addProductById(id))
-    console.log(favoriteIds)
+    console.log(this.catalog.products)
+
+    // this.catalog.checkFavorite(favoriteIds)
+
+    // this.favorite.setAllProducts(products)
+    // favoriteIds.forEach(id => this.favorite.addProductById(id))
+    // console.log(favoriteIds)
 
     this.filter.update(products)
     this.updateSearch()
