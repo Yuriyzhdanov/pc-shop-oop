@@ -1,11 +1,3 @@
-// const api = {
-//   async loadProducts() {
-//     return products
-//   },
-// }
-
-// module.exports = api
-
 const api = {
   COMPUTERS: 'http://35.225.111.193:8181/api/v3/products/computers/',
   CURRENCY: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json',
@@ -50,7 +42,6 @@ const api = {
   },
 
   async loadProducts() {
-    // return products
     return await this.sendRequest(this.PRODUCTS)
   },
 
@@ -62,18 +53,6 @@ const api = {
     return await this.sendRequestWithCred(this.AUTH)
   },
 
-  // async loadRecommendedProductsById(id) {
-  //   const resp = await this.sendRequestWithCred(
-  //     this.CUSTOMERS + id + '/recomend/'
-  //   )
-  //   return resp.map(product => product.productId)
-  // },
-
-  // async loadSimilarProductsById(id) {
-  //   const resp = await this.sendRequest(this.SIMILAR(id))
-  //   return resp.map(product => product.relatedProductId)
-  // },
-
   async loadFavoriteProducts() {
     const options = {
       headers: {
@@ -83,30 +62,6 @@ const api = {
     }
     return await this.sendRequest(this.FAVORITES, options)
   },
-
-  // async postFavoriteProductId(productId) {
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       Cookie: 'session=ff0099aa',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     credentials: 'include',
-  //     body: JSON.stringify({ productId: productId }),
-  //   }
-  //   return await this.sendRequest(this.FAVORITES, options)
-  // },
-
-  // async deleteFavoriteProductId(id) {
-  //   const options = {
-  //     method: 'DELETE',
-  //     headers: {
-  //       Cookie: 'session=ff0099aa',
-  //     },
-  //     credentials: 'include',
-  //   }
-  //   return await this.sendRequest(this.FAVORITES + id, options)
-  // },
 }
 
 export default api
