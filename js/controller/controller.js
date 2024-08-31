@@ -11,6 +11,7 @@ viewSearch.init()
 viewSort.init()
 viewPriceRanger.init()
 viewFilter.init()
+viewCatalog.init()
 
 const controller = {
   async handleDOMContentLoaded() {
@@ -58,12 +59,14 @@ const controller = {
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
-    // modelShop.filter.clear()
+    modelShop.filter.clear()
     const filteredProducts = modelShop.catalog.computeProducts()
-    // modelShop.filter.update(filteredProducts)
+    modelShop.filter.update(filteredProducts)
+    const paginatedProducts =
+      modelShop.catalog.computePaginatedProducts(filteredProducts)
     modelShop.priceRanger.resetFromTo()
-    this.handleShowCatalog()
-    // viewFilter.render(modelShop.filter)
+    this.handleShowCatalog(paginatedProducts)
+    viewFilter.render(modelShop.filter)
   },
 
   handleSortChange(sortingType) {
@@ -103,6 +106,18 @@ const controller = {
     modelShop.attrSelector.clearCheckedAttrs()
     viewFilter.renderClearFilters()
     this.handleShowCatalog()
+  },
+
+  async handleAddToFavorite(productId) {
+    await api.addToFavorites(productId)
+    const product = modelShop.catalog.getProductById(productId)
+    product.addToFavorites()
+  },
+
+  async handleRemoveFromFavorite(productId) {
+    await api.removeFromFavorites(productId)
+    const product = modelShop.catalog.getProductById(productId)
+    product.removeFromFavorites()
   },
 }
 
