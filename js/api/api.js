@@ -62,6 +62,32 @@ const api = {
     }
     return await this.sendRequest(this.FAVORITES, options)
   },
+
+  async addToFavorite(productId) {
+    const url = `${this.FAVORITES}${productId}`
+    const options = {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        Cookie: 'session=ff0099aa',
+        'Content-Type': 'application/json',
+      },
+    }
+    return await this.sendRequest(url, options)
+  },
+
+  async removeFromFavorite(productId) {
+    const url = `${this.FAVORITES}${productId}`
+    const options = {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        Cookie: 'session=ff0099aa',
+        'Content-Type': 'application/json',
+      },
+    }
+    return await this.sendRequest(url, options)
+  },
 }
 
 export default api
