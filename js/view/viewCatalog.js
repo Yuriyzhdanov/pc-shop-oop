@@ -1,5 +1,5 @@
-import h from './h.js'
 import controller from '../controller/controller.js'
+import h from './h.js'
 
 const viewCatalog = {
   selector: '.container-products',
@@ -67,12 +67,7 @@ const viewCatalog = {
         h('div', { class: 'row' }, '', [
           h('div', { class: 'cart' }, '', [h('button', {})]),
           h('div', { class: 'favorite' }, '', [
-            h(
-              'button',
-              {},
-              []
-              // () => this.onClickFavorite(product.id)
-            ),
+            h('button', {}, '', [], () => this.onClickFavorite(product.id)),
           ]),
           h('div', { class: 'compare' }, '', [h('button', {})]),
         ]),
@@ -101,7 +96,8 @@ const viewCatalog = {
   },
 
   onClickFavorite(productId) {
-    controller.handleAddToFavorite(productId)
+    console.log(productId)
+    controller.handleFavorite(productId)
   },
 
   init() {
