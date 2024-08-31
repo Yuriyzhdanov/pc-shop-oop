@@ -63,7 +63,7 @@ const api = {
     return await this.sendRequest(this.FAVORITES, options)
   },
 
-  async addToFavorite(productId) {
+  async addToFavorites(productId) {
     const url = `${this.FAVORITES}${productId}`
     const options = {
       method: 'POST',
@@ -76,7 +76,7 @@ const api = {
     return await this.sendRequest(url, options)
   },
 
-  async removeFromFavorite(productId) {
+  async removeFromFavorites(productId) {
     const url = `${this.FAVORITES}${productId}`
     const options = {
       method: 'DELETE',

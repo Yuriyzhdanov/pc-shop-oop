@@ -33,7 +33,7 @@ class Shop {
     const favoriteObjs = await this.api.loadFavoriteProducts()
     const favoriteIds = favoriteObjs.map(fo => fo.productId)
 
-    this.catalog.addProducts(products, currencyRate)
+    this.catalog.addProducts(products, currencyRate, this.api)
     this.catalog.checkFavorite(favoriteIds)
     this.filter.update(products)
     this.updateSearch()

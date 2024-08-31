@@ -108,16 +108,13 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  async handleAddToFavorite(productId) {
-    await api.addToFavorites(productId)
+  handleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    product.addToFavorites()
-  },
-
-  async handleRemoveFromFavorite(productId) {
-    await api.removeFromFavorites(productId)
-    const product = modelShop.catalog.getProductById(productId)
-    product.removeFromFavorites()
+    if (product.isFavorite) {
+      product.removeFromFavorites()
+    } else {
+      product.addToFavorites()
+    }
   },
 }
 

@@ -26,12 +26,12 @@ class Catalog {
     return this.products.map(product => product.caption)
   }
 
-  addProducts(products, currencyRate) {
-    products.forEach(product => this.addProduct(product, currencyRate))
+  addProducts(products, currencyRate, api) {
+    products.forEach(product => this.addProduct(product, currencyRate, api))
   }
 
-  addProduct(product, currencyRate) {
-    const createdProduct = new Product(product)
+  addProduct(product, currencyRate, api) {
+    const createdProduct = new Product(product, api)
     createdProduct.convertPrice(currencyRate)
     this.products.push(createdProduct)
   }

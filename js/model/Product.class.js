@@ -1,5 +1,6 @@
 class Product {
-  constructor(options) {
+  constructor(options, api) {
+    this.api = api
     this.id = options.id
     this.caption = options.caption
     this.price = options.price
@@ -16,10 +17,12 @@ class Product {
 
   addToFavorites() {
     this.isFavorite = true
+    this.api.addToFavorites(this.id)
   }
 
   removeFromFavorites() {
     this.isFavorite = false
+    this.api.removeFromFavorites(this.id)
   }
 }
 
