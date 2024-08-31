@@ -1,4 +1,5 @@
 import h from './h.js'
+import controller from '../controller/controller.js'
 
 const viewCatalog = {
   selector: '.container-products',
@@ -70,7 +71,7 @@ const viewCatalog = {
               'button',
               {},
               []
-              // onClickFavoriteProducts
+              // () => this.onClickFavorite(product.id)
             ),
           ]),
           h('div', { class: 'compare' }, '', [h('button', {})]),
@@ -97,6 +98,15 @@ const viewCatalog = {
       }
     }
     return divLabels
+  },
+
+  onClickFavorite(productId) {
+    controller.handleAddToFavorite(productId)
+  },
+
+  init() {
+    const buttonFavorite = document.querySelector('.favorite-test')
+    // buttonFavorite.onClickFavorite()
   },
 }
 
