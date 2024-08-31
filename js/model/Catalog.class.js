@@ -15,6 +15,10 @@ class Catalog {
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
+    return sorted
+  }
+
+  computePaginatedProducts(sorted) {
     return this.paginator.run(sorted)
   }
 
@@ -36,7 +40,6 @@ class Catalog {
     this.products.forEach(product => {
       if (favoritesIds.includes(product.id)) {
         product.addToFavorites()
-        console.log(product)
       }
     })
   }
@@ -49,4 +52,5 @@ class Catalog {
     this.products = []
   }
 }
+
 export default Catalog
