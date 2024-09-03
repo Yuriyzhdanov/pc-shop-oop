@@ -29,10 +29,10 @@ class Shop {
 
   async init() {
     const products = await this.api.loadProducts()
+    await this.api.loadAuth()
     const currencyRate = await this.api.loadCurrency()
     const favoriteObjs = await this.api.loadFavoriteProducts()
     const favoriteIds = favoriteObjs.map(fo => fo.productId)
-
     this.catalog.addProducts(products, currencyRate, this.api)
     this.catalog.checkFavorite(favoriteIds)
     this.filter.update(products)
