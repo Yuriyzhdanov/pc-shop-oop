@@ -15,7 +15,7 @@ class Product {
     this.convertedPrice = +this.convertedPrice.toFixed(0)
   }
 
-  async postToFavorites() {
+  async addToFavorites() {
     const postedFavorite = await this.api.postToFavorites(this.id)
     if (postedFavorite.productId === this.id) {
       console.log('ok!', this.id)
@@ -23,7 +23,7 @@ class Product {
     }
   }
 
-  deleteFromFavorites() {
+  removeFromFavorites() {
     this.isFavorite = false
     this.api.deleteFromFavorites(this.id)
   }
