@@ -39,7 +39,7 @@ class Catalog {
   checkFavorite(favoritesIds) {
     this.products.forEach(product => {
       if (favoritesIds.includes(product.id)) {
-        product.addToFavorites()
+        product.postToFavorites()
       }
     })
   }

@@ -15,14 +15,14 @@ class Product {
     this.convertedPrice = +this.convertedPrice.toFixed(0)
   }
 
-  addToFavorites() {
+  postToFavorites() {
     this.isFavorite = true
-    this.api.addToFavorites(this.id)
+    this.api.postToFavorites(this.id)
   }
 
-  removeFromFavorites() {
+  deleteFromFavorites() {
     this.isFavorite = false
-    this.api.removeFromFavorites(this.id)
+    this.api.deleteFromFavorites(this.id)
   }
 }
 

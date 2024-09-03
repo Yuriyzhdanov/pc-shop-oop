@@ -53,7 +53,7 @@ const api = {
     return await this.sendRequestWithCred(this.AUTH)
   },
 
-  async loadFavoriteProducts() {
+  async getFavoriteProducts() {
     const options = {
       headers: {
         Cookie: 'session=ff0099aa',
@@ -63,7 +63,7 @@ const api = {
     return await this.sendRequest(this.FAVORITES, options)
   },
 
-  async addToFavorites(productId) {
+  async postToFavorites(productId) {
     const url = `${this.FAVORITES}${productId}`
     const options = {
       method: 'POST',
@@ -76,7 +76,7 @@ const api = {
     return await this.sendRequest(url, options)
   },
 
-  async removeFromFavorites(productId) {
+  async deleteFromFavorites(productId) {
     const url = `${this.FAVORITES}${productId}`
     const options = {
       method: 'DELETE',

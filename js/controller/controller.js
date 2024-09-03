@@ -111,9 +111,9 @@ const controller = {
   handleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
     if (product.isFavorite) {
-      product.removeFromFavorites()
+      product.deleteFromFavorites()
     } else {
-      product.addToFavorites()
+      product.postToFavorites()
     }
   },
 }
