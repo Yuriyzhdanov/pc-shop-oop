@@ -11,7 +11,6 @@ viewSearch.init()
 viewSort.init()
 viewPriceRanger.init()
 viewFilter.init()
-viewCatalog.init()
 
 const controller = {
   async handleDOMContentLoaded() {
@@ -110,10 +109,15 @@ const controller = {
 
   handleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
+    const favoriteButton = document.querySelector(
+      `[data-product-id="${productId}"] .favorite button`
+    )
     if (product.isFavorite) {
-      product.deleteFromFavorites()
+      product.removeFromFavorites()
+      favoriteButton.classList.remove('favorite-btn')
     } else {
-      product.postToFavorites()
+      product.addToFavorites()
+      favoriteButton.classList.add('favorite-btn')
     }
   },
 }

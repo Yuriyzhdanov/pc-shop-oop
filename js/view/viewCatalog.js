@@ -33,6 +33,7 @@ const viewCatalog = {
 
   generate(product) {
     const divLabels = this.generateLabelSpecs(product.attributes)
+    const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
     const divContainterProduct = h(
       'div',
       { class: 'wrap-product', 'data-product-id': product.id },
@@ -67,7 +68,9 @@ const viewCatalog = {
         h('div', { class: 'row' }, '', [
           h('div', { class: 'cart' }, '', [h('button', {})]),
           h('div', { class: 'favorite' }, '', [
-            h('button', {}, '', [], () => this.onClickFavorite(product.id)),
+            h('button', { isFavoriteClass }, '', [], () =>
+              this.onClickFavorite(product.id)
+            ),
           ]),
           h('div', { class: 'compare' }, '', [h('button', {})]),
         ]),
@@ -96,13 +99,7 @@ const viewCatalog = {
   },
 
   onClickFavorite(productId) {
-    console.log(productId)
     controller.handleFavorite(productId)
-  },
-
-  init() {
-    const buttonFavorite = document.querySelector('.favorite-test')
-    // buttonFavorite.onClickFavorite()
   },
 }
 
