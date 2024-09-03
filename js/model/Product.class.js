@@ -15,9 +15,12 @@ class Product {
     this.convertedPrice = +this.convertedPrice.toFixed(0)
   }
 
-  postToFavorites() {
-    this.isFavorite = true
-    this.api.postToFavorites(this.id)
+  async postToFavorites() {
+    const postedFavorite = await this.api.postToFavorites(this.id)
+    if (postedFavorite.productId === this.id) {
+      console.log('ok!', this.id)
+      this.isFavorite = true
+    }
   }
 
   deleteFromFavorites() {
@@ -27,3 +30,7 @@ class Product {
 }
 
 export default Product
+
+// modelShop.api
+//   .postToFavorites(36)
+//   .then(d => d.productId === 36 && console.log('ok!'))

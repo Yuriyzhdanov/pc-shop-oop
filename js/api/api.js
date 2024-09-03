@@ -64,10 +64,11 @@ const api = {
   },
 
   async postToFavorites(productId) {
-    const url = `${this.FAVORITES}${productId}`
+    const url = `${this.FAVORITES}`
     const options = {
       method: 'POST',
       credentials: 'include',
+      body: `{"productId": ${productId}}`,
       headers: {
         Cookie: 'session=ff0099aa',
         'Content-Type': 'application/json',
