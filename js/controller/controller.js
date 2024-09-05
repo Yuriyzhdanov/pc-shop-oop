@@ -15,8 +15,6 @@ viewFilter.init()
 const controller = {
   async handleDOMContentLoaded() {
     await modelShop.init()
-    modelShop.product.updateFavorites()
-
     modelShop.sorter.setSortingType()
     this.handleShowCatalog()
     viewFilter.render(modelShop.filter)

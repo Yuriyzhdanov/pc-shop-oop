@@ -34,20 +34,6 @@ class Product {
     this.favoritesCount--
     console.log('-', this.favoritesCount)
   }
-
-  async updateFavorites() {
-    const favorites = await this.api.getFavoriteProducts()
-    console.log('favorites', favorites)
-
-    const favoritesIds = favorites.map(fav => fav.productId)
-    console.log('favoritesIds', favoritesIds)
-
-    this.checkFavorite(favoritesIds)
-  }
 }
 
 export default Product
-
-// modelShop.api
-//   .postToFavorites(36)
-//   .then(d => d.productId === 36 && console.log('ok!'))
