@@ -83,16 +83,7 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handleFiltrate() {
-    const checkedCheckboxes = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    )
-    const attrIds = Array.from(checkedCheckboxes).map(checkbox => {
-      const key = checkbox.name
-      const value = checkbox.value
-      return `${key}-${value}`
-    })
-
+  handleFiltrate(attrIds) {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
     modelShop.catalog.computeProducts()
     modelShop.priceRanger.resetFromTo()
