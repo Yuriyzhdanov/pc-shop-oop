@@ -15,11 +15,8 @@ class Catalog {
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
-    return sorted
-  }
-
-  computePaginatedProducts(sorted) {
-    return this.paginator.run(sorted)
+    const paginator = this.paginator.run(sorted)
+    return paginator
   }
 
   getCaptions() {
