@@ -98,16 +98,17 @@ const controller = {
 
   handleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    const favoriteButton = document.querySelector(
-      `[data-product-id="${productId}"] .favorite button`
-    )
     if (product.isFavorite) {
       product.removeFromFavorites()
-      favoriteButton.classList.remove('favorite-btn')
+      viewCatalog.updateFavoriteButton(productId, false)
     } else {
       product.addToFavorites()
-      favoriteButton.classList.add('favorite-btn')
+      viewCatalog.updateFavoriteButton(productId, true)
     }
+  },
+
+  handleFavoriteClick(productId) {
+    controller.handleFavorite(productId)
   },
 }
 

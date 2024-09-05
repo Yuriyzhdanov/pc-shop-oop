@@ -101,6 +101,17 @@ const viewCatalog = {
   onClickFavorite(productId) {
     controller.handleFavorite(productId)
   },
+
+  updateFavoriteButton(productId, isFavorite) {
+    const favoriteButton = document.querySelector(
+      `[data-product-id="${productId}"] .favorite button`
+    )
+    if (isFavorite) {
+      favoriteButton.classList.add('favorite-btn')
+    } else {
+      favoriteButton.classList.remove('favorite-btn')
+    }
+  },
 }
 
 export default viewCatalog
