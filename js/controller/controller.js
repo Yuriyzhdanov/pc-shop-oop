@@ -63,8 +63,6 @@ const controller = {
     modelShop.filter.clear()
     const filteredProducts = modelShop.catalog.computeProducts()
     modelShop.filter.update(filteredProducts)
-    const paginatedProducts =
-      modelShop.catalog.computePaginatedProducts(filteredProducts)
     modelShop.priceRanger.resetFromTo()
     this.handleShowCatalog(paginatedProducts)
     viewFilter.render(modelShop.filter)
