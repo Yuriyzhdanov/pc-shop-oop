@@ -58,11 +58,11 @@ const controller = {
   handleSearchQuery(query) {
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
-    modelShop.filter.clear()
+    // modelShop.filter.clear()
     const filteredProducts = modelShop.catalog.computeProducts()
     modelShop.filter.update(filteredProducts)
-    modelShop.priceRanger.resetFromTo()
-    this.handleShowCatalog(paginatedProducts)
+    // modelShop.priceRanger.resetFromTo()
+    this.handleShowCatalog()
     viewFilter.render(modelShop.filter)
   },
 
@@ -85,8 +85,10 @@ const controller = {
 
   handleFiltrate(attrIds) {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    modelShop.catalog.computeProducts()
-    modelShop.priceRanger.resetFromTo()
+    // modelShop.catalog.computeProducts()
+    // modelShop.priceRanger.resetFromTo()
+    const filteredProducts = modelShop.catalog.computeProducts()
+    modelShop.filter.update(filteredProducts)
     this.handleShowCatalog()
   },
 
