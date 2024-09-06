@@ -32,8 +32,11 @@ const viewCatalog = {
   },
 
   generate(product) {
+    // console.log(product.isFavorite)
     const divLabels = this.generateLabelSpecs(product.attributes)
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
+    if (product.id === 62) console.log('>', isFavoriteClass)
+
     const divContainterProduct = h(
       'div',
       { class: 'wrap-product', 'data-product-id': product.id },
@@ -68,7 +71,7 @@ const viewCatalog = {
         h('div', { class: 'row' }, '', [
           h('div', { class: 'cart' }, '', [h('button', {})]),
           h('div', { class: 'favorite' }, '', [
-            h('button', { isFavoriteClass }, '', [], () =>
+            h('button', { class: isFavoriteClass }, '', [], () =>
               this.onClickFavorite(product.id)
             ),
           ]),
@@ -100,17 +103,6 @@ const viewCatalog = {
 
   onClickFavorite(productId) {
     controller.handleFavorite(productId)
-  },
-
-  updateFavoriteButton(productId, isFavorite) {
-    const favoriteButton = document.querySelector(
-      `[data-product-id="${productId}"] .favorite button`
-    )
-    if (isFavorite) {
-      favoriteButton.classList.add('favorite-btn')
-    } else {
-      favoriteButton.classList.remove('favorite-btn')
-    }
   },
 
   updateFavoriteCount(count) {
