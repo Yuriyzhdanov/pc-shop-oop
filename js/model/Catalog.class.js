@@ -34,12 +34,13 @@ class Catalog {
     this.products.push(createdProduct)
   }
 
-  checkFavorite(favoritesIds) {
-    this.products.forEach(product => {
+  async checkFavorite(favoritesIds) {
+    for (const product of this.products) {
       if (favoritesIds.includes(product.id)) {
-        product.addToFavorites()
+        await product.addToFavorites()
+        viewCatalog.updateFavoriteButton(product.id, true)
       }
-    })
+    }
   }
 
   countFavorites() {
