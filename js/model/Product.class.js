@@ -18,7 +18,7 @@ class Product {
   async addToFavorites() {
     const postedFavorite = await this.api.postToFavorites(this.id)
     if (postedFavorite.productId === this.id) {
-      console.log('ok!', this.id)
+      console.log('ok', this.id)
       this.isFavorite = true
     }
   }
