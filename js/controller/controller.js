@@ -85,7 +85,7 @@ const controller = {
 
   handleFiltrate(attrIds) {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    // modelShop.catalog.computeProducts()
+    modelShop.catalog.computeProducts()
     // modelShop.priceRanger.resetFromTo()
     const filteredProducts = modelShop.catalog.computeProducts()
     modelShop.filter.update(filteredProducts)
