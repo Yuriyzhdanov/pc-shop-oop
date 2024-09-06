@@ -71,8 +71,8 @@ const viewCatalog = {
         h('div', { class: 'row' }, '', [
           h('div', { class: 'cart' }, '', [h('button', {})]),
           h('div', { class: 'favorite' }, '', [
-            h('button', { class: isFavoriteClass }, '', [], () =>
-              this.onClickFavorite(product.id)
+            h('button', { class: isFavoriteClass }, '', [], e =>
+              this.onClickFavorite(e, product.id)
             ),
           ]),
           h('div', { class: 'compare' }, '', [h('button', {})]),
@@ -101,11 +101,11 @@ const viewCatalog = {
     return divLabels
   },
 
-  onClickFavorite(productId) {
-    controller.handleFavorite(productId)
+  onClickFavorite(e, productId) {
+    controller.handleToggleFavorite(productId)
   },
 
-  updateFavoriteCount(count) {
+  renderFavoriteCount(count) {
     const elCount = document.querySelector('.center > span')
     elCount.textContent = count
   },

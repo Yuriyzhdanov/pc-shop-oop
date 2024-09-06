@@ -15,6 +15,14 @@ class Product {
     this.convertedPrice = +this.convertedPrice.toFixed(0)
   }
 
+  async toggleFavorite() {
+    if (this.isFavorite) {
+      await this.removeFromFavorites()
+    } else {
+      await this.addToFavorites()
+    }
+  }
+
   async addToFavorites() {
     const postedFavorite = await this.api.postToFavorites(this.id)
     if (postedFavorite.productId === this.id) {

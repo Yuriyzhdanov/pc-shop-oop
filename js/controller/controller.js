@@ -98,21 +98,16 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  async handleFavorite(productId) {
+  async handleToggleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    if (product.isFavorite) {
-      product.removeFromFavorites()
-      viewCatalog.updateFavoriteButton(productId, false)
-    } else {
-      await product.addToFavorites()
-      viewCatalog.updateFavoriteButton(productId, true)
-    }
-    modelShop.catalog.favoritesCount = modelShop.catalog.countFavorites()
-    viewCatalog.updateFavoriteCount(modelShop.catalog.favoritesCount)
+    await product.toggleFavorite()
+    const products = modelShop.catalog.computeProducts()
+    viewCatalog.render(products)
+    viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
   },
 
   handleFavoriteClick(productId) {
-    controller.handleFavorite(productId)
+    controller.handleToggleFavorite(productId)
   },
 }
 
