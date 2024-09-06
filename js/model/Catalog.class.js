@@ -8,6 +8,7 @@ class Catalog {
     this.priceRanger = priceRanger
     this.sorter = sorter
     this.paginator = paginator
+    this.favoritesCount = 0
   }
 
   computeProducts() {
@@ -39,6 +40,10 @@ class Catalog {
         product.addToFavorites()
       }
     })
+  }
+
+  countFavorites() {
+    return this.products.reduce((acc, product) => acc + product.isFavorite, 0)
   }
 
   getProductById(id) {

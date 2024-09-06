@@ -96,15 +96,17 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handleFavorite(productId) {
+  async handleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
     if (product.isFavorite) {
       product.removeFromFavorites()
       viewCatalog.updateFavoriteButton(productId, false)
     } else {
-      product.addToFavorites()
+      await product.addToFavorites()
       viewCatalog.updateFavoriteButton(productId, true)
     }
+    modelShop.catalog.favoritesCount = modelShop.catalog.countFavorites()
+    viewCatalog.updateFavoriteCount(modelShop.catalog.favoritesCount)
   },
 
   handleFavoriteClick(productId) {

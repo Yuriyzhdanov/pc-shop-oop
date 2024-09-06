@@ -112,6 +112,13 @@ const viewCatalog = {
       favoriteButton.classList.remove('favorite-btn')
     }
   },
+
+  updateFavoriteCount(count) {
+    const elCount = document.querySelector('.center > span')
+    elCount.textContent = count
+  },
 }
+
+window.viewCatalog = viewCatalog
 
 export default viewCatalog
