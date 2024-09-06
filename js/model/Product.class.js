@@ -23,9 +23,9 @@ class Product {
     }
   }
 
-  removeFromFavorites() {
+  async removeFromFavorites() {
+    await this.api.deleteFromFavorites(this.id)
     this.isFavorite = false
-    this.api.deleteFromFavorites(this.id)
   }
 }
 
