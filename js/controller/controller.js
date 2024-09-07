@@ -102,7 +102,7 @@ const controller = {
     const product = modelShop.catalog.getProductById(productId)
     await product.toggleFavorite()
     const products = modelShop.catalog.computeProducts()
-    viewCatalog.render(products)
+    viewCatalog.render(products, true)
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
   },
 

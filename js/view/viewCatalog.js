@@ -1,6 +1,8 @@
 import controller from '../controller/controller.js'
 import h from './h.js'
 
+let tempObjsImg = []
+
 const viewCatalog = {
   selector: '.container-products',
 
@@ -19,20 +21,22 @@ const viewCatalog = {
     elContainer.appendChild(elMessageNotFount)
   },
 
-  render(products) {
+  render(products, fromChache = false) {
     const elContainerProduct = document.querySelector(this.selector)
     elContainerProduct.innerHTML = ''
+
+    if (!fromChache) tempObjsImg = []
+
     if (products.length === 0) {
       this.renderNotFoundMessage()
     }
-    products.forEach(product => {
-      const elTile = this.generate(product)
+    products.forEach((product, idx) => {
+      const elTile = this.generate(product, idx, fromChache)
       elContainerProduct.appendChild(elTile)
     })
   },
 
-  generate(product) {
-    // console.log(product.isFavorite)
+  generate(product, idx, fromChache) {
     const divLabels = this.generateLabelSpecs(product.attributes)
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
     if (product.id === 62) console.log('>', isFavoriteClass)
@@ -53,10 +57,14 @@ const viewCatalog = {
             '',
             [
               h('div', { class: 'wrap-img' }, '', [
-                h('img', {
-                  src: `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`,
-                  alt: product.caption,
-                }),
+                fromChache
+                  ? tempObjsImg[idx]
+                  : tempObjsImg.push(
+                      h('img', {
+                        src: `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`,
+                        alt: product.caption,
+                      })
+                    ) && tempObjsImg.at(-1),
               ]),
               h('div', { class: 'wrap-h3' }, '', [
                 h('h3', '', product.caption),
@@ -80,6 +88,9 @@ const viewCatalog = {
         h('div', { class: Math.random() < 0.5 ? 'new_' : '' }),
       ]
     )
+
+    console.log(tempObjsImg)
+
     return divContainterProduct
   },
 
