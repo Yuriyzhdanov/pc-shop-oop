@@ -106,8 +106,10 @@ const controller = {
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
   },
 
-  handleFavoriteClick(productId) {
-    controller.handleToggleFavorite(productId)
+  async handleFavoriteClick(productId, button) {
+    button.disabled = true
+    await this.handleToggleFavorite(productId)
+    button.disabled = false
   },
 }
 
