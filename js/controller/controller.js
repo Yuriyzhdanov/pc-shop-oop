@@ -85,16 +85,18 @@ const controller = {
 
   handleFiltrate(attrIds) {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    modelShop.catalog.computeProducts()
-    // modelShop.priceRanger.resetFromTo()
     const filteredProducts = modelShop.catalog.computeProducts()
+    modelShop.priceRanger.resetFromTo()
     modelShop.filter.update(filteredProducts)
     this.handleShowCatalog()
   },
 
   handleClearFilter() {
     modelShop.attrSelector.clearCheckedAttrs()
+    const filteredProducts = modelShop.catalog.computeProducts()
+    modelShop.filter.update(filteredProducts)
     viewFilter.renderClearFilters()
+    modelShop.priceRanger.resetFromTo()
     this.handleShowCatalog()
   },
 
