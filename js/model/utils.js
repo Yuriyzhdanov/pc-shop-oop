@@ -31,12 +31,9 @@ function sortAttrs(array, type) {
 
   if (numericTypes.includes(type)) {
     return array.sort((a, b) => parseFloat(a) - parseFloat(b))
-  } else if (stringTypes.includes(type)) {
-    return array.sort((a, b) =>
-      a.localeCompare(b, undefined, { sensitivity: 'base' })
-    )
+  } else {
+    return array.sort()
   }
-  return array.sort()
 }
 
 function normalizeStorageCapacity(storageCapacity) {
