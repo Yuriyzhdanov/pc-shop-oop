@@ -44,7 +44,7 @@ const viewFilter = {
     elCheckboxes.forEach(checkbox => (checkbox.checked = false))
   },
 
-  onFilterButtonClick(value, key) {
+  onFilterButtonClick() {
     const checkedCheckboxes = document.querySelectorAll(
       'input[type="checkbox"]:checked'
     )
