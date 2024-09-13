@@ -29,6 +29,7 @@ const viewCatalog = {
 
     if (products.length === 0) {
       this.renderNotFoundMessage()
+      return
     }
     products.forEach((product, idx) => {
       const elTile = this.generate(product, idx, fromChache)
