@@ -39,7 +39,6 @@ const viewCatalog = {
   generate(product, idx, fromChache) {
     const divLabels = this.generateLabelSpecs(product.attributes)
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
-    if (product.id === 62) console.log('>', isFavoriteClass)
 
     const divContainterProduct = h(
       'div',
@@ -89,8 +88,6 @@ const viewCatalog = {
         h('div', { class: Math.random() < 0.5 ? 'new_' : '' }),
       ]
     )
-
-    console.log(tempObjsImg)
 
     return divContainterProduct
   },
