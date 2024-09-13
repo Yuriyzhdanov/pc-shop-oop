@@ -10,13 +10,16 @@ class Catalog {
     this.paginator = paginator
   }
 
-  computeProducts() {
+  computeProducts(pagination = true) {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
-    const paginator = this.paginator.run(sorted)
-    return paginator
+    if (pagination) {
+      return this.paginator.run(sorted)
+    } else {
+      return sorted
+    }
   }
 
   getCaptions() {
