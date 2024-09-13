@@ -27,6 +27,7 @@ const controller = {
       modelShop.sorter.getAvailableSortingTypes(),
       modelShop.sorter.getCurrentSortingType()
     )
+    viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
   },
 
   handleShowCatalog() {
