@@ -57,8 +57,6 @@ const viewFilter = {
   },
 
   onClearFilterButtonClick() {
-    console.log('filter')
-
     controller.handleClearFilter()
   },
 

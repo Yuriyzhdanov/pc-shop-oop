@@ -93,8 +93,8 @@ const controller = {
 
   handleClearFilter() {
     modelShop.attrSelector.clearCheckedAttrs()
-    const filteredProducts = modelShop.catalog.computeProducts()
-    modelShop.filter.update(filteredProducts)
+    const sortedProducts = modelShop.catalog.computeProducts()
+    modelShop.filter.update(sortedProducts)
     viewFilter.renderClearFilters()
     modelShop.priceRanger.resetFromTo()
     this.handleShowCatalog()
