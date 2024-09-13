@@ -54,6 +54,7 @@ const viewFilter = {
       return `${key}-${value}`
     })
     controller.handleFiltrate(attrIds)
+    console.log(attrIds)
   },
 
   onClearFilterButtonClick() {
@@ -64,8 +65,11 @@ const viewFilter = {
     const elButton = document.querySelector(this.buttonFilter)
     const elButtonClearFilter = document.querySelector(this.buttonClearFilter)
 
-    elButton.addEventListener('click', this.onFilterButtonClick)
-    elButtonClearFilter.addEventListener('click', this.onClearFilterButtonClick)
+    elButton.addEventListener('click', this.onFilterButtonClick.bind(this))
+    elButtonClearFilter.addEventListener(
+      'click',
+      this.onClearFilterButtonClick.bind(this)
+    )
   },
 }
 
