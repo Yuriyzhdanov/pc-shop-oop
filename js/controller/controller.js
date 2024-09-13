@@ -31,8 +31,11 @@ const controller = {
   },
 
   handleShowCatalog() {
-    const products = modelShop.catalog.computeProducts()
-    viewCatalog.render(products)
+    const filteredProducts = modelShop.catalog.computeProducts(false)
+    console.log('filteredProducts', filteredProducts)
+
+    const paginatedProducts = modelShop.paginator.run(filteredProducts)
+    viewCatalog.render(paginatedProducts)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
       modelShop.paginator.getCurrentPage()
@@ -60,8 +63,8 @@ const controller = {
     modelShop.search.setQuery(query)
     modelShop.paginator.setCurrentPage(0)
     modelShop.filter.clear()
-    const filteredProducts = modelShop.catalog.computeProducts()
-    modelShop.filter.update(filteredProducts)
+    const sortedProducts = modelShop.catalog.computeProducts()
+    modelShop.filter.update(sortedProducts)
     modelShop.priceRanger.resetFromTo()
     viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
@@ -85,19 +88,26 @@ const controller = {
   },
 
   handleFiltrate(attrIds) {
+    console.log('attrIds', attrIds)
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    const filteredProducts = modelShop.catalog.computeProducts()
+    const filteredProducts = modelShop.catalog.computeProducts(false)
+    console.log('filteredProducts', filteredProducts)
+
     modelShop.priceRanger.resetFromTo()
+    modelShop.filter.clear()
     modelShop.filter.update(filteredProducts)
+    viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
   },
 
   handleClearFilter() {
     modelShop.attrSelector.clearCheckedAttrs()
-    const sortedProducts = modelShop.catalog.computeProducts()
-    modelShop.filter.update(sortedProducts)
+    modelShop.filter.clear()
     viewFilter.renderClearFilters()
+    const products = modelShop.catalog.computeProducts(false)
+    modelShop.filter.update(products)
     modelShop.priceRanger.resetFromTo()
+    viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
   },
 
