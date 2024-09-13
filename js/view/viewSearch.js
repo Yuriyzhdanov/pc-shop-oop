@@ -23,11 +23,19 @@ const viewSearch = {
     controller.handleSearchQuery(this.searchQuery)
   },
 
+  onSearchKeydown(e) {
+    if (e.key === 'Enter') {
+      const elSearchBtn = document.querySelector('.search-btn')
+      elSearchBtn.click()
+    }
+  },
+
   init() {
     const elInput = document.querySelector(this.inputSelector)
     const elSearchBtn = document.querySelector('.search-btn')
     elInput.addEventListener('input', this.onSearchInput.bind(this))
     elSearchBtn.addEventListener('click', this.onSearchClickBtn.bind(this))
+    elInput.addEventListener('keydown', this.onSearchKeydown.bind(this))
   },
 }
 
