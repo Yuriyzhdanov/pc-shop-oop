@@ -32,8 +32,9 @@ const controller = {
 
   handleShowCatalog() {
     const sortedProducts = modelShop.catalog.computeProducts(false)
-    console.log('sortedProducts', sortedProducts)
     const paginatedProducts = modelShop.paginator.run(sortedProducts)
+    console.log('paginated', paginatedProducts)
+
     viewCatalog.render(paginatedProducts)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
@@ -87,26 +88,21 @@ const controller = {
   },
 
   handleFiltrate(attrIds) {
-    console.log('attrIds', attrIds)
     modelShop.attrSelector.createCheckedAttrs(attrIds)
-    const products = modelShop.catalog.computeProducts(false)
-    console.log('filteredProducts', products)
-
     modelShop.priceRanger.resetFromTo()
-    modelShop.filter.clear()
-    modelShop.filter.update(products)
-    viewFilter.render(modelShop.filter)
+    // viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
   },
 
   handleClearFilter() {
     modelShop.attrSelector.clearCheckedAttrs()
     modelShop.filter.clear()
-    viewFilter.renderClearFilters()
+    modelShop.priceRanger.resetFromTo()
+    // // modelShop.paginator.setCurrentPage(0)
     const products = modelShop.catalog.computeProducts(false)
     modelShop.filter.update(products)
-    modelShop.priceRanger.resetFromTo()
-    viewFilter.render(modelShop.filter)
+    viewFilter.renderClearFilters()
+    // viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
   },
 

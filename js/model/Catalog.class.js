@@ -16,8 +16,11 @@ class Catalog {
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
     if (pagination) {
+      console.log('paginator')
+
       return this.paginator.run(sorted)
     } else {
+      console.log('sorted', sorted)
       return sorted
     }
   }

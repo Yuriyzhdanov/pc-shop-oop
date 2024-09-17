@@ -54,7 +54,6 @@ const viewFilter = {
       return `${key}-${value}`
     })
     controller.handleFiltrate(attrIds)
-    console.log(attrIds)
   },
 
   onClearFilterButtonClick() {
