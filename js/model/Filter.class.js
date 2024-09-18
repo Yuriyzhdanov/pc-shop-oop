@@ -1,8 +1,4 @@
-import {
-  sortAttrs,
-  normalizeStorageCapacity,
-  normalizeSpaceAfterNum,
-} from './utils.js'
+import { sortAttrs } from './utils.js'
 
 class Filter {
   update(products) {
@@ -10,16 +6,15 @@ class Filter {
     for (const spec of specs) {
       for (const key in spec) {
         let value = spec[key]
-        if (typeof value === 'string') {
-          value = normalizeSpaceAfterNum(value)
-        }
+        // if (typeof value === 'string') {
+        //   value = normalizeSpaceAfterNum(value)
+        // }
         if (!this[key]) {
           this[key] = []
         }
         if (!this[key].includes(value)) {
           this[key].push(value)
         }
-        this[key] = normalizeStorageCapacity(this[key])
         this[key] = sortAttrs(this[key], key)
       }
     }

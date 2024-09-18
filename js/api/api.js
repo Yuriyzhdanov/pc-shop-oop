@@ -1,3 +1,5 @@
+import { normalizeAttributes } from '../model/utils.js'
+
 const api = {
   COMPUTERS: 'http://35.225.111.193:8181/api/v3/products/computers/',
   CURRENCY: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json',
@@ -42,7 +44,13 @@ const api = {
   },
 
   async loadProducts() {
-    return await this.sendRequest(this.PRODUCTS)
+    let products = await this.sendRequest(this.PRODUCTS)
+    let normalizedProducts = products.map(product => ({
+      ...product,
+      attributes: normalizeAttributes(product.attributes),
+    }))
+
+    return normalizedProducts
   },
 
   async loadProductById(id) {
