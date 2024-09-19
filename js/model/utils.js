@@ -40,21 +40,22 @@ function normalizeTrailingComma(value) {
   return value.replace(/,$/, '')
 }
 
-function normalizeSpaceAfterNum(str) {
-  return str.replace(/(\d+)\s*([a-zA-Z]+)/g, '$1 $2')
+function normalizeSpaceAfterNum(value) {
+  return value.replace(/(\d+)\s*([a-zA-Z]+)/g, '$1 $2')
 }
 
 function normalizeAttributes(attributes) {
   const normalizedProduct = {}
-  const spec = attributes
-  for (const key in spec) {
-    let value = spec[key]
+  const sortedKeys = Object.keys(attributes).sort()
+  sortedKeys.forEach(key => {
+    let value = attributes[key]
     if (typeof value === 'string') {
       value = normalizeSpaceAfterNum(value)
+      value = normalizeTrailingComma(value)
     }
-    value = normalizeTrailingComma(value)
     normalizedProduct[key] = value
-  }
+  })
+
   return normalizedProduct
 }
 

@@ -33,8 +33,6 @@ const controller = {
   handleShowCatalog() {
     const sortedProducts = modelShop.catalog.computeProducts(false)
     const paginatedProducts = modelShop.paginator.run(sortedProducts)
-    console.log('paginated', paginatedProducts)
-
     viewCatalog.render(paginatedProducts)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
@@ -98,7 +96,6 @@ const controller = {
     modelShop.attrSelector.clearCheckedAttrs()
     modelShop.filter.clear()
     modelShop.priceRanger.resetFromTo()
-    // // modelShop.paginator.setCurrentPage(0)
     const products = modelShop.catalog.computeProducts(false)
     modelShop.filter.update(products)
     viewFilter.renderClearFilters()
