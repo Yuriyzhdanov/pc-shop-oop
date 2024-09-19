@@ -15,9 +15,12 @@ class PriceRanger {
     if (this.from === 0 && this.to === Infinity) {
       this.resetFromTo()
     }
-    // if (this.from >= this.max && this.to > this.max) {
-
-    // }
+    if (this.from < this.min) {
+      this.from = this.min
+    }
+    if (this.to > this.max) {
+      this.to = this.max
+    }
   }
 
   resetFromTo() {
