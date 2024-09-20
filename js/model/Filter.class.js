@@ -6,9 +6,6 @@ class Filter {
     for (const spec of specs) {
       for (const key in spec) {
         let value = spec[key]
-        // if (typeof value === 'string') {
-        //   value = normalizeSpaceAfterNum(value)
-        // }
         if (!this[key]) {
           this[key] = []
         }
