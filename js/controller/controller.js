@@ -85,10 +85,11 @@ const controller = {
     this.handleShowCatalog()
   },
 
-  handleFiltrate(attrIds) {
+  async handleFiltrate(attrIds) {
     modelShop.attrSelector.createCheckedAttrs(attrIds)
     modelShop.priceRanger.resetFromTo()
-    // viewFilter.render(modelShop.filter)
+    const products = modelShop.catalog.computeProducts(false)
+    modelShop.filter.update(products)
     this.handleShowCatalog()
   },
 
@@ -96,10 +97,10 @@ const controller = {
     modelShop.attrSelector.clearCheckedAttrs()
     modelShop.filter.clear()
     modelShop.priceRanger.resetFromTo()
+    viewFilter.renderClearFilters()
     const products = modelShop.catalog.computeProducts(false)
     modelShop.filter.update(products)
-    viewFilter.renderClearFilters()
-    // viewFilter.render(modelShop.filter)
+    viewFilter.render(modelShop.filter)
     this.handleShowCatalog()
   },
 
