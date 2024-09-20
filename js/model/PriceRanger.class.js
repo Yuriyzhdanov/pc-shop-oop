@@ -9,18 +9,20 @@ class PriceRanger {
   }
 
   calcMinMax(products) {
+    let flag = false
+    if (this.min === this.from && this.max === this.to) flag = true
     const prices = products.map(product => product.convertedPrice)
     this.min = Math.floor(prices.length ? Math.min(...prices) : 2)
     this.max = Math.ceil(prices.length ? Math.max(...prices) : 3)
     if (this.from === 0 && this.to === Infinity) {
       this.resetFromTo()
     }
-    if (this.from < this.min) {
-      this.from = this.min
+    if (this.from < this.min || this.to > this.max) {
+      this.resetFromTo()
     }
-    if (this.to > this.max) {
-      this.to = this.max
-    }
+    // if (flag) {
+    //   this.resetFromTo()
+    // }
   }
 
   resetFromTo() {

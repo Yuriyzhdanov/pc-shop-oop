@@ -10,19 +10,16 @@ class Catalog {
     this.paginator = paginator
   }
 
-  computeProducts(pagination = true) {
+  computeProducts(isResetPrice) {
     const searched = this.search.run(this.products)
     const attributed = this.attrSelector.run(searched)
+    if (isResetPrice) {
+      modelShop.priceRanger.calcMinMax(attributed)
+      modelShop.priceRanger.resetFromTo()
+    }
     const priced = this.priceRanger.run(attributed)
     const sorted = this.sorter.run(priced)
-    if (pagination) {
-      console.log('paginator')
-
-      return this.paginator.run(sorted)
-    } else {
-      console.log('sorted', sorted)
-      return sorted
-    }
+    return this.paginator.run(sorted)
   }
 
   getCaptions() {
