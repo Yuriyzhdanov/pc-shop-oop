@@ -26,6 +26,10 @@ class Catalog {
     return this.products.map(product => product.caption)
   }
 
+  getFavorites() {
+    return this.products.filter(product => product.isFavorite)
+  }
+
   addProducts(products, currencyRate, api) {
     products.forEach(product => this.addProduct(product, currencyRate, api))
   }
