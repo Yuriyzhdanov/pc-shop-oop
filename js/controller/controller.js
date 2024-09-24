@@ -32,7 +32,6 @@ const controller = {
 
   handleShowCatalog(isResetPrice) {
     const paginatedProducts = modelShop.catalog.computeProducts(isResetPrice)
-
     viewCatalog.render(paginatedProducts)
     viewPaginator.render(
       modelShop.paginator.getPagesCount(),
