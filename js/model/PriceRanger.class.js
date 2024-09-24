@@ -20,9 +20,6 @@ class PriceRanger {
     if (this.from < this.min || this.to > this.max) {
       this.resetFromTo()
     }
-    // if (flag) {
-    //   this.resetFromTo()
-    // }
   }
 
   resetFromTo() {
