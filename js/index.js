@@ -1,6 +1,6 @@
 import controllerCatalog from './controller/controllerCatalog.js'
 import controllerFavorites from './controller/controllerFavorites.js'
-import controllerProducts from './controller/controllerProduct.js'
+import controllerProduct from './controller/controllerProduct.js'
 
 document.addEventListener('DOMContentLoaded', onDOMContentLoadedDocument)
 
@@ -12,6 +12,6 @@ async function onDOMContentLoadedDocument() {
     await controllerFavorites.handleDOMContentLoaded()
   }
   if (location.pathname.includes('product.html')) {
-    await controllerProducts.handleDOMContentLoaded()
+    await controllerProduct.handleDOMContentLoaded()
   }
 }

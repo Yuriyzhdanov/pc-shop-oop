@@ -1,32 +1,34 @@
 import { normalizeAttributes } from '../model/utils.js'
 
+const BASE_URL = 'https://web-app.click/pc-shop/api/v0/'
+const CURRENCY_URL =
+  'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
+const PRODUCTS_URL = `${BASE_URL}products/`
+const AUTH_URL = `${BASE_URL}auth`
+const CUSTOMERS_URL = `${BASE_URL}customers/`
+const USER_ID = 3
+const FAVORITES_URL = `${CUSTOMERS_URL}${USER_ID}/favorites/`
+const COOKIE_HEADER = { Cookie: 'session=ff0099aa' }
+const JSON_HEADERS = { 'Content-Type': 'application/json' }
+const DEFAULT_CURRENCY_CODE = 'USD'
+
 const api = {
-  COMPUTERS: 'http://35.225.111.193:8181/api/v3/products/computers/',
-  CURRENCY: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json',
-  PRODUCTS: 'https://web-app.click/pc-shop/api/v0/products/',
-  AUTH: 'https://web-app.click/pc-shop/api/v0/auth',
-  CUSTOMERS: 'https://web-app.click/pc-shop/api/v0/customers/',
-  FAVORITES: 'https://web-app.click/pc-shop/api/v0/customers/3/favorites/',
-  userId: 3,
+  userId: USER_ID,
 
   SIMILAR(id) {
-    return `${this.PRODUCTS}${id}/similar`
+    return `${PRODUCTS_URL}${id}/similar`
   },
 
   async sendRequest(url, options = {}) {
     const resp = await fetch(url, options)
-    if (resp.status === 204) {
-      return
-    }
+    if (resp.status === 204) return
+
     const json = await resp.json()
     return this.checkSuccess(json)
   },
 
-  async sendRequestWithCred(url) {
-    const options = {
-      credentials: 'include',
-    }
-    return await this.sendRequest(url, options)
+  async sendRequestWithCred(url, options = {}) {
+    return await this.sendRequest(url, { credentials: 'include', ...options })
   },
 
   checkSuccess(json) {
@@ -38,89 +40,77 @@ const api = {
     return null
   },
 
-  async loadCurrency() {
-    const currencys = await this.sendRequest(this.CURRENCY)
-    const usdCurrency = currencys.find(currency => currency.cc === 'USD')
-    return usdCurrency.rate
-  },
-
-  async getCurrencyRate(currencyCode = 'USD') {
-    const currency = await this.sendRequest(this.CURRENCY)
-    const targetCurrency = currency.find(
+  async loadCurrency(currencyCode = DEFAULT_CURRENCY_CODE) {
+    const currencies = await this.sendRequest(CURRENCY_URL)
+    const targetCurrency = currencies.find(
       currency => currency.cc === currencyCode
     )
     return targetCurrency.rate
   },
 
+  async getCurrencyRate(currencyCode = DEFAULT_CURRENCY_CODE) {
+    const currencies = await this.sendRequest(CURRENCY_URL)
+    const targetCurrency = currencies.find(
+      currency => currency.cc === currencyCode
+    )
+    return targetCurrency ? targetCurrency.rate : null
+  },
+
   async loadProducts() {
-    let products = await this.sendRequest(this.PRODUCTS)
-    let normalizedProducts = products.map(product => ({
+    const products = await this.sendRequest(PRODUCTS_URL)
+    return products.map(product => ({
       ...product,
       attributes: normalizeAttributes(product.attributes),
     }))
-
-    return normalizedProducts
   },
 
   async loadProductById(id) {
-    return await this.sendRequest(this.PRODUCTS + id)
+    return await this.sendRequest(`${PRODUCTS_URL}${id}`)
   },
 
   async loadAuth() {
-    return await this.sendRequestWithCred(this.AUTH)
+    return await this.sendRequestWithCred(AUTH_URL)
   },
 
   async getFavoriteProducts() {
+    return await this.sendRequestWithCred(FAVORITES_URL, {
+      headers: COOKIE_HEADER,
+    })
+  },
+
+  async modifyFavorites(productId, method) {
+    const url =
+      method === 'POST' ? FAVORITES_URL : `${FAVORITES_URL}${productId}`
     const options = {
-      headers: {
-        Cookie: 'session=ff0099aa',
-      },
-      credentials: 'include',
+      method,
+      body: method === 'POST' ? JSON.stringify({ productId }) : null,
+      headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
     }
-    return await this.sendRequest(this.FAVORITES, options)
+    return await this.sendRequestWithCred(url, options)
   },
 
   async postToFavorites(productId) {
-    const url = `${this.FAVORITES}`
-    const options = {
-      method: 'POST',
-      credentials: 'include',
-      body: `{"productId": ${productId}}`,
-      headers: {
-        Cookie: 'session=ff0099aa',
-        'Content-Type': 'application/json',
-      },
-    }
-    return await this.sendRequest(url, options)
+    return await this.modifyFavorites(productId, 'POST')
   },
 
   async deleteFromFavorites(productId) {
-    const url = `${this.FAVORITES}${productId}`
-    const options = {
-      method: 'DELETE',
-      credentials: 'include',
-      headers: {
-        Cookie: 'session=ff0099aa',
-        'Content-Type': 'application/json',
-      },
-    }
-    return await this.sendRequest(url, options)
+    return await this.modifyFavorites(productId, 'DELETE')
   },
 
   async loadRecommendedProductsById(id) {
-    const resp = await this.sendRequestWithCred(
-      this.CUSTOMERS + id + '/recomend/'
+    const recommendedProducts = await this.sendRequestWithCred(
+      `${CUSTOMERS_URL}${id}/recomend/`
     )
-    return resp.map(product => product.productId)
+    return recommendedProducts.map(product => product.productId)
   },
 
   async loadSimilarProductsById(id) {
-    const resp = await this.sendRequest(this.SIMILAR(id))
-    return resp.map(product => product.relatedProductId)
+    const similarProducts = await this.sendRequest(this.SIMILAR(id))
+    return similarProducts.map(product => product.relatedProductId)
   },
 
   async updateUserId() {
-    const userData = await this.sendRequest(this.CUSTOMERS + this.userId)
+    const userData = await this.sendRequest(`${CUSTOMERS_URL}${this.userId}`)
     this.userId = userData.id
   },
 }

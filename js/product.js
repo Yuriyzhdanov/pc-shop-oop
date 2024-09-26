@@ -1,7 +1,7 @@
-import controller from './controller/controllerProduct.js'
+import controllerProduct from './controller/controllerProduct.js'
 
 document.addEventListener('DOMContentLoaded', onDOMContentLoadedDocument)
 
 async function onDOMContentLoadedDocument() {
-  await controller.handleDOMContentLoaded()
+  await controllerProduct.handleDOMContentLoaded()
 }
