@@ -9,7 +9,7 @@ const viewFavorites = {
   generateNotFoundMessage() {
     const elDiv = document.createElement('div')
     const elSpan = document.createElement('span')
-    elSpan.textContent = 'Избранные товары не найдены'
+    elSpan.textContent = 'Избранные товары еще не добавлены'
     elDiv.appendChild(elSpan)
     elDiv.className = 'not-found-message'
     return elDiv
