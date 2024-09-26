@@ -1,5 +1,5 @@
 import h from './h.js'
-import controller from '../controller/controller.js'
+import controller from '../controller/controllerCatalog.js'
 
 const viewFilter = {
   selector: '.wrap-filter',

@@ -1,9 +1,17 @@
-import controller from './controller/controller.js'
+import controllerCatalog from './controller/controllerCatalog.js'
+import controllerFavorites from './controller/controllerFavorites.js'
+import controllerProducts from './controller/controllerProduct.js'
 
 document.addEventListener('DOMContentLoaded', onDOMContentLoadedDocument)
 
 async function onDOMContentLoadedDocument() {
   if (location.pathname.includes('catalog.html')) {
-    await controller.handleDOMContentLoaded()
+    await controllerCatalog.handleDOMContentLoaded()
+  }
+  if (location.pathname.includes('favorites.html')) {
+    await controllerFavorites.handleDOMContentLoaded()
+  }
+  if (location.pathname.includes('product.html')) {
+    await controllerProducts.handleDOMContentLoaded()
   }
 }

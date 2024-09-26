@@ -1,4 +1,4 @@
-import controller from '../controller/controller.js'
+import controller from '../controller/controllerCatalog.js'
 import h from './h.js'
 
 let tempObjsImg = []

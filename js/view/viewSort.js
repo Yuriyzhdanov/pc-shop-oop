@@ -1,4 +1,4 @@
-import controller from '../controller/controller.js'
+import controller from '../controller/controllerCatalog.js'
 
 const viewSort = {
   selector: '.sort',
