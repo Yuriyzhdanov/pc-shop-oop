@@ -7,6 +7,7 @@ const api = {
   AUTH: 'https://web-app.click/pc-shop/api/v0/auth',
   CUSTOMERS: 'https://web-app.click/pc-shop/api/v0/customers/',
   FAVORITES: 'https://web-app.click/pc-shop/api/v0/customers/3/favorites/',
+  userId: 3,
 
   SIMILAR(id) {
     return `${this.PRODUCTS}${id}/similar`
@@ -41,6 +42,14 @@ const api = {
     const currencys = await this.sendRequest(this.CURRENCY)
     const usdCurrency = currencys.find(currency => currency.cc === 'USD')
     return usdCurrency.rate
+  },
+
+  async getCurrencyRate(currencyCode = 'USD') {
+    const currency = await this.sendRequest(this.CURRENCY)
+    const targetCurrency = currency.find(
+      currency => currency.cc === currencyCode
+    )
+    return targetCurrency.rate
   },
 
   async loadProducts() {
@@ -96,6 +105,23 @@ const api = {
       },
     }
     return await this.sendRequest(url, options)
+  },
+
+  async loadRecommendedProductsById(id) {
+    const resp = await this.sendRequestWithCred(
+      this.CUSTOMERS + id + '/recomend/'
+    )
+    return resp.map(product => product.productId)
+  },
+
+  async loadSimilarProductsById(id) {
+    const resp = await this.sendRequest(this.SIMILAR(id))
+    return resp.map(product => product.relatedProductId)
+  },
+
+  async updateUserId() {
+    const userData = await this.sendRequest(this.CUSTOMERS + this.userId)
+    this.userId = userData.id
   },
 }
 
