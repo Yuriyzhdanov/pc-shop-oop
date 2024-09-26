@@ -9,8 +9,7 @@ class PriceRanger {
   }
 
   calcMinMax(products) {
-    let flag = false
-    if (this.min === this.from && this.max === this.to) flag = true
+    this.min === this.from && this.max === this.to
     const prices = products.map(product => product.convertedPrice)
     this.min = Math.floor(prices.length ? Math.min(...prices) : 2)
     this.max = Math.ceil(prices.length ? Math.max(...prices) : 3)
