@@ -1,4 +1,5 @@
 import Product from './Product.class.js'
+import api from '../api/api.js'
 
 class Catalog {
   constructor(search, attrSelector, priceRanger, sorter, paginator) {
@@ -8,6 +9,9 @@ class Catalog {
     this.priceRanger = priceRanger
     this.sorter = sorter
     this.paginator = paginator
+    this.recommendedProducts = []
+    this.similarProducts = []
+    this.userId = 3
   }
 
   computeProducts(isResetPrice) {
@@ -58,6 +62,39 @@ class Catalog {
 
   clear() {
     this.products = []
+  }
+
+  async updateRecomendProd() {
+    const recommendedIds = await api.loadRecommendedProductsById(this.userId)
+    this.recommendedProducts = recommendedIds.map(id =>
+      this.products.find(p => p.id === id)
+    )
+  }
+
+  async updateSimilarProd(id) {
+    await this.updateProducts()
+    await this.updateCurrencyUSD()
+    this.convertPrice()
+    const relatedProductIds = await api.loadSimilarProductsById(id)
+    this.similarProducts = this.products.filter(product =>
+      relatedProductIds.includes(product.id)
+    )
+  }
+
+  async updateProducts() {
+    const productList = await api.loadProducts()
+    this.clear()
+    this.addProducts(productList, api.getCurrencyRate(), api)
+  }
+
+  async updateCurrencyUSD() {
+    const currencyRate = await api.getCurrencyRate('USD')
+    this.products.forEach(product => product.convertPrice(currencyRate))
+  }
+
+  convertPrice() {
+    const currencyRate = api.getCurrencyRate()
+    this.products.forEach(product => product.convertPrice(currencyRate))
   }
 }
 
