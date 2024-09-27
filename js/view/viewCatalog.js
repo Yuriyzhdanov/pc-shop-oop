@@ -128,6 +128,11 @@ const viewCatalog = {
     const elCount = document.querySelector('.center > span')
     elCount.textContent = count
   },
+
+  renderCartCount(count) {
+    const elCount = document.querySelector('.left > span')
+    elCount.textContent = count
+  },
 }
 
 window.viewCatalog = viewCatalog
