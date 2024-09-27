@@ -4,23 +4,29 @@ const BASE_URL = 'https://web-app.click/pc-shop/api/v0/'
 const CURRENCY_URL =
   'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
 const PRODUCTS_URL = `${BASE_URL}products/`
-const AUTH_URL = `${BASE_URL}auth`
+const URL_AUTHENTICATE = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
 const USER_ID = 3
 const FAVORITES_URL = `${CUSTOMERS_URL}${USER_ID}/favorites/`
 const CARTS_URL = `${CUSTOMERS_URL}${USER_ID}/carts/`
-const COOKIE_HEADER = { Cookie: 'session=ff0099aa' }
+const COOKIE_HEADER = { Cookie: 'session=1ff0099aa' }
 const JSON_HEADERS = { 'Content-Type': 'application/json' }
 const DEFAULT_CURRENCY_CODE = 'USD'
 
+const getUrlSimilarByProductId = productId => `${PRODUCTS_URL}${id}/similar/`
+
+const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
+const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
+
 const api = {
-  userId: USER_ID,
+  userId: undefined,
 
-  SIMILAR(id) {
-    return `${PRODUCTS_URL}${id}/similar`
-  },
+  async sendRequest(url, options = {}, withCred = false) {
+    if (withCred) {
+      // options = { credentials: 'include', ...options }
+      Object.assing(options, { credentials: 'include' })
+    }
 
-  async sendRequest(url, options = {}) {
     const resp = await fetch(url, options)
     if (resp.status === 204) return
 
@@ -69,50 +75,34 @@ const api = {
     return await this.sendRequest(`${PRODUCTS_URL}${id}`)
   },
 
-  async loadAuth() {
-    return await this.sendRequestWithCred(AUTH_URL)
+  async authenticate() {
+    this.userId = await this.sendRequest(URL_AUTHENTICATE)
   },
 
   async getFavoriteProducts() {
-    return await this.sendRequestWithCred(FAVORITES_URL, {
+    const url = getUrlFavoritesByUserId(this.userId)
+    return await this.sendRequestWithCred(url, {
       headers: COOKIE_HEADER,
     })
   },
 
-  async modifyFavorites(productId, method) {
-    const url =
-      method === 'POST' ? FAVORITES_URL : `${FAVORITES_URL}${productId}`
+  async postToFavorites(productId) {
+    const url = getUrlFavoritesByUserId(this.userId)
     const options = {
-      method,
-      body: method === 'POST' ? JSON.stringify({ productId }) : null,
+      method: 'POST',
+      body: JSON.stringify({ productId }),
       headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
     }
     return await this.sendRequestWithCred(url, options)
   },
 
-  async postToFavorites(productId) {
-    return await this.modifyFavorites(productId, 'POST')
-  },
-
   async deleteFromFavorites(productId) {
-    return await this.modifyFavorites(productId, 'DELETE')
-  },
-
-  async loadRecommendedProductsById(id) {
-    const recommendedProducts = await this.sendRequestWithCred(
-      `${CUSTOMERS_URL}${id}/recomend/`
-    )
-    return recommendedProducts.map(product => product.productId)
-  },
-
-  async loadSimilarProductsById(id) {
-    const similarProducts = await this.sendRequest(this.SIMILAR(id))
-    return similarProducts.map(product => product.relatedProductId)
-  },
-
-  async updateUserId() {
-    const userData = await this.sendRequest(`${CUSTOMERS_URL}${this.userId}`)
-    this.userId = userData.id
+    const url = getUrlFavoritesByUserId(this.userId) + productId
+    const options = {
+      method: 'DELETE',
+      headers: COOKIE_HEADER,
+    }
+    return await this.sendRequestWithCred(url, options)
   },
 
   async getCartProducts() {
@@ -138,6 +128,20 @@ const api = {
       headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
     }
     return await this.sendRequestWithCred(url, options)
+  },
+
+  async loadRecommendedProductsById(id) {
+    const recommendedProducts = await this.sendRequestWithCred(
+      `${CUSTOMERS_URL}${id}/recomend/`,
+      { headers: COOKIE_HEADER }
+    )
+    return recommendedProducts.map(product => product.productId)
+  },
+
+  async loadSimilarProductsById(id) {
+    const url = getUrlSimilarByProductId(id)
+    const similarProducts = await this.sendRequest(url)
+    return similarProducts.map(product => product.relatedProductId)
   },
 }
 
