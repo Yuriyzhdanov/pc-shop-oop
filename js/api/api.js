@@ -8,6 +8,7 @@ const AUTH_URL = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
 const USER_ID = 3
 const FAVORITES_URL = `${CUSTOMERS_URL}${USER_ID}/favorites/`
+const CARTS_URL = `${CUSTOMERS_URL}${USER_ID}/carts/`
 const COOKIE_HEADER = { Cookie: 'session=ff0099aa' }
 const JSON_HEADERS = { 'Content-Type': 'application/json' }
 const DEFAULT_CURRENCY_CODE = 'USD'
@@ -112,6 +113,31 @@ const api = {
   async updateUserId() {
     const userData = await this.sendRequest(`${CUSTOMERS_URL}${this.userId}`)
     this.userId = userData.id
+  },
+
+  async getCartProducts() {
+    return await this.sendRequestWithCred(CARTS_URL, {
+      headers: COOKIE_HEADER,
+    })
+  },
+
+  async addProductToCart(productId) {
+    const url = CARTS_URL
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ productId, quantity: 1 }),
+      headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
+    }
+    return await this.sendRequestWithCred(url, options)
+  },
+
+  async removeProductFromCart(productId) {
+    const url = `${CARTS_URL}${productId}`
+    const options = {
+      method: 'DELETE',
+      headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
+    }
+    return await this.sendRequestWithCred(url, options)
   },
 }
 
