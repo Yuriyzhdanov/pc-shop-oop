@@ -193,19 +193,19 @@ a {
   width: 100%;
 }
 .wrap-sort > .left {
-  width: 10%;
+  width: 20%;
   display: inline-block;
   vertical-align: top;
 }
 .wrap-sort > .center {
   display: inline-block;
   vertical-align: top;
-  width: 20%;
+  width: 30%;
 }
 .wrap-sort > .right {
   display: inline-block;
   vertical-align: top;
-  width: 70%;
+  width: 50%;
   text-align: right;
 }
 .right-item {
