@@ -8,6 +8,7 @@ class Product {
     this.attributes = options.attributes
     this.photos = options.photos
     this.isFavorite = false
+    this.isInCart = false
   }
 
   convertPrice(currencyRate) {
@@ -33,6 +34,26 @@ class Product {
   async removeFromFavorites() {
     await this.api.deleteFromFavorites(this.id)
     this.isFavorite = false
+  }
+
+  async toggleInCart() {
+    if (this.isInCart) {
+      await this.removeFromCart()
+    } else {
+      await this.addToCart()
+    }
+  }
+
+  async addToCart() {
+    const postedInCart = await this.api.postProductToCart(this.id)
+    if (postedInCart.productId === this.id) {
+      this.isInCart = true
+    }
+  }
+
+  async removeFromCart() {
+    await this.api.deleteProductFromCart(this.id)
+    this.isInCart = false
   }
 }
 
