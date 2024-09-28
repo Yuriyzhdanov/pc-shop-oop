@@ -28,6 +28,7 @@ const controller = {
       modelShop.sorter.getCurrentSortingType()
     )
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
+    viewCatalog.renderCartCount(modelShop.catalog.computeProductInCartCount())
   },
 
   handleShowCatalog(isResetPrice) {
@@ -98,6 +99,14 @@ const controller = {
     const products = modelShop.catalog.computeProducts()
     viewCatalog.render(products, true)
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
+  },
+
+  async handleToggleAddToCart(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    const isInCart = await product.toggleInCart()
+    const products = modelShop.catalog.computeProducts()
+    viewCatalog.render(products, true)
+    viewCatalog.renderCartCount(modelShop.catalog.computeProductInCartCount())
   },
 }
 

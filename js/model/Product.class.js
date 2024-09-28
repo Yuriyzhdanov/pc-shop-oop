@@ -24,18 +24,6 @@ class Product {
     }
   }
 
-  async addToFavorites() {
-    const postedFavorite = await this.api.postToFavorites(this.id)
-    if (postedFavorite.productId === this.id) {
-      this.isFavorite = true
-    }
-  }
-
-  async removeFromFavorites() {
-    await this.api.deleteFromFavorites(this.id)
-    this.isFavorite = false
-  }
-
   async toggleInCart() {
     if (this.isInCart) {
       await this.removeFromCart()
@@ -44,11 +32,23 @@ class Product {
     }
   }
 
+  async addToFavorites() {
+    const postedFavorite = await this.api.postToFavorites(this.id)
+    if (postedFavorite.productId === this.id) {
+      this.isFavorite = true
+    }
+  }
+
   async addToCart() {
     const postedInCart = await this.api.postProductToCart(this.id)
     if (postedInCart.productId === this.id) {
       this.isInCart = true
     }
+  }
+
+  async removeFromFavorites() {
+    await this.api.deleteFromFavorites(this.id)
+    this.isFavorite = false
   }
 
   async removeFromCart() {

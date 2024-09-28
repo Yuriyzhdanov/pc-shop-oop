@@ -33,8 +33,11 @@ class Shop {
     const currencyRate = await this.api.loadCurrency()
     const favoriteObjs = await this.api.getFavoriteProducts(this.userId)
     const favoriteIds = favoriteObjs.map(fo => fo.productId)
+    const inCartObjs = await this.api.getCartProducts(this.userId)
+    const inCartIds = inCartObjs.map(fo => fo.productId)
     this.catalog.addProducts(products, currencyRate, this.api)
     this.catalog.checkFavorite(favoriteIds)
+    this.catalog.checkProductsInCart(inCartIds)
     this.filter.update(products)
     this.updateSearch()
   }

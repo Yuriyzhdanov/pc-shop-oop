@@ -34,6 +34,10 @@ class Catalog {
     return this.products.filter(product => product.isFavorite)
   }
 
+  getProductsFromCart() {
+    return this.products.filter(product => product.isInCart)
+  }
+
   addProducts(products, currencyRate, api) {
     products.forEach(product => this.addProduct(product, currencyRate, api))
   }
@@ -52,10 +56,20 @@ class Catalog {
     }
   }
 
+  checkProductsInCart(inCartIds) {
+    for (const product of this.products) {
+      if (inCartIds.includes(product.id)) {
+        product.isInCart = true
+      }
+    }
+  }
+
   computeFavoritesCount() {
     return this.products.reduce((acc, product) => acc + product.isFavorite, 0)
   }
-
+  computeProductInCartCount() {
+    return this.products.reduce((acc, product) => acc + product.isInCart, 0)
+  }
   getProductById(id) {
     return this.products.find(product => product.id === id)
   }

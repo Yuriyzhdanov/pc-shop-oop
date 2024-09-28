@@ -40,6 +40,7 @@ const viewCatalog = {
   generate(product, idx, fromChache) {
     const divLabels = this.generateLabelSpecs(product.attributes)
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
+    const isInCartClass = product.isInCart ? 'cart-btn' : ''
 
     const divContainterProduct = h(
       'div',
@@ -77,7 +78,15 @@ const viewCatalog = {
           h('p', {}, '', [h('b', {}, product.convertedPrice + ' грн')]),
         ]),
         h('div', { class: 'row' }, '', [
-          h('div', { class: 'cart' }, '', [h('button', {})]),
+          h('div', { class: 'cart' }, '', [
+            h(
+              'button',
+              { class: isInCartClass },
+              '',
+              [],
+              this.onClickButtonCart
+            ),
+          ]),
           h('div', { class: 'favorite' }, '', [
             h(
               'button',
@@ -103,6 +112,16 @@ const viewCatalog = {
       .getAttribute('data-product-id')
     elButton.disabled = true
     await controller.handleToggleFavorite(productId)
+    elButton.disabled = false
+  },
+
+  async onClickButtonCart(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    elButton.disabled = true
+    await controller.handleToggleAddToCart(productId)
     elButton.disabled = false
   },
 
