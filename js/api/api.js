@@ -6,7 +6,6 @@ const CURRENCY_URL =
 const PRODUCTS_URL = `${BASE_URL}products/`
 const URL_AUTHENTICATE = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
-const JSON_HEADERS = { 'Content-Type': 'application/json' }
 const DEFAULT_CURRENCY_CODE = 'USD'
 
 const getUrlSimilarByProductId = productId => `${PRODUCTS_URL}${id}/similar/`
@@ -16,18 +15,19 @@ const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
 const api = {
   userId: undefined,
 
-  async sendRequest(url, options = {}, withCred = false) {
-    if (withCred) {
-      Object.assign(options, { credentials: 'include' })
+  async mySendRequest(url, method = 'GET', body = null, withCred = false) {
+    const options = {
+      method: method,
+      credentials: withCred ? 'include' : undefined,
+    }
+    if (body) {
+      options.headers = { 'Content-Type': 'application/json' }
+      options.body = JSON.stringify(body)
     }
     const resp = await fetch(url, options)
     if (resp.status === 204) return
     const json = await resp.json()
     return this.checkSuccess(json)
-  },
-
-  async sendRequestWithCred(url, options = {}) {
-    return await this.sendRequest(url, { credentials: 'include', ...options })
   },
 
   checkSuccess(json) {
@@ -40,15 +40,15 @@ const api = {
   },
 
   async loadCurrency(currencyCode = DEFAULT_CURRENCY_CODE) {
-    const currencies = await this.sendRequest(CURRENCY_URL)
+    const currencies = await this.mySendRequest(CURRENCY_URL)
     const targetCurrency = currencies.find(
       currency => currency.cc === currencyCode
     )
-    return targetCurrency.rate
+    return targetCurrency ? targetCurrency.rate : null
   },
 
   async getCurrencyRate(currencyCode = DEFAULT_CURRENCY_CODE) {
-    const currencies = await this.sendRequest(CURRENCY_URL)
+    const currencies = await this.mySendRequest(CURRENCY_URL)
     const targetCurrency = currencies.find(
       currency => currency.cc === currencyCode
     )
@@ -56,7 +56,7 @@ const api = {
   },
 
   async loadProducts() {
-    const products = await this.sendRequest(PRODUCTS_URL)
+    const products = await this.mySendRequest(PRODUCTS_URL)
     return products.map(product => ({
       ...product,
       attributes: normalizeAttributes(product.attributes),
@@ -64,68 +64,54 @@ const api = {
   },
 
   async loadProductById(id) {
-    return await this.sendRequest(`${PRODUCTS_URL}${id}`)
+    return await this.mySendRequest(`${PRODUCTS_URL}${id}`)
   },
 
   async authenticate() {
-    this.userId = await this.sendRequest(URL_AUTHENTICATE, {}, true)
+    this.userId = await this.mySendRequest(URL_AUTHENTICATE, 'POST', null, true)
   },
 
   async getFavoriteProducts() {
     const url = getUrlFavoritesByUserId(this.userId)
-    return await this.sendRequest(url, {}, true)
+    return await this.mySendRequest(url, 'GET', null, true)
   },
 
   async postToFavorites(productId) {
     const url = getUrlFavoritesByUserId(this.userId)
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ productId }),
-      headers: { ...JSON_HEADERS },
-    }
-    return await this.sendRequest(url, options, true)
+    const body = { productId }
+    return await this.mySendRequest(url, 'POST', body, true)
   },
 
   async deleteFromFavorites(productId) {
     const url = getUrlFavoritesByUserId(this.userId) + productId
-    const options = {
-      method: 'DELETE',
-    }
-    return await this.sendRequest(url, options, true)
+    return await this.mySendRequest(url, 'DELETE', null, true)
   },
 
   async getCartProducts() {
     const url = getUrlCartsByUserId(this.userId)
-    return await this.sendRequest(url, {}, true)
+    return await this.mySendRequest(url, 'GET', null, true)
   },
 
   async postProductToCart(productId) {
     const url = getUrlCartsByUserId(this.userId)
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ productId, quantity: 1 }),
-      headers: JSON_HEADERS,
-    }
-    return await this.sendRequest(url, options, true)
+    const body = { productId }
+    return await this.mySendRequest(url, 'POST', body, true)
   },
 
   async deleteProductFromCart(productId) {
     const url = getUrlCartsByUserId(this.userId) + productId
-    const options = {
-      method: 'DELETE',
-    }
-    return await this.sendRequest(url, options, true)
+    return await this.mySendRequest(url, 'DELETE', null, true)
   },
 
   async loadRecommendedProductsById(id) {
     const url = `${CUSTOMERS_URL}${id}/recomend/`
-    const recommendedProducts = await this.sendRequest(url, {}, true)
+    const recommendedProducts = await this.mySendRequest(url, 'GET', null, true)
     return recommendedProducts.map(product => product.productId)
   },
 
   async loadSimilarProductsById(id) {
     const url = getUrlSimilarByProductId(id)
-    const similarProducts = await this.sendRequest(url)
+    const similarProducts = await this.mySendRequest(url, 'GET')
     return similarProducts.map(product => product.relatedProductId)
   },
 }
