@@ -7,26 +7,15 @@ const controllerCart = {
     this.handleShowCart()
   },
 
-  async handleShowCart() {
-    const cartProducts = await modelShop.cart.getProductFromCart()
-    console.log(cartProducts)
-
+  handleShowCart() {
+    const cartProducts = modelShop.catalog.getProductsFromCart()
     viewCart.render(cartProducts)
   },
 
-  async handleAddToCart(productId) {
-    await modelShop.cart.addProductToCart(productId)
-    viewCart.update(modelShop.cart.products)
-  },
-
   async handleRemoveFromCart(productId) {
-    await modelShop.cart.removeProductFromCart(productId)
-    viewCart.update(modelShop.cart.products)
-  },
-
-  async handleClearCart() {
-    await modelShop.cart.clearCart()
-    viewCart.render([])
+    const product = modelShop.catalog.getProductById(productId)
+    await product.removeProductFromCart()
+    this.handleShowCart()
   },
 }
 
