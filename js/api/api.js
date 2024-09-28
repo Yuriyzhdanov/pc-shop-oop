@@ -69,7 +69,7 @@ const api = {
   },
 
   async authenticate() {
-    this.userId = await this.sendRequest(URL_AUTHENTICATE)
+    this.userId = await this.sendRequest(URL_AUTHENTICATE, {}, true)
   },
 
   async getFavoriteProducts() {
