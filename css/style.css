@@ -234,6 +234,14 @@ a {
   width: 30px;
   border-radius: 10px;
 }
+.cart-img {
+  width: 30px;
+  border-radius: 10px;
+}
+.cart-img:hover {
+  cursor: pointer;
+}
+
 .center > span {
   font-size: 18px;
 }
@@ -382,6 +390,9 @@ a {
 }
 .wrap-product .row > div:nth-child(1) > button:hover {
   background: #f0f3f5 url(../img/bg/addtocart-hover.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(1) > button.cart-btn {
+  background: #f0f3f5 url(../img/bg/addtocart-active.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(2) > button {
   background: #fff url(../img/bg/tofav.png) center / 70% no-repeat;
