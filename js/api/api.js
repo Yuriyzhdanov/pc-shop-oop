@@ -6,7 +6,6 @@ const CURRENCY_URL =
 const PRODUCTS_URL = `${BASE_URL}products/`
 const URL_AUTHENTICATE = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
-const COOKIE_HEADER = { Cookie: 'session=1ff0099aa' }
 const JSON_HEADERS = { 'Content-Type': 'application/json' }
 const DEFAULT_CURRENCY_CODE = 'USD'
 
@@ -74,13 +73,7 @@ const api = {
 
   async getFavoriteProducts() {
     const url = getUrlFavoritesByUserId(this.userId)
-    return await this.sendRequest(
-      url,
-      {
-        headers: COOKIE_HEADER,
-      },
-      true
-    )
+    return await this.sendRequest(url, {}, true)
   },
 
   async postToFavorites(productId) {
@@ -88,7 +81,7 @@ const api = {
     const options = {
       method: 'POST',
       body: JSON.stringify({ productId }),
-      headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
+      headers: { ...JSON_HEADERS },
     }
     return await this.sendRequest(url, options, true)
   },
@@ -97,20 +90,13 @@ const api = {
     const url = getUrlFavoritesByUserId(this.userId) + productId
     const options = {
       method: 'DELETE',
-      headers: COOKIE_HEADER,
     }
     return await this.sendRequest(url, options, true)
   },
 
   async getCartProducts() {
     const url = getUrlCartsByUserId(this.userId)
-    return await this.sendRequest(
-      url,
-      {
-        headers: COOKIE_HEADER,
-      },
-      true
-    )
+    return await this.sendRequest(url, {}, true)
   },
 
   async postProductToCart(productId) {
@@ -118,7 +104,7 @@ const api = {
     const options = {
       method: 'POST',
       body: JSON.stringify({ productId, quantity: 1 }),
-      headers: { ...COOKIE_HEADER, ...JSON_HEADERS },
+      headers: JSON_HEADERS,
     }
     return await this.sendRequest(url, options, true)
   },
@@ -127,17 +113,13 @@ const api = {
     const url = getUrlCartsByUserId(this.userId) + productId
     const options = {
       method: 'DELETE',
-      headers: COOKIE_HEADER,
     }
     return await this.sendRequest(url, options, true)
   },
 
   async loadRecommendedProductsById(id) {
     const url = `${CUSTOMERS_URL}${id}/recomend/`
-    const options = {
-      headers: COOKIE_HEADER,
-    }
-    const recommendedProducts = await this.sendRequest(url, options, true)
+    const recommendedProducts = await this.sendRequest(url, {}, true)
     return recommendedProducts.map(product => product.productId)
   },
 
