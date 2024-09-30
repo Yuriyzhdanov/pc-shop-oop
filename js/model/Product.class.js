@@ -26,7 +26,7 @@ class Product {
 
   async toggleInCart() {
     if (this.isInCart) {
-      await this.removeFromCart()
+      await this.removeProductFromCart()
     } else {
       await this.addToCart()
     }
@@ -51,7 +51,7 @@ class Product {
     this.isFavorite = false
   }
 
-  async removeFromCart() {
+  async removeProductFromCart() {
     await this.api.deleteProductFromCart(this.id)
     this.isInCart = false
   }
