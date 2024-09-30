@@ -8,7 +8,8 @@ const URL_AUTHENTICATE = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
 const DEFAULT_CURRENCY_CODE = 'USD'
 
-const getUrlSimilarByProductId = productId => `${PRODUCTS_URL}${id}/similar/`
+const getUrlSimilarByProductId = productId =>
+  `${PRODUCTS_URL}${productId}/similar/`
 const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
 const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
 
