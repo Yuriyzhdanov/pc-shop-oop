@@ -67,9 +67,20 @@ class Catalog {
   computeFavoritesCount() {
     return this.products.reduce((acc, product) => acc + product.isFavorite, 0)
   }
+
   computeProductInCartCount() {
     return this.products.reduce((acc, product) => acc + product.isInCart, 0)
   }
+
+  computeTotalCartPrice() {
+    return this.products.reduce((acc, product) => {
+      if (product.isInCart) {
+        return acc + product.convertedPrice
+      }
+      return acc
+    }, 0)
+  }
+
   getProductById(id) {
     return this.products.find(product => product.id === id)
   }

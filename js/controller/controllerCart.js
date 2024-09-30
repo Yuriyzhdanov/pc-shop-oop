@@ -9,7 +9,9 @@ const controllerCart = {
 
   handleShowCart() {
     const cartProducts = modelShop.catalog.getProductsFromCart()
+    const totalPrice = modelShop.catalog.computeTotalCartPrice()
     viewCart.render(cartProducts)
+    viewCart.renderCartSummary(totalPrice)
   },
 
   async handleRemoveFromCart(productId) {
