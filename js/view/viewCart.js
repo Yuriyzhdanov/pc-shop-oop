@@ -1,9 +1,8 @@
 import controllerCart from '../controller/controllerCart.js'
-import h from './h.js'
 
 const viewCart = {
   selectorCartProd: '.cart-products',
-  selectorSummary: '.cart-summary-container',
+  selectorSummary: '.cart-summary',
 
   generateNotFoundMessageCart() {
     const elDiv = document.createElement('div')
@@ -42,44 +41,40 @@ const viewCart = {
 
   generateCartItem(product) {
     const cartItem = document.createElement('div')
-    cartItem.classList.add('cart-item', 'row')
-    cartItem.setAttribute('data-product-id', product.id)
     const leftDiv = document.createElement('div')
-    leftDiv.classList.add('left')
     const img = document.createElement('img')
+    const centerDiv = document.createElement('div')
+    const elCaptionProduct = document.createElement('p')
+    const elPrice = document.createElement('p')
+    const rightDiv = document.createElement('div')
+    const removeButton = document.createElement('button')
+
+    cartItem.setAttribute('data-product-id', product.id)
     img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
     img.alt = 'Product image'
-    img.classList.add('cart-item-img')
-
-    leftDiv.appendChild(img)
-    cartItem.appendChild(leftDiv)
-
-    const centerDiv = document.createElement('div')
-    centerDiv.classList.add('center')
-
-    const nameParagraph = document.createElement('p')
-    nameParagraph.classList.add('cart-item-name')
-    nameParagraph.textContent = product.name
-
-    const priceParagraph = document.createElement('p')
-    priceParagraph.classList.add('cart-item-price')
-    priceParagraph.innerHTML = `Цена: <span>${product.convertedPrice}</span> грн`
-
-    centerDiv.appendChild(nameParagraph)
-    centerDiv.appendChild(priceParagraph)
-    cartItem.appendChild(centerDiv)
-
-    const rightDiv = document.createElement('div')
-    rightDiv.classList.add('right')
-
-    const removeButton = document.createElement('button')
-    removeButton.classList.add('btn', 'remove-from-cart')
+    elCaptionProduct.textContent = product.caption
+    elPrice.innerHTML = `Цена: <span>${product.convertedPrice}</span> грн`
     removeButton.textContent = 'Удалить'
+
+    cartItem.classList.add('cart-item', 'row')
+    leftDiv.classList.add('left')
+    img.classList.add('cart-item-img')
+    centerDiv.classList.add('center')
+    elCaptionProduct.classList.add('cart-item-name')
+    elPrice.classList.add('cart-item-price')
+    rightDiv.classList.add('right')
+    removeButton.classList.add('btn', 'remove-from-cart')
+
     removeButton.addEventListener(
       'click',
       this.onClickButtonRemoveFromCart.bind(this)
     )
 
+    leftDiv.appendChild(img)
+    cartItem.appendChild(leftDiv)
+    centerDiv.appendChild(elCaptionProduct)
+    centerDiv.appendChild(elPrice)
+    cartItem.appendChild(centerDiv)
     rightDiv.appendChild(removeButton)
     cartItem.appendChild(rightDiv)
 
@@ -88,20 +83,21 @@ const viewCart = {
 
   generateCartSummary(totalPrice) {
     const elDiv = document.createElement('div')
-    elDiv.className = 'cart-summary'
     const elTitle = document.createElement('h3')
-    elTitle.textContent = 'Итого'
-    elDiv.appendChild(elTitle)
     const elTotalPrice = document.createElement('p')
-    elTotalPrice.className = 'total-price'
-    elTotalPrice.innerHTML = `Общая сумма: <span>${totalPrice}</span> грн`
-    elDiv.appendChild(elTotalPrice)
-
     const elButtonCheckout = document.createElement('button')
+
+    elDiv.className = 'cart-summary-container'
+    elTotalPrice.className = 'total-price'
+    elTitle.textContent = 'Итого'
+    elTotalPrice.innerHTML = `Общая сумма: <span><strong>${totalPrice}</strong></span> грн`
+
     elButtonCheckout.className = 'btn checkout-btn'
     elButtonCheckout.textContent = 'Оформить заказ'
     elButtonCheckout.addEventListener('click', this.onClickCheckout.bind(this))
 
+    elDiv.appendChild(elTitle)
+    elDiv.appendChild(elTotalPrice)
     elDiv.appendChild(elButtonCheckout)
 
     return elDiv
@@ -116,8 +112,6 @@ const viewCart = {
     const productId = +elButton
       .closest('.cart-item')
       .getAttribute('data-product-id')
-    console.log(productId)
-
     elButton.disabled = true
     await controllerCart.handleRemoveFromCart(productId)
     elButton.disabled = false
