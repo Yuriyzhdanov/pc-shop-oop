@@ -15,7 +15,7 @@ const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
 const api = {
   userId: undefined,
 
-  async mySendRequest(url, method = 'GET', body = null, withCred = false) {
+  async sendRequest(url, method = 'GET', body = null, withCred = false) {
     const options = {
       method: method,
       credentials: withCred ? 'include' : undefined,
@@ -40,7 +40,7 @@ const api = {
   },
 
   async loadCurrency(currencyCode = DEFAULT_CURRENCY_CODE) {
-    const currencies = await this.mySendRequest(CURRENCY_URL)
+    const currencies = await this.sendRequest(CURRENCY_URL)
     const targetCurrency = currencies.find(
       currency => currency.cc === currencyCode
     )
@@ -48,7 +48,7 @@ const api = {
   },
 
   async getCurrencyRate(currencyCode = DEFAULT_CURRENCY_CODE) {
-    const currencies = await this.mySendRequest(CURRENCY_URL)
+    const currencies = await this.sendRequest(CURRENCY_URL)
     const targetCurrency = currencies.find(
       currency => currency.cc === currencyCode
     )
@@ -56,7 +56,7 @@ const api = {
   },
 
   async loadProducts() {
-    const products = await this.mySendRequest(PRODUCTS_URL)
+    const products = await this.sendRequest(PRODUCTS_URL)
     return products.map(product => ({
       ...product,
       attributes: normalizeAttributes(product.attributes),
@@ -64,54 +64,54 @@ const api = {
   },
 
   async loadProductById(id) {
-    return await this.mySendRequest(`${PRODUCTS_URL}${id}`)
+    return await this.sendRequest(`${PRODUCTS_URL}${id}`)
   },
 
   async authenticate() {
-    this.userId = await this.mySendRequest(URL_AUTHENTICATE, 'POST', null, true)
+    this.userId = await this.sendRequest(URL_AUTHENTICATE, 'POST', null, true)
   },
 
   async getFavoriteProducts() {
     const url = getUrlFavoritesByUserId(this.userId)
-    return await this.mySendRequest(url, 'GET', null, true)
+    return await this.sendRequest(url, 'GET', null, true)
   },
 
   async postToFavorites(productId) {
     const url = getUrlFavoritesByUserId(this.userId)
     const body = { productId }
-    return await this.mySendRequest(url, 'POST', body, true)
+    return await this.sendRequest(url, 'POST', body, true)
   },
 
   async deleteFromFavorites(productId) {
     const url = getUrlFavoritesByUserId(this.userId) + productId
-    return await this.mySendRequest(url, 'DELETE', null, true)
+    return await this.sendRequest(url, 'DELETE', null, true)
   },
 
   async getCartProducts() {
     const url = getUrlCartsByUserId(this.userId)
-    return await this.mySendRequest(url, 'GET', null, true)
+    return await this.sendRequest(url, 'GET', null, true)
   },
 
   async postProductToCart(productId) {
     const url = getUrlCartsByUserId(this.userId)
     const body = { productId }
-    return await this.mySendRequest(url, 'POST', body, true)
+    return await this.sendRequest(url, 'POST', body, true)
   },
 
   async deleteProductFromCart(productId) {
     const url = getUrlCartsByUserId(this.userId) + productId
-    return await this.mySendRequest(url, 'DELETE', null, true)
+    return await this.sendRequest(url, 'DELETE', null, true)
   },
 
   async loadRecommendedProductsById(id) {
     const url = `${CUSTOMERS_URL}${id}/recomend/`
-    const recommendedProducts = await this.mySendRequest(url, 'GET', null, true)
+    const recommendedProducts = await this.sendRequest(url, 'GET', null, true)
     return recommendedProducts.map(product => product.productId)
   },
 
   async loadSimilarProductsById(id) {
     const url = getUrlSimilarByProductId(id)
-    const similarProducts = await this.mySendRequest(url, 'GET')
+    const similarProducts = await this.sendRequest(url, 'GET')
     return similarProducts.map(product => product.relatedProductId)
   },
 }
