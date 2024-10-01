@@ -182,15 +182,7 @@ a {
 .wrap-navigation > a::before {
   content: '> ';
 }
-.wrap-sort {
-  width: 100%;
-}
-.wrap-sort > .left {
-  width: 70%;
-}
-.wrap-sort > .center {
-  width: 10%;
-}
+
 .favorites-img {
   width: 30px;
   border-radius: 10px;
@@ -200,27 +192,6 @@ a {
 }
 .favorites-img:hover {
   cursor: pointer;
-}
-.wrap-sort > .right {
-  width: 20%;
-  text-align: center;
-}
-.wrap-sort p {
-  margin-bottom: 5px;
-}
-.wrap-sort select {
-  width: 205px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  cursor: pointer;
-}
-.wrap-sort select option {
-  padding: 5px;
-}
-.wrap-sort {
-  display: inline-block;
 }
 
 .container-products {
