@@ -29,6 +29,9 @@ const controller = {
     )
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
     viewCatalog.renderCartCount(modelShop.catalog.computeProductInCartCount())
+    viewCatalog.renderCompareCount(
+      modelShop.catalog.computeProductInCompareCount()
+    )
   },
 
   handleShowCatalog(isResetPrice) {
@@ -107,6 +110,16 @@ const controller = {
     const products = modelShop.catalog.computeProducts()
     viewCatalog.render(products, true)
     viewCatalog.renderCartCount(modelShop.catalog.computeProductInCartCount())
+  },
+
+  async handleToggleAddToCompare(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    const isInCompare = await product.toggleInCompare()
+    const products = modelShop.catalog.computeProducts()
+    viewCatalog.render(products, true)
+    viewCatalog.renderCompareCount(
+      modelShop.catalog.computeProductInCompareCount()
+    )
   },
 }
 

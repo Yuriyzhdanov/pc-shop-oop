@@ -35,9 +35,12 @@ class Shop {
     const favoriteIds = favoriteObjs.map(fo => fo.productId)
     const inCartObjs = await this.api.getCartProducts(this.userId)
     const inCartIds = inCartObjs.map(fo => fo.productId)
+    const compareObjs = await this.api.getCompareProducts(this.userId)
+    const compareIds = compareObjs.map(fo => fo.productId)
     this.catalog.addProducts(products, currencyRate, this.api)
     this.catalog.checkFavorite(favoriteIds)
     this.catalog.checkProductsInCart(inCartIds)
+    this.catalog.checkCompare(compareIds)
     this.filter.update(products)
     this.updateSearch()
   }

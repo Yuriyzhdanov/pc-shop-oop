@@ -38,6 +38,10 @@ class Catalog {
     return this.products.filter(product => product.isInCart)
   }
 
+  getCompareProducts() {
+    return this.products.filter(product => product.isInCompare)
+  }
+
   addProducts(products, currencyRate, api) {
     products.forEach(product => this.addProduct(product, currencyRate, api))
   }
@@ -64,12 +68,24 @@ class Catalog {
     }
   }
 
+  checkCompare(compareIds) {
+    for (const product of this.products) {
+      if (compareIds.includes(product.id)) {
+        product.isInCompare = true
+      }
+    }
+  }
+
   computeFavoritesCount() {
     return this.products.reduce((acc, product) => acc + product.isFavorite, 0)
   }
 
   computeProductInCartCount() {
     return this.products.reduce((acc, product) => acc + product.isInCart, 0)
+  }
+
+  computeProductInCompareCount() {
+    return this.products.reduce((acc, product) => acc + product.isInCompare, 0)
   }
 
   computeTotalCartPrice() {

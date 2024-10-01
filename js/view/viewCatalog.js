@@ -41,6 +41,7 @@ const viewCatalog = {
     const divLabels = this.generateLabelSpecs(product.attributes)
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
     const isInCartClass = product.isInCart ? 'cart-btn' : ''
+    const isInCompareClass = product.isInCompare ? 'compare-btn' : ''
 
     const divContainterProduct = h(
       'div',
@@ -96,7 +97,15 @@ const viewCatalog = {
               this.onClickButtonFavorite
             ),
           ]),
-          h('div', { class: 'compare' }, '', [h('button', {})]),
+          h('div', { class: 'compare' }, '', [
+            h(
+              'button',
+              { class: isInCompareClass },
+              '',
+              [],
+              this.onClickButtonCompare
+            ),
+          ]),
         ]),
         h('div', { class: Math.random() < 0.5 ? 'new_' : '' }),
       ]
@@ -125,6 +134,16 @@ const viewCatalog = {
     elButton.disabled = false
   },
 
+  async onClickButtonCompare(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    elButton.disabled = true
+    await controller.handleToggleAddToCompare(productId)
+    elButton.disabled = false
+  },
+
   generateLabelSpecs(specs) {
     const divLabels = document.createElement('div')
     let i = 0
@@ -144,12 +163,19 @@ const viewCatalog = {
   },
 
   renderFavoriteCount(count) {
-    const elCount = document.querySelector('.center > span')
+    const elCount = document.querySelector('.center > div > span')
     elCount.textContent = count
   },
 
   renderCartCount(count) {
     const elCount = document.querySelector('.left > span')
+    elCount.textContent = count
+  },
+
+  renderCompareCount(count) {
+    const elCount = document.querySelector(
+      '.center > .compare-container > span'
+    )
     elCount.textContent = count
   },
 }
