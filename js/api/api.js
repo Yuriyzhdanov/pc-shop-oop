@@ -10,8 +10,9 @@ const DEFAULT_CURRENCY_CODE = 'USD'
 
 const getUrlSimilarByProductId = productId =>
   `${PRODUCTS_URL}${productId}/similar/`
-const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
 const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
+const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
+const getUrlCompareByUserId = userId => `${CUSTOMERS_URL}${userId}/compare/`
 
 const api = {
   userId: undefined,
@@ -101,6 +102,22 @@ const api = {
 
   async deleteProductFromCart(productId) {
     const url = getUrlCartsByUserId(this.userId) + productId
+    return await this.sendRequest(url, 'DELETE', null, true)
+  },
+
+  async getCompareProducts() {
+    const url = getUrlCompareByUserId(this.userId)
+    return await this.sendRequest(url, 'GET', null, true)
+  },
+
+  async postProductToCompare(productId) {
+    const url = getUrlCompareByUserId(this.userId)
+    const body = { productId }
+    return await this.sendRequest(url, 'POST', body, true)
+  },
+
+  async deleteProductFromCompare(productId) {
+    const url = getUrlCompareByUserId(this.userId) + productId
     return await this.sendRequest(url, 'DELETE', null, true)
   },
 
