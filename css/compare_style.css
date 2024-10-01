@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --clr_front: #0f6ebe;
+  --clr_black: #2c3e50;
+  --clr_white: #f2f6f7;
+}
+
+body {
+  font-family: Calibri, 'Franklin Gothic', sans-serif;
+  color: var(--clr_black);
+  background-color: var(--clr_white);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.comparison-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.specs-table th,
+.specs-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.specs-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.specs-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.specs-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.specs-table td {
+  color: #555;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr_front);
+}
+
+.footer {
+  margin: 5px;
+}
+.footer > .top {
+  border: 5px solid var(--clr_front);
+}
+.footer .wrap-menu > div,
+.footer .wrap-links > div {
+  margin: 5px;
+  padding: 5px;
+}
+.footer .wrap-menu,
+.footer .wrap-links {
+  width: 50%;
+}
+.footer .wrap-links {
+  background-color: var(--clr_front);
+}
+.footer .wrap-links a {
+  color: var(--clr_white);
+  font-weight: normal;
+}
+
+.footer .wrap-copyrights,
+.footer .wrap-menu {
+  text-align: center;
+}
+
+.footer .wrap-copyrights {
+  padding: 15px;
+}
