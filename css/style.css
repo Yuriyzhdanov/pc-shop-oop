@@ -241,9 +241,16 @@ a {
 .cart-img:hover {
   cursor: pointer;
 }
+.compare-img {
+  width: 30px;
+  border-radius: 10px;
+}
 
 .center > span {
   font-size: 18px;
+}
+.wrap-sort > .center > div {
+  position: inline-block;
 }
 .favorites-img:hover {
   cursor: pointer;
@@ -392,7 +399,7 @@ a {
   background: #f0f3f5 url(../img/bg/addtocart-hover.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(1) > button.cart-btn {
-  background: #f0f3f5 url(../img/bg/addtocart-active.png) center / 70% no-repeat;
+  background: #85ffff url(../img/bg/addtocart-active.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(2) > button {
   background: #fff url(../img/bg/tofav.png) center / 70% no-repeat;
@@ -407,7 +414,10 @@ a {
   background: #fff url(../img/bg/tocompare.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(3) > button:hover {
-  background: #f0f3f5 url(../img/bg/tocompare-hover.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/tocompare-hover.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(3) > button.compare-btn {
+  background: #85ff99 url(../img/bg/tocompare.png) center / 70% no-repeat;
 }
 
 .pagination {

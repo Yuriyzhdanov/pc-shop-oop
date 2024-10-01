@@ -46,6 +46,7 @@ const viewCart = {
     const centerDiv = document.createElement('div')
     const elCaptionProduct = document.createElement('p')
     const elPrice = document.createElement('p')
+    const specsContainer = this.generateSpecsContainer(product)
     const rightDiv = document.createElement('div')
     const removeButton = document.createElement('button')
 
@@ -74,6 +75,7 @@ const viewCart = {
     cartItem.appendChild(leftDiv)
     centerDiv.appendChild(elCaptionProduct)
     centerDiv.appendChild(elPrice)
+    centerDiv.appendChild(specsContainer)
     cartItem.appendChild(centerDiv)
     rightDiv.appendChild(removeButton)
     cartItem.appendChild(rightDiv)
@@ -101,6 +103,20 @@ const viewCart = {
     elDiv.appendChild(elButtonCheckout)
 
     return elDiv
+  },
+
+  generateSpecsContainer(product) {
+    const specsContainer = document.createElement('div')
+    specsContainer.classList.add('specs')
+    Object.entries(product.attributes).forEach(([spec, prop]) => {
+      const elP = document.createElement('p')
+      const span = document.createElement('span')
+      elP.innerHTML = `${spec}: `
+      span.textContent = prop
+      elP.appendChild(span)
+      specsContainer.appendChild(elP)
+    })
+    return specsContainer
   },
 
   onClickCheckout() {
