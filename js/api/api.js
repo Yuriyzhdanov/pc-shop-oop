@@ -13,7 +13,7 @@ const getUrlSimilarByProductId = productId =>
 const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
 const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
 const getUrlCompareByUserId = userId => `${CUSTOMERS_URL}${userId}/compare/`
-
+const getUrlRecomendByUserId = userId => `${CUSTOMERS_URL}${userId}/recomend/`
 const api = {
   userId: undefined,
 
@@ -122,7 +122,7 @@ const api = {
   },
 
   async loadRecommendedProductsById(id) {
-    const url = `${CUSTOMERS_URL}${id}/recomend/`
+    const url = getUrlRecomendByUserId(id)
     const recommendedProducts = await this.sendRequest(url, 'GET', null, true)
     return recommendedProducts.map(product => product.productId)
   },
