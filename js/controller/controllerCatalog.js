@@ -6,14 +6,13 @@ import viewPriceRanger from '../view/viewPriceRanger.js'
 import viewSearch from '../view/viewSearch.js'
 import viewSort from '../view/viewSort.js'
 
-viewPaginator.init()
-viewSearch.init()
-viewSort.init()
-viewPriceRanger.init()
-viewFilter.init()
-
 const controller = {
   async handleDOMContentLoaded() {
+    viewPaginator.init()
+    viewSearch.init()
+    viewSort.init()
+    viewPriceRanger.init()
+    viewFilter.init()
     await modelShop.init()
     modelShop.sorter.setSortingType()
     this.handleShowCatalog()

@@ -1,5 +1,5 @@
-import viewFavorites from '../view/viewFavorites.js'
 import modelShop from '../model/model.js'
+import viewFavorites from '../view/viewFavorites.js'
 
 const controllerFavorites = {
   async handleDOMContentLoaded() {

@@ -10,7 +10,6 @@ async function onDOMContentLoadedDocument() {
     await controllerCatalog.handleDOMContentLoaded()
   }
   if (location.pathname.includes('favorites.html')) {
-    console.log('if fav')
     await controllerFavorites.handleDOMContentLoaded()
   }
   // if (location.pathname.includes('product.html')) {
