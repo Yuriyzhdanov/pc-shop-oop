@@ -138,8 +138,6 @@ const viewCompare = {
   async onClickButtonRemoveCompareProd(e) {
     const elButton = e.target
     const productId = +elButton.getAttribute('data-product-id')
-    console.log(productId)
-
     elButton.disabled = true
     await controllerCompare.handleRemoveFromCompare(productId)
     elButton.disabled = false

@@ -9,15 +9,11 @@ const controllerCompare = {
 
   handleShowCompare() {
     const compareProducts = modelShop.catalog.getCompareProducts()
-    console.log(compareProducts)
-
     viewCompare.render(compareProducts)
   },
 
   async handleRemoveFromCompare(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    console.log('product', product)
-
     await product.removeProductFromCompare()
     this.handleShowCompare()
   },
