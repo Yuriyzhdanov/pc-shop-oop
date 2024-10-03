@@ -77,7 +77,7 @@ const viewFavorites = {
           h('div', { class: 'delete' }, '', [
             h(
               'button',
-              { class: 'remove-favorite-btn' },
+              { class: 'favorite-btn' },
               '',
               [],
               this.onClickButtonRemoveFavorite.bind(this)
