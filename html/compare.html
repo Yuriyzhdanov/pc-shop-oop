@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,10 +7,54 @@
     <link rel="stylesheet" href="../css/compare_style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="comparison-table"></div>
-      <div class="specs-table"></div>
+    <div class="wrapper">
+      <div id="header" class="header row">
+        <div class="left">
+          <div class="wrap-img">
+            <img src="../img/bg/logo.png" alt="logo" />
+          </div>
+        </div>
+        <div class="center"></div>
+        <div class="right">
+          <div class="wrap-account">
+            <div class="top">
+              <span>Нажмите кнопку</span>
+            </div>
+            <div class="middle">
+              <a href="">
+                <button class="btn">Войти</button>
+              </a>
+            </div>
+            <div class="bottom">
+              <span>Либо</span>
+              <a href="">зарегистрируйтесь</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="top">
+          <div class="wrap-navigation">
+            <a href="./catalog.html">Каталог</a>
+            <a href="./cart.html">Корзина</a>
+            <a href="./favorites.html">Избранные</a>
+          </div>
+          <div class="wrap-sort row">
+            <div class="left"></div>
+            <div class="center"></div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="container">
+            <div class="specs-table"></div>
 
+          <div class="right" id="pageNumberContainer">
+            <div class="container-products pave"></div>
+            <div class="container-pagination"></div>
+          </div>
+        </div>
+      </div>
       <div class="footer">
         <div class="top row">
           <div class="wrap-menu">
@@ -35,6 +79,7 @@
         </div>
       </div>
     </div>
+
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>

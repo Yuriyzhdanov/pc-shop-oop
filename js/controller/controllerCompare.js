@@ -1,4 +1,4 @@
-import viewComparison from '../view/viewCompare.js'
+import viewCompare from '../view/viewCompare.js'
 import modelShop from '../model/model.js'
 
 const controllerCompare = {
@@ -11,12 +11,14 @@ const controllerCompare = {
     const compareProducts = modelShop.catalog.getCompareProducts()
     console.log(compareProducts)
 
-    viewComparison.render(compareProducts)
+    viewCompare.render(compareProducts)
   },
 
   async handleRemoveFromCompare(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    await product.removeFromCompare()
+    console.log('product', product)
+
+    await product.removeProductFromCompare()
     this.handleShowCompare()
   },
 }
