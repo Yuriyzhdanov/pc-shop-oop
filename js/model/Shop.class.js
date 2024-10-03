@@ -1,5 +1,4 @@
 import AttrSelector from './AttrSelector.class.js'
-import Cart from './Cart.class.js'
 import Catalog from './Catalog.class.js'
 import Filter from './Filter.class.js'
 import Paginator from './Paginator.class.js'
@@ -17,7 +16,6 @@ class Shop {
     this.sorter = new Sorter()
     this.paginator = new Paginator()
     this.filter = new Filter()
-    this.cart = new Cart()
     this.catalog = new Catalog(
       this.search,
       this.attrSelector,
