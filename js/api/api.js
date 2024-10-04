@@ -8,12 +8,16 @@ const URL_AUTHENTICATE = `${BASE_URL}auth`
 const CUSTOMERS_URL = `${BASE_URL}customers/`
 const DEFAULT_CURRENCY_CODE = 'USD'
 
+const getUrl = entity => subEntity => userId =>
+  `${BASE_URL + entity}/${userId}/${subEntity}`
+
 const getUrlSimilarByProductId = productId =>
   `${PRODUCTS_URL}${productId}/similar/`
 const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
 const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
 const getUrlCompareByUserId = userId => `${CUSTOMERS_URL}${userId}/compare/`
 const getUrlRecomendByUserId = userId => `${CUSTOMERS_URL}${userId}/recomend/`
+
 const api = {
   userId: undefined,
 
