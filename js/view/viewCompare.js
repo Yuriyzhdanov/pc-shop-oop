@@ -123,10 +123,15 @@ const viewCompare = {
       tdSpec.textContent = spec
       tr.appendChild(tdSpec)
 
+      const boldClasses = this.differencesValue(products, spec)
+
       products.forEach((product, index) => {
         const tdValue = document.createElement('td')
         tdValue.textContent = product.attributes[spec] || '**'
         tdValue.setAttribute('data-column-index', index)
+        if (boldClasses[index] === 'bold') {
+          tdValue.classList.add('differences-value')
+        }
         tr.appendChild(tdValue)
       })
       fragment.appendChild(tr)
@@ -141,6 +146,19 @@ const viewCompare = {
     elButton.disabled = true
     await controllerCompare.handleRemoveFromCompare(productId)
     elButton.disabled = false
+  },
+
+  differencesValue(products, spec) {
+    const values = products.map(product => product.attributes[spec] || '**')
+    console.log('values', values)
+
+    const uniqueValues = new Set(values)
+    console.log('uniqueValues', uniqueValues)
+
+    if (uniqueValues.size === 1) {
+      return values.map(() => '')
+    }
+    return values.map(value => (uniqueValues.has(value) ? 'bold' : ''))
   },
 }
 
