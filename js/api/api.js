@@ -5,18 +5,12 @@ const CURRENCY_URL =
   'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
 const PRODUCTS_URL = `${BASE_URL}products/`
 const URL_AUTHENTICATE = `${BASE_URL}auth`
-const CUSTOMERS_URL = `${BASE_URL}customers/`
 const DEFAULT_CURRENCY_CODE = 'USD'
 
-const getUrl = entity => subEntity => userId =>
-  `${BASE_URL + entity}/${userId}/${subEntity}`
-
-const getUrlSimilarByProductId = productId =>
-  `${PRODUCTS_URL}${productId}/similar/`
-const getUrlCartsByUserId = userId => `${CUSTOMERS_URL}${userId}/carts/`
-const getUrlFavoritesByUserId = userId => `${CUSTOMERS_URL}${userId}/favorites/`
-const getUrlCompareByUserId = userId => `${CUSTOMERS_URL}${userId}/compare/`
-const getUrlRecomendByUserId = userId => `${CUSTOMERS_URL}${userId}/recomend/`
+let getUrl = (url = BASE_URL) =>
+  function subFn(path) {
+    return path ? ((url += `${path}/`), subFn) : url
+  }
 
 const api = {
   userId: undefined,
@@ -78,61 +72,61 @@ const api = {
   },
 
   async getFavoriteProducts() {
-    const url = getUrlFavoritesByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('favorites')()
     return await this.sendRequest(url, 'GET', null, true)
   },
 
   async postToFavorites(productId) {
-    const url = getUrlFavoritesByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('favorites')()
     const body = { productId }
     return await this.sendRequest(url, 'POST', body, true)
   },
 
   async deleteFromFavorites(productId) {
-    const url = getUrlFavoritesByUserId(this.userId) + productId
+    const url = getUrl()('customers')(this.userId)('favorites')(productId)()
     return await this.sendRequest(url, 'DELETE', null, true)
   },
 
   async getCartProducts() {
-    const url = getUrlCartsByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('carts')()
     return await this.sendRequest(url, 'GET', null, true)
   },
 
   async postProductToCart(productId) {
-    const url = getUrlCartsByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('carts')()
     const body = { productId }
     return await this.sendRequest(url, 'POST', body, true)
   },
 
   async deleteProductFromCart(productId) {
-    const url = getUrlCartsByUserId(this.userId) + productId
+    const url = getUrl()('customers')(this.userId)('carts')(productId)()
     return await this.sendRequest(url, 'DELETE', null, true)
   },
 
   async getCompareProducts() {
-    const url = getUrlCompareByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('compare')()
     return await this.sendRequest(url, 'GET', null, true)
   },
 
   async postProductToCompare(productId) {
-    const url = getUrlCompareByUserId(this.userId)
+    const url = getUrl()('customers')(this.userId)('compare')()
     const body = { productId }
     return await this.sendRequest(url, 'POST', body, true)
   },
 
   async deleteProductFromCompare(productId) {
-    const url = getUrlCompareByUserId(this.userId) + productId
+    const url = getUrl()('customers')(this.userId)('compare')(productId)()
     return await this.sendRequest(url, 'DELETE', null, true)
   },
 
-  async loadRecommendedProductsById(id) {
-    const url = getUrlRecomendByUserId(id)
+  async loadRecommendedProductsById(productId) {
+    const url = getUrl()('customers')(productId)('recomend')()
     const recommendedProducts = await this.sendRequest(url, 'GET', null, true)
     return recommendedProducts.map(product => product.productId)
   },
 
-  async loadSimilarProductsById(id) {
-    const url = getUrlSimilarByProductId(id)
+  async loadSimilarProductsById(productId) {
+    const url = getUrl()('products')(productId)('similar')()
     const similarProducts = await this.sendRequest(url, 'GET')
     return similarProducts.map(product => product.relatedProductId)
   },
