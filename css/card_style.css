@@ -188,12 +188,69 @@ a {
   margin: 0 10px;
   cursor: pointer;
 }
-.cart-button {
+
+.container-products {
+  padding: 5px;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.wrap-product {
+  position: relative;
+  cursor: default;
+  width: 350px;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 0 5px 0 #d0d3d5;
+  background: white;
+  border: 1px solid #fff;
+}
+
+.wrap-product .row > div {
+  width: calc(100% / 3);
   text-align: center;
+  padding: 5px;
 }
-.cart-button > button {
+.wrap-product .row > div > button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
   cursor: pointer;
+  box-shadow: 0 0 10px 0 #ccc;
 }
+
+.wrap-product .row > div:nth-child(1) > button {
+  background: #fff url(../img/bg/addtocart.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(1) > button:hover {
+  background: #f0f3f5 url(../img/bg/addtocart-hover.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(1) > button.cart-btn {
+  background: #85ffff url(../img/bg/addtocart-active.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(2) > button {
+  background: #fff url(../img/bg/tofav.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(2) > button:hover {
+  background: #f0f3f5 url(../img/bg/tofav-hover.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(2) > button.favorite-btn {
+  background: #f0f3f5 url(../img/bg/tofav-active.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(3) > button {
+  background: #fff url(../img/bg/tocompare.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(3) > button:hover {
+  background: #fff url(../img/bg/tocompare-hover.png) center / 70% no-repeat;
+}
+.wrap-product .row > div:nth-child(3) > button.compare-btn {
+  background: #85ff99 url(../img/bg/tocompare.png) center / 70% no-repeat;
+}
+
 .price {
   text-align: center;
 }
@@ -424,8 +481,12 @@ a {
 
 /* SLIDER */
 .bottom > .left {
-  max-height: 600px;
-  /* background-color: #ccc; */
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: 0 0 5px 0 #d0d3d5;
+  background: white;
+  border: 1px solid #fff;
+  padding: 10px;
 }
 .slider {
 }

@@ -7,9 +7,9 @@ class Product {
     this.convertedPrice = undefined
     this.attributes = options.attributes
     this.photos = options.photos
-    this.isFavorite = false
-    this.isInCart = false
-    this.isInCompare = false
+    this.isFavorite = options.isFavorite || false
+    this.isInCart = options.isInCart || false
+    this.isInCompare = options.isInCompare || false
   }
 
   convertPrice(currencyRate) {
@@ -32,6 +32,7 @@ class Product {
       await this.addToCart()
     }
   }
+
   async toggleInCompare() {
     if (this.isInCompare) {
       await this.removeProductFromCompare()
@@ -49,6 +50,8 @@ class Product {
 
   async addToCart() {
     const postedInCart = await this.api.postProductToCart(this.id)
+    console.log(postedInCart)
+
     if (postedInCart.productId === this.id) {
       this.isInCart = true
     }

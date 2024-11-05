@@ -1,3 +1,6 @@
+import controller from '../controller/controllerProduct.js'
+import h from './h.js'
+
 const viewProduct = {
   renderProductInfo(product) {
     const productInfo = document.querySelector('.product-info')
@@ -29,49 +32,53 @@ const viewProduct = {
   },
 
   generateProductInfo(product) {
-    const wrapInfo = document.createElement('div')
-    const caption = document.createElement('div')
-    const h3 = document.createElement('h3')
-    const rating = this.generateRating()
-    const wrapInfoButtons = document.createElement('div')
-    const buttons = document.createElement('div')
-    const btnFavorite = document.createElement('button')
-    const btnCompare = document.createElement('button')
-    const wrapInfoPrice = document.createElement('div')
-    const price = document.createElement('div')
-    const priceParagraph = document.createElement('p')
-    const wrapInfoCart = document.createElement('div')
-    const cartButton = document.createElement('div')
-    const btnCart = document.createElement('button')
-    wrapInfo.classList.add('wrap-info')
-    caption.classList.add('caption')
-    wrapInfoButtons.classList.add('wrap-info-buttons')
-    buttons.classList.add('buttons')
-    btnFavorite.classList.add('btn')
-    btnCompare.classList.add('btn')
-    wrapInfoPrice.classList.add('wrap-info-price')
-    price.classList.add('price')
-    wrapInfoCart.classList.add('wrap-info-cart')
-    cartButton.classList.add('cart-button')
-    btnCart.classList.add('btn')
-    h3.textContent = product.caption
-    btnFavorite.textContent = 'В избранное'
-    btnCompare.textContent = 'Сравнить'
-    btnCart.textContent = 'В корзину'
-    priceParagraph.textContent = `${product.convertedPrice.toFixed(0)} грн`
-    caption.appendChild(h3)
-    wrapInfo.appendChild(caption)
-    wrapInfo.appendChild(rating)
-    buttons.appendChild(btnFavorite)
-    buttons.appendChild(btnCompare)
-    wrapInfoButtons.appendChild(buttons)
-    wrapInfo.appendChild(wrapInfoButtons)
-    price.appendChild(priceParagraph)
-    wrapInfoPrice.appendChild(price)
-    wrapInfo.appendChild(wrapInfoPrice)
-    cartButton.appendChild(btnCart)
-    wrapInfoCart.appendChild(cartButton)
-    wrapInfo.appendChild(wrapInfoCart)
+    const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
+    const isInCartClass = product.isInCart ? 'cart-btn' : ''
+    const isInCompareClass = product.isInCompare ? 'compare-btn' : ''
+
+    const wrapInfo = h(
+      'div',
+      { class: 'wrap-info wrap-product', 'data-product-id': product.id },
+      '',
+      [
+        h('div', { class: 'caption' }, '', [h('h3', '', product.caption)]),
+        this.generateRating(),
+        h('div', { class: 'wrap-info-price' }, '', [
+          h('div', { class: 'price' }, '', [
+            h('p', '', `${product.convertedPrice.toFixed(0)} грн`),
+          ]),
+        ]),
+        h('div', { class: 'row' }, '', [
+          h('div', { class: 'cart' }, '', [
+            h(
+              'button',
+              { class: isInCartClass },
+              '',
+              [],
+              this.onClickButtonCart
+            ),
+          ]),
+          h('div', { class: 'favorite' }, '', [
+            h(
+              'button',
+              { class: isFavoriteClass },
+              '',
+              [],
+              this.onClickButtonFavorite
+            ),
+          ]),
+          h('div', { class: 'compare' }, '', [
+            h(
+              'button',
+              { class: isInCompareClass },
+              '',
+              [],
+              this.onClickButtonCompare
+            ),
+          ]),
+        ]),
+      ]
+    )
 
     return wrapInfo
   },
@@ -193,6 +200,36 @@ const viewProduct = {
       specsContainer.appendChild(elP)
     })
     return specsContainer
+  },
+
+  async onClickButtonFavorite(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    // elButton.disabled = true
+    await controller.handleToggleFavorite(productId)
+    // elButton.disabled = false
+  },
+
+  async onClickButtonCart(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    // elButton.disabled = true
+    await controller.handleToggleAddToCart(productId)
+    // elButton.disabled = false
+  },
+
+  async onClickButtonCompare(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    // elButton.disabled = true
+    await controller.handleToggleAddToCompare(productId)
+    // elButton.disabled = false
   },
 }
 

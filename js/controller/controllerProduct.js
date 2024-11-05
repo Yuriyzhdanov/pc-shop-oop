@@ -25,6 +25,30 @@ const controllerProduct = {
     await modelShop.catalog.updateSimilarProd(productId)
     viewProduct.renderSimilarProd(modelShop.catalog.similarProducts)
   },
+
+  async handleToggleFavorite(productId) {
+    console.log(productId)
+
+    const product = modelShop.catalog.getProductById(productId)
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleFavorite()
+    this.handleShowProduct(product)
+  },
+
+  async handleToggleAddToCart(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    console.log(product)
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleInCart()
+    this.handleShowProduct(product)
+  },
+
+  async handleToggleAddToCompare(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleInCompare()
+    this.handleShowProduct(product)
+  },
 }
 
 export default controllerProduct
