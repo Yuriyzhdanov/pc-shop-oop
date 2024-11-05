@@ -125,6 +125,12 @@ const api = {
     return recommendedProducts.map(product => product.productId)
   },
 
+  async loadWatchedProductsById() {
+    const url = getUrl()('customers')(this.userId)('watched')()
+    const watchedProducts = await this.sendRequest(url, 'GET', null, true)
+    return watchedProducts.map(product => product.productId)
+  },
+
   async loadSimilarProductsById(productId) {
     const url = getUrl()('products')(productId)('similar')()
     const similarProducts = await this.sendRequest(url, 'GET')

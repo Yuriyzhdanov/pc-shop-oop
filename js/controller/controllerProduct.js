@@ -10,6 +10,7 @@ const controllerProduct = {
     this.handleShowProduct(product)
     this.handleShowRecommendedProducts()
     this.handleShowSimilarProducts(productId)
+    this.handleShowWatchedProducts(productId)
   },
 
   handleShowProduct(product) {
@@ -24,6 +25,11 @@ const controllerProduct = {
   async handleShowSimilarProducts(productId) {
     await modelShop.catalog.updateSimilarProd(productId)
     viewProduct.renderSimilarProd(modelShop.catalog.similarProducts)
+  },
+
+  async handleShowWatchedProducts(productId) {
+    await modelShop.catalog.updateWatchedProd(productId)
+    viewProduct.renderWatchedProd(modelShop.catalog.watchedProducts)
   },
 
   async handleToggleFavorite(productId) {

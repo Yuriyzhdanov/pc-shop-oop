@@ -31,6 +31,15 @@ const viewProduct = {
     })
   },
 
+  renderWatchedProd(watchedProducts) {
+    const container = document.querySelector('.container-pave.watched')
+    container.innerHTML = ''
+    watchedProducts.forEach(product => {
+      const productElement = this.generateWatchedProd(product)
+      container.appendChild(productElement)
+    })
+  },
+
   generateProductInfo(product) {
     const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
     const isInCartClass = product.isInCart ? 'cart-btn' : ''
@@ -121,6 +130,27 @@ const viewProduct = {
     similarDiv.appendChild(link)
     similarDiv.appendChild(caption)
     tile.appendChild(similarDiv)
+
+    return tile
+  },
+
+  generateWatchedProd(product) {
+    const tile = document.createElement('div')
+    const watchedDiv = document.createElement('div')
+    const link = document.createElement('a')
+    const img = document.createElement('img')
+    const caption = document.createElement('p')
+    tile.classList.add('tile')
+    watchedDiv.classList.add('watched')
+    link.setAttribute('href', `./product.html?id=${product.id}`)
+    link.setAttribute('target', '_blank')
+    img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
+    img.alt = product.caption
+    caption.textContent = product.caption
+    link.appendChild(img)
+    watchedDiv.appendChild(link)
+    watchedDiv.appendChild(caption)
+    tile.appendChild(watchedDiv)
 
     return tile
   },

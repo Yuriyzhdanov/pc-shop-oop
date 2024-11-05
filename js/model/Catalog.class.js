@@ -11,6 +11,7 @@ class Catalog {
     this.paginator = paginator
     this.recommendedProducts = []
     this.similarProducts = []
+    this.watchedProducts = []
     this.userId = 3
   }
 
@@ -105,6 +106,22 @@ class Catalog {
     this.products = []
   }
 
+  async updateProducts() {
+    const productList = await api.loadProducts()
+    this.clear()
+    this.addProducts(productList, api.getCurrencyRate(), api)
+  }
+
+  async updateCurrencyUSD() {
+    const currencyRate = await api.getCurrencyRate('USD')
+    this.products.forEach(product => product.convertPrice(currencyRate))
+  }
+
+  convertPrice() {
+    const currencyRate = api.getCurrencyRate()
+    this.products.forEach(product => product.convertPrice(currencyRate))
+  }
+
   async updateRecomendProd() {
     const recommendedIds = await api.loadRecommendedProductsById(this.userId)
     this.recommendedProducts = recommendedIds.map(id =>
@@ -122,20 +139,14 @@ class Catalog {
     )
   }
 
-  async updateProducts() {
-    const productList = await api.loadProducts()
-    this.clear()
-    this.addProducts(productList, api.getCurrencyRate(), api)
-  }
-
-  async updateCurrencyUSD() {
-    const currencyRate = await api.getCurrencyRate('USD')
-    this.products.forEach(product => product.convertPrice(currencyRate))
-  }
-
-  convertPrice() {
-    const currencyRate = api.getCurrencyRate()
-    this.products.forEach(product => product.convertPrice(currencyRate))
+  async updateWatchedProd(id) {
+    await this.updateProducts()
+    await this.updateCurrencyUSD()
+    this.convertPrice()
+    const watchedProductIds = await api.loadWatchedProductsById(id)
+    this.watchedProducts = this.products.filter(product =>
+      watchedProductIds.includes(product.id)
+    )
   }
 }
 

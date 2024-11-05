@@ -323,6 +323,28 @@ a {
   padding: 10px;
 }
 
+.watched {
+  text-align: center;
+}
+
+.watched-title {
+  text-align: center;
+  padding: 20px;
+}
+
+.watched > a > img {
+  height: 150px;
+  border-radius: 20px;
+}
+
+.watched > a > img:hover {
+  box-shadow: 0 0 30px rgb(0, 187, 255);
+}
+
+.watched > p {
+  padding: 10px;
+}
+
 .tile {
   width: calc(25% - 10px);
   display: inline-block;
