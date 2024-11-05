@@ -12,9 +12,24 @@ const controllerFavorites = {
     viewFavorites.render(favoriteProducts)
   },
 
-  async handleRemoveFromFavorite(productId) {
+  async handleToggleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    await product.removeFromFavorites()
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleFavorite()
+    this.handleShowFavorites()
+  },
+
+  async handleToggleAddToCart(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleInCart()
+    this.handleShowFavorites()
+  },
+
+  async handleToggleAddToCompare(productId) {
+    const product = modelShop.catalog.getProductById(productId)
+    const products = modelShop.catalog.computeProducts()
+    await product.toggleInCompare()
     this.handleShowFavorites()
   },
 }
