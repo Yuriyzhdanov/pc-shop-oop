@@ -165,7 +165,7 @@ a {
   padding: 15px 5px;
 }
 .main > .bottom > .left {
-  width: 250px;
+  width: 150px;
 }
 .main > .bottom > .right {
   width: calc(100% - 250px);
