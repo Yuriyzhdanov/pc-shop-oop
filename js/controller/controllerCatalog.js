@@ -97,24 +97,24 @@ const controller = {
 
   async handleToggleFavorite(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    const isFavorite = await product.toggleFavorite()
     const products = modelShop.catalog.computeProducts()
+    await product.toggleFavorite()
     viewCatalog.render(products, true)
     viewCatalog.renderFavoriteCount(modelShop.catalog.computeFavoritesCount())
   },
 
   async handleToggleAddToCart(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    const isInCart = await product.toggleInCart()
     const products = modelShop.catalog.computeProducts()
+    await product.toggleInCart()
     viewCatalog.render(products, true)
     viewCatalog.renderCartCount(modelShop.catalog.computeProductInCartCount())
   },
 
   async handleToggleAddToCompare(productId) {
     const product = modelShop.catalog.getProductById(productId)
-    const isInCompare = await product.toggleInCompare()
     const products = modelShop.catalog.computeProducts()
+    await product.toggleInCompare()
     viewCatalog.render(products, true)
     viewCatalog.renderCompareCount(
       modelShop.catalog.computeProductInCompareCount()

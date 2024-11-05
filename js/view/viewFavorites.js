@@ -1,4 +1,4 @@
-import controllerFavorites from '../controller/controllerFavorites.js'
+import controller from '../controller/controllerFavorites.js'
 import h from './h.js'
 
 let tempObjsImgFavorites = []
@@ -24,7 +24,9 @@ const viewFavorites = {
   render(products, fromCache = false) {
     const elContainerFavorites = document.querySelector(this.selector)
     elContainerFavorites.innerHTML = ''
+
     if (!fromCache) tempObjsImgFavorites = []
+
     if (products.length === 0) {
       this.renderNotFoundMessage()
       return
@@ -37,6 +39,10 @@ const viewFavorites = {
 
   generate(product, idx, fromCache) {
     const divLabels = this.generateLabelSpecs(product.attributes)
+    const isFavoriteClass = product.isFavorite ? 'favorite-btn' : ''
+    const isInCartClass = product.isInCart ? 'cart-btn' : ''
+    const isInCompareClass = product.isInCompare ? 'compare-btn' : ''
+
     const divContainerProduct = h(
       'div',
       { class: 'wrap-product', 'data-product-id': product.id },
@@ -73,32 +79,38 @@ const viewFavorites = {
           h('p', {}, '', [h('b', {}, product.convertedPrice + ' грн')]),
         ]),
         h('div', { class: 'row' }, '', [
-          h('div', { class: 'cart' }, '', [h('button', {})]),
-          h('div', { class: 'delete' }, '', [
+          h('div', { class: 'cart' }, '', [
             h(
               'button',
-              { class: 'favorite-btn' },
+              { class: isInCartClass },
               '',
               [],
-              this.onClickButtonRemoveFavorite.bind(this)
+              this.onClickButtonCart
             ),
           ]),
-          h('div', { class: 'compare' }, '', [h('button', {})]),
+          h('div', { class: 'favorite' }, '', [
+            h(
+              'button',
+              { class: isFavoriteClass },
+              '',
+              [],
+              this.onClickButtonFavorite
+            ),
+          ]),
+          h('div', { class: 'compare' }, '', [
+            h(
+              'button',
+              { class: isInCompareClass },
+              '',
+              [],
+              this.onClickButtonCompare
+            ),
+          ]),
         ]),
       ]
     )
 
     return divContainerProduct
-  },
-
-  async onClickButtonRemoveFavorite(e) {
-    const elButton = e.target
-    const productId = +elButton
-      .closest('.wrap-product')
-      .getAttribute('data-product-id')
-    elButton.disabled = true
-    await controllerFavorites.handleRemoveFromFavorite(productId)
-    elButton.disabled = false
   },
 
   generateLabelSpecs(specs) {
@@ -117,6 +129,35 @@ const viewFavorites = {
       }
     }
     return divLabels
+  },
+  async onClickButtonFavorite(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    elButton.disabled = true
+    await controller.handleToggleFavorite(productId)
+    elButton.disabled = false
+  },
+
+  async onClickButtonCart(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    elButton.disabled = true
+    await controller.handleToggleAddToCart(productId)
+    elButton.disabled = false
+  },
+
+  async onClickButtonCompare(e) {
+    const elButton = e.target
+    const productId = +elButton
+      .closest('.wrap-product')
+      .getAttribute('data-product-id')
+    elButton.disabled = true
+    await controller.handleToggleAddToCompare(productId)
+    elButton.disabled = false
   },
 }
 
