@@ -5,6 +5,7 @@ import Paginator from './Paginator.class.js'
 import PriceRanger from './PriceRanger.class.js'
 import Search from './Search.class.js'
 import Sorter from './Sorter.class.js'
+// import products from '../api/products.js'
 
 class Shop {
   constructor(api) {
@@ -26,6 +27,9 @@ class Shop {
   }
 
   async init() {
+    // const productsData = products
+    // console.log(productsData)
+
     const products = await this.api.loadProducts()
     await this.api.authenticate()
     const currencyRate = await this.api.loadCurrency()
@@ -41,6 +45,8 @@ class Shop {
     this.catalog.checkCompare(compareIds)
     this.filter.update(products)
     this.updateSearch()
+
+    // this.filter.update(productsData)
   }
 
   updateSearch() {

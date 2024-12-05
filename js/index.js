@@ -7,7 +7,7 @@ import controllerCompare from './controller/controllerCompare.js'
 document.addEventListener('DOMContentLoaded', onDOMContentLoadedDocument)
 
 async function onDOMContentLoadedDocument() {
-  if (location.pathname.includes('catalog.html')) {
+  if (location.pathname.includes('index.html')) {
     await controllerCatalog.handleDOMContentLoaded()
   }
   if (location.pathname.includes('favorites.html')) {
