@@ -8,9 +8,9 @@
   --clr_white: #f2f6f7;
 }
 
-:disabled {
+/* :disabled {
   border: 10px solid red !important;
-}
+} */
 
 .row {
   font-size: 0;

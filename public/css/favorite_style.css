@@ -405,3 +405,41 @@ a {
 .filter:hover {
   background: linear-gradient(45deg, hsl(236, 71%, 48%), hsl(180, 85%, 65%));
 }
+
+.wrap-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 51;
+  transition: 1s all;
+  opacity: 1;
+  visibility: visible;
+}
+.loader {
+  position: absolute;
+  left: 49%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 6px solid #65a9ee;
+  border-top-color: #0c3c6c;
+  border-radius: 50%;
+  animation: 1s myAnim linear infinite;
+}
+.cansel {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes myAnim {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

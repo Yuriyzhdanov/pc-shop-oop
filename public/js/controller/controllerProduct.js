@@ -3,6 +3,7 @@ import modelShop from '../model/model.js'
 
 const controllerProduct = {
   async handleDOMContentLoaded() {
+    this.showPreloader()
     const urlParams = new URLSearchParams(window.location.search)
     const productId = urlParams.get('id')
     await modelShop.init()
@@ -11,10 +12,26 @@ const controllerProduct = {
     this.handleShowRecommendedProducts()
     this.handleShowSimilarProducts(productId)
     this.handleShowWatchedProducts(productId)
+    this.hidePreloader()
   },
 
   handleShowProduct(product) {
     viewProduct.renderProductInfo(product)
+  },
+  showPreloader() {
+    const preloader = document.getElementById('preloader')
+    if (preloader) {
+      preloader.style.display = 'block'
+    }
+  },
+
+  hidePreloader() {
+    const preloader = document.getElementById('preloader')
+    if (preloader) {
+      setTimeout(() => {
+        preloader.classList.add('cansel')
+      }, 499)
+    }
   },
 
   async handleShowRecommendedProducts() {

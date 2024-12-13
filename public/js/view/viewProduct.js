@@ -16,7 +16,8 @@ const viewProduct = {
   renderRecomendProd(recommendedProducts) {
     const container = document.querySelector('.container-pave.recomend')
     container.innerHTML = ''
-    recommendedProducts.forEach(product => {
+    const productsToRender = recommendedProducts.slice(0, 4)
+    productsToRender.forEach(product => {
       const productElement = this.generateRecomendProd(product)
       container.appendChild(productElement)
     })

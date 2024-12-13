@@ -38,14 +38,14 @@ const controller = {
   },
 
   showPreloader() {
-    const preloader = document.getElementById('myPreloader')
+    const preloader = document.getElementById('preloader')
     if (preloader) {
       preloader.style.display = 'block'
     }
   },
 
   hidePreloader() {
-    const preloader = document.getElementById('myPreloader')
+    const preloader = document.getElementById('preloader')
     if (preloader) {
       setTimeout(() => {
         preloader.classList.add('cansel')

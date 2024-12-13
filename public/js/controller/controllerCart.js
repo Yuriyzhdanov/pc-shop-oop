@@ -3,8 +3,10 @@ import modelShop from '../model/model.js'
 
 const controllerCart = {
   async handleDOMContentLoaded() {
+    this.showPreloader()
     await modelShop.init()
     this.handleShowCart()
+    this.hidePreloader()
   },
 
   handleShowCart() {
@@ -18,6 +20,22 @@ const controllerCart = {
     const product = modelShop.catalog.getProductById(productId)
     await product.removeProductFromCart()
     this.handleShowCart()
+  },
+
+  showPreloader() {
+    const preloader = document.getElementById('preloader')
+    if (preloader) {
+      preloader.style.display = 'block'
+    }
+  },
+
+  hidePreloader() {
+    const preloader = document.getElementById('preloader')
+    if (preloader) {
+      setTimeout(() => {
+        preloader.classList.add('cansel')
+      }, 499)
+    }
   },
 }
 
