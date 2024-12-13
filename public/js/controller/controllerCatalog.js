@@ -8,6 +8,8 @@ import viewSort from '../view/viewSort.js'
 
 const controller = {
   async handleDOMContentLoaded() {
+    this.showPreloader()
+
     viewPaginator.init()
     viewSearch.init()
     viewSort.init()
@@ -31,6 +33,24 @@ const controller = {
     viewCatalog.renderCompareCount(
       modelShop.catalog.computeProductInCompareCount()
     )
+
+    this.hidePreloader()
+  },
+
+  showPreloader() {
+    const preloader = document.getElementById('myPreloader')
+    if (preloader) {
+      preloader.style.display = 'block'
+    }
+  },
+
+  hidePreloader() {
+    const preloader = document.getElementById('myPreloader')
+    if (preloader) {
+      setTimeout(() => {
+        preloader.classList.add('cansel')
+      }, 499)
+    }
   },
 
   handleShowCatalog(isResetPrice) {
