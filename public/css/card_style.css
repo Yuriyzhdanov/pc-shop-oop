@@ -509,15 +509,12 @@ a {
   border: 1px solid #fff;
   padding: 10px;
 }
-.slider {
-}
+
 .navigation > label > img {
   max-height: 400px;
   width: auto;
 }
-.slider > .specs {
-  /* background-color: red; */
-}
+
 .navigation {
   margin: 0 auto;
 }
@@ -533,7 +530,7 @@ a {
   /* transition: transform 0.3s ease;  */
 }
 .navigation img:hover {
-  /* transform: scale(1.1);  */
+  transform: scale(1.1);
 }
 
 #slider-r1:checked ~ .navigation > label:nth-child(1) {
